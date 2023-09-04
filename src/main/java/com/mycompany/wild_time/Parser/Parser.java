@@ -80,13 +80,16 @@ public class Parser {
     public ParserOutput parse(String command, GameDescription game) {
         ParserOutput p = new ParserOutput();
         Item item = new Item();
+        String text = command;
         List<String> keyWords = new ArrayList<>();
         keyWords = findKeyWords(command);
+        
         int n = 0; 
         
         p.setCommand(null);
         p.setInvObject(null);
         p.setObject(null);
+        p.setConversation(null);
 
         for(int i = 0; i < keyWords.size(); i++) {
             if(!keyWords.get(i).isEmpty()) { // controlla prima se è un oggetto
@@ -94,6 +97,7 @@ public class Parser {
                
                 if(n != -1) {
                     p.setCommand(game.getCommands().get(n));
+                    System.out.println("Comando trovato: " + p.getCommand().getName());
                 } else {            // se non è un commando verifica che sia un oggetto
                     n = checkForObject(keyWords.get(i), game.getItems(), Item::getName, null);
 
@@ -102,6 +106,7 @@ public class Parser {
                     
                         if(n != -1) {
                             p.setNpc(game.getNpcs().get(n));
+                            System.out.println("Npc trovato: " + p.getNpc().getName());
                         }
 
                     } else {
@@ -116,6 +121,39 @@ public class Parser {
                 }
             }
         }
+        
+        /*
+            Possibile problema: se avvio un'altra conversazione senza aver terminato quella corrente 
+            casino bordello anche se nel momento in cui viene rilevato un comando tutte le conversazioni
+            avviate vengono settate su false DA VERIFICARE
+        */
+        
+        // controlla conversazione
+        if(p.getCommand() == null) { // se il testo inserito non contiene comandi
+            // il commando è nullo
+            System.out.println("Il comando è nullo");
+            for(int i = 0; i < game.getPlayer().getCurrentPlace().getNpcs().size(); i++) {
+                if(game.getPlayer().getCurrentPlace().getNpcs().get(i).getIsTalking()) {
+                    if(text.equals(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().getQuestion())) {
+                        p.setConversation(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation());
+                    }
+                    
+                    p.setNpc(game.getPlayer().getCurrentPlace().getNpcs().get(i));
+                }
+            }
+        } else { // se il comando contiene un comando interrompi conversazione
+            for(int i = 0; i < game.getPlayer().getCurrentPlace().getNpcs().size(); i++) {
+                game.getPlayer().getCurrentPlace().getNpcs().get(i).setIsTalking(false);
+            }
+        }
+
+        
+        if(p.getConversation() != null) {
+            System.out.println(p.getConversation().getQuestion());
+            System.out.println(p.getConversation().getAnswer());
+        }
+
+
         
         return p;
     }

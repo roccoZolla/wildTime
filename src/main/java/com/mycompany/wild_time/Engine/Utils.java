@@ -124,6 +124,8 @@ public class Utils {
                     text = "Non c'è niente da raccogliere in questa stanza!";
                 } else if(!p.getObject().isTakeable()) {
                     text = "Per qualche strana ragione non puoi raccogliere questo oggetto";
+                } else if(player1.getInventory().getList().contains(p.getObject())) {
+                    text = "Hai gia raccolto questo oggetto!";
                 } else {
                     System.out.println("oggetto nel comando: " + p.getObject().getName());
                     for(int i = 0; i < player1.getCurrentPlace().getItems().size(); i++) {
@@ -138,7 +140,9 @@ public class Utils {
                 } 
             } else if (p.getCommand().getType() == CommandType.LOOK_AT) {                  // guarda
                 if(!player1.getCurrentPlace().getNpcs().isEmpty()){
-                    System.out.println("Lista npc:" + player1.getCurrentPlace().getNpcs().get(0).getName());
+                    for(int i = 0; i < player1.getCurrentPlace().getNpcs().size(); i++) {
+                        System.out.println("Lista npc:" + player1.getCurrentPlace().getNpcs().get(i).getName());
+                    }
                 }
                 
                 // cosa c'è nella stanza?
@@ -288,10 +292,10 @@ public class Utils {
                     p.getNpc().setHp(p.getNpc().getHp() - damage);
                     
                     if(p.getNpc().getHp() <= 0){
-                        text = p.getNpc().getName() + ": E' stato un piacere mercenario";
+                        text = p.getNpc().getName().toUpperCase() + ": E' stato un piacere mercenario";
                     } else {
-                        text = p.getNpc().getName() + " HP: " + p.getNpc().getHp() + "\n";
-                        text += p.getNpc().getName() + ": Tocca ammazzarti!";
+                        text = p.getNpc().getName().toUpperCase() + " HP: " + p.getNpc().getHp() + "\n";
+                        text += p.getNpc().getName().toUpperCase() + ": Tocca ammazzarti!";
                         
                         attack = p.getNpc().getArma().getAttackDamage();
                         defense = player1.getScudo().getDefenseBonus();
@@ -313,7 +317,11 @@ public class Utils {
                 } else if(p.getNpc().getHp() <= 0){
                     text = "I morti non hanno ancora imparato a parlare...";
                 } else {
-                    text = p.getNpc().getName() + ": " + p.getNpc().getTalk();
+                    // sto parlando con l'npc
+                    p.getNpc().setIsTalking(true);
+                    text = "----- Stai parlando con " + p.getNpc().getName().toUpperCase() + " -----\n";
+                    text += "Per uscire dalla conversazione digita un altro comando\n";
+                    text += p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk();
                 }
                 
             }
