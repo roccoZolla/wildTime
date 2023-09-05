@@ -10,10 +10,11 @@ package com.mycompany.wild_time.Type;
  */
 public class Npc extends Character{
     private boolean isEnemy = false;
+    private boolean isTalking = false;
     private Item reward = null;         // se nemico è l'oggetto ricompensa
     private String description;
     private String talk;
-    private Conversation conversation;
+    private Conversation conversation = new Conversation();
     
     public void setReward(Item reward) {
         this.reward = reward;
@@ -35,6 +36,10 @@ public class Npc extends Character{
         this.conversation = conversation;
     }
     
+    public void setIsTalking(boolean isTalking) {
+        this.isTalking = isTalking;
+    }
+    
     public Item getReward() {
         return reward;
     }    
@@ -53,5 +58,9 @@ public class Npc extends Character{
     
     public Conversation getConversation() {
         return conversation;
+    }
+    
+    public boolean getIsTalking() {
+        return isTalking;
     }
 }

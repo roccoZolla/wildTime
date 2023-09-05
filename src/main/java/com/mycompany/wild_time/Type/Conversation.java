@@ -4,30 +4,29 @@
  */
 package com.mycompany.wild_time.Type;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author rocco
  */
-public class Conversation {
-    private List<String> question = new ArrayList<>(); 
-    private List<String> answer = new ArrayList<>();
+public class Conversation implements Serializable{
+    private String question = "";
+    private String answer = "";
     
-    public List<String> getQuestion() {
+    public String getQuestion() {
         return question;
     }
     
-    public List<String> getAnswer() {
+    public String getAnswer() {
         return answer;
     }
     
-//    public void setQuestion(List question) {
-//        this.question = question;
-//    }
-//    
-//    public void setAnswer(String answer) {
-//        this.answer = answer;
-//    }
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+    
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 }

@@ -6,6 +6,7 @@ package com.mycompany.wild_time.Parser;
 
 import com.mycompany.wild_time.Type.Chest;
 import com.mycompany.wild_time.Type.Command;
+import com.mycompany.wild_time.Type.Conversation;
 import com.mycompany.wild_time.Type.Item;
 import com.mycompany.wild_time.Type.Npc;
 
@@ -15,11 +16,11 @@ import com.mycompany.wild_time.Type.Npc;
  * @author rocco
  */
 public class ParserOutput {
-
     private Command command;
     private Item object;
     private Chest chestObject;
     private Npc npc;
+    private Conversation conversation;
     
     public ParserOutput(){}
     
@@ -69,6 +70,14 @@ public class ParserOutput {
     
     public void setNpc(Npc npc) {
         this.npc = npc;
+    }
+    
+    public Conversation getConversation() {
+        return conversation;
+    }
+    
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
 }

@@ -450,38 +450,38 @@ public class WildTime extends GameDescription {
         strangeTraveler.setTalk("Sei nuovo da queste parti vero?");
         strangeTraveler.setDescription("Viandante dall'aspetto trasandato che ne sta ai piedi"
                 + "di un fuoco semi accesso.");
-        
+      
         
         Npc scaredBoy = new Npc();
         scaredBoy.setHp(20);
-        scaredBoy.setName("Renato_Spaventato");
+        scaredBoy.setName("renato_spaventato");
         scaredBoy.setTalk("Dall'aspetto sembri un mercenario. Sento provenire delle voci"
                 + "dalla parte sud della Palude.");
         scaredBoy.setDescription("Renato Spaventato, il nome gia dice tutto.");
         
         Npc scaredWoman = new Npc();
         scaredWoman.setHp(20);
-        scaredWoman.setName("Rita l'impaurita");
+        scaredWoman.setName("rita_l'impaurita");
         scaredWoman.setTalk("Dall'aspetto sembri un mercenario. Sento provenire delle voci"
                 + "dalla parte nord della Palude.");
         scaredWoman.setDescription("Rita l'impaurita, il nome gia dice tutto.");
         
         Npc merchant = new Npc();
         merchant.setHp(20);
-        merchant.setName("Tino_Cre");
+        merchant.setName("tino_cre");
         merchant.setTalk("Salve viadante io sono Tino Cre");
         merchant.setDescription("Mercante dall'aspetto buffo");
         
         Npc littleFrog = new Npc();
         littleFrog.setHp(20);
-        littleFrog.setName("Rospetto_il_sospetto");
+        littleFrog.setName("rospetto_il_sospetto");
         littleFrog.setTalk("Crack mercenario! Mi chiamo Gamabunta crack!");
         littleFrog.setDescription("Rospetto che si atteggia a vecchio maestro, forse sara"
                 + "per quel lungo pizzetto bianco.");
         
         Npc jiraya = new Npc();
         jiraya.setHp(20);
-        jiraya.setName("Eremita_dei_Rospi");
+        jiraya.setName("eremita_dei_rospi");
         jiraya.setTalk("Salve viadante io sono l'eremita dei rospi");
         jiraya.setDescription("Si dice che provenga da un villaggio che ha come simbolo una foglia,"
                 + "quanta fantasia...");
@@ -553,6 +553,9 @@ public class WildTime extends GameDescription {
                 + "di un fuoco semi accesso.");
         tester.setArma(shit);
         tester.setScudo(shitgold);
+        
+        tester.getConversation().setQuestion("Che fai?");
+        tester.getConversation().setAnswer("Schifo");
         
         getNpcs().add(tester);
         
