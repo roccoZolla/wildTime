@@ -15,6 +15,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <exec.mainClass>com.mycompany.wild_time.Wild_Time</exec.mainClass>
+        <exec.mainClass>com.mycompany.wild_time.Engine.Engine</exec.mainClass>
     </properties>
 </project>
