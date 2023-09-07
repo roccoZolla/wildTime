@@ -4,6 +4,9 @@
  */
 package com.mycompany.wild_time.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author rocco
@@ -14,7 +17,7 @@ public class Npc extends Character{
     private Item reward = null;         // se nemico è l'oggetto ricompensa
     private String description;
     private String talk;
-    private Conversation conversation = new Conversation();
+    private List<Conversation> conversation = new ArrayList<>();
     
     public void setReward(Item reward) {
         this.reward = reward;
@@ -32,7 +35,7 @@ public class Npc extends Character{
         this.isEnemy = isEnemy;
     }
     
-    public void setConversation(Conversation conversation) {
+    public void setConversation(List<Conversation> conversation) {
         this.conversation = conversation;
     }
     
@@ -56,7 +59,7 @@ public class Npc extends Character{
         return isEnemy;
     }
     
-    public Conversation getConversation() {
+    public List<Conversation> getConversation() {
         return conversation;
     }
     

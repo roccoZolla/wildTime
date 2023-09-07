@@ -23,7 +23,7 @@ public class Engine {
             System.err.println(ex);
         }   
         
-        gameManager = new GameManager(new GUIManager(), game);
+        gameManager = new GameManager(game);
     }
     
     public void excute() {
@@ -34,7 +34,5 @@ public class Engine {
         Engine engine = new Engine(new WildTime());
         
         engine.excute();
-        
-        // engine.gameManager.startGame();
     }
 }

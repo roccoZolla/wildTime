@@ -11,11 +11,13 @@ import com.mycompany.wild_time.Engine.GameManager;
  * @author rocco
  */
 public class GameFrame extends javax.swing.JFrame {
+    
     /**
      * Creates new form GameFrame
      */
     public GameFrame() {
         initComponents();
+        // initImgPanel(imageIcon);
         
         setSize(800, 500);
         setLocationRelativeTo(null); 
@@ -93,11 +95,11 @@ public class GameFrame extends javax.swing.JFrame {
         armorField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
         jPanel1.add(armorField, gridBagConstraints);
 
         attackField.setEditable(false);
@@ -106,11 +108,11 @@ public class GameFrame extends javax.swing.JFrame {
         attackField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(attackField, gridBagConstraints);
 
         hpField.setEditable(false);
@@ -119,11 +121,11 @@ public class GameFrame extends javax.swing.JFrame {
         hpField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 1);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(hpField, gridBagConstraints);
 
         placeArea.setEditable(false);
@@ -134,25 +136,26 @@ public class GameFrame extends javax.swing.JFrame {
         placeArea.setWrapStyleWord(true);
         placeArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
         jPanel1.add(placeArea, gridBagConstraints);
 
         equipLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         equipLabel.setText("Equipment");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 10);
         jPanel1.add(equipLabel, gridBagConstraints);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         storyArea.setEditable(false);
         storyArea.setLineWrap(true);

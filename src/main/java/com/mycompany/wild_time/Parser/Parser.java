@@ -11,6 +11,7 @@ import com.mycompany.wild_time.Type.Item;
 import com.mycompany.wild_time.Type.Npc;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -19,13 +20,7 @@ import java.util.Set;
  * @author rocco
  */
 public class Parser {
-    //private final Set<String> stopwords;
-    
     public Parser() {}
-
-    /*public Parser(Set<String> stopwords) {
-        this.stopwords = stopwords;
-    } */
     
     interface Function<T, R> {
         R apply(T t);
@@ -99,9 +94,11 @@ public class Parser {
                     p.setCommand(game.getCommands().get(n));
                     System.out.println("Comando trovato: " + p.getCommand().getName());
                 } else {            // se non è un commando verifica che sia un oggetto
+                    // controllo mirato degli oggetti presenti nella stanza corrente
                     n = checkForObject(keyWords.get(i), game.getItems(), Item::getName, null);
 
                     if(n == -1) {   // se non è un oggetto controllo se è un Npc
+                        // controllo mirato degli npc presenti nella stanza corrente
                         n = checkForObject(keyWords.get(i), game.getNpcs(), Npc::getName, null);
                     
                         if(n != -1) {
@@ -132,29 +129,26 @@ public class Parser {
         if(p.getCommand() == null) { // se il testo inserito non contiene comandi
             // il commando è nullo
             System.out.println("Il comando è nullo");
+            System.out.println("Current text: " + text);
             for(int i = 0; i < game.getPlayer().getCurrentPlace().getNpcs().size(); i++) {
                 if(game.getPlayer().getCurrentPlace().getNpcs().get(i).getIsTalking()) {
-                    if(text.equals(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().getQuestion())) {
-                        p.setConversation(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation());
+                    for(int j = 0; j < game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().size(); j++) {
+                        if(text.equals(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().get(j).getQuestion())) {
+                            p.setConversation(game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().get(j));
+                        }
                     }
                     
                     p.setNpc(game.getPlayer().getCurrentPlace().getNpcs().get(i));
                 }
             }
         } else { // se il comando contiene un comando interrompi conversazione
-            for(int i = 0; i < game.getPlayer().getCurrentPlace().getNpcs().size(); i++) {
-                game.getPlayer().getCurrentPlace().getNpcs().get(i).setIsTalking(false);
+            Iterator<Npc> npcIterator = game.getPlayer().getCurrentPlace().getNpcs().iterator();
+            while (npcIterator.hasNext()) {
+                Npc npc = npcIterator.next();
+                npc.setIsTalking(false);
             }
         }
 
-        
-        if(p.getConversation() != null) {
-            System.out.println(p.getConversation().getQuestion());
-            System.out.println(p.getConversation().getAnswer());
-        }
-
-
-        
         return p;
     }
 }

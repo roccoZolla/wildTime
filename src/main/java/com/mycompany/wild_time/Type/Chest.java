@@ -42,7 +42,7 @@ public class Chest extends Item{
 //        super(id, name, description, alias);
 //    }
 
-    public List<Item> getChest() {
+    public List<Item> getList() {
         return chest;
     }
     

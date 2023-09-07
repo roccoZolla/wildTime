@@ -7,6 +7,7 @@ package Game;
 import com.mycompany.wild_time.Engine.GameDescription;
 import com.mycompany.wild_time.Type.Command;
 import com.mycompany.wild_time.Type.CommandType;
+import com.mycompany.wild_time.Type.Conversation;
 import com.mycompany.wild_time.Type.Npc;
 import com.mycompany.wild_time.Type.Player;
 import com.mycompany.wild_time.Type.Inventory;
@@ -44,9 +45,9 @@ public class WildTime extends GameDescription {
         ovest.setAlias(new String[]{"o", "O", "Ovest", "OVEST"});
         getCommands().add(ovest);
         
-//        Command end = new Command(CommandType.END, "end");
-//        // end.setAlias(new String[]{"end", "fine", "esci", "muori", "ammazzati", "ucciditi", "suicidati","exit"});
-//        getCommands().add(end);
+        Command end = new Command(CommandType.END, "end");
+        end.setAlias(new String[]{"end", "fine", "esci", "muori", "ammazzati", "ucciditi", "suicidati","exit"});
+        getCommands().add(end);
         
         Command look = new Command(CommandType.LOOK_AT, "osserva");
         look.setAlias(new String[]{"guarda", "vedi", "cerca"});
@@ -61,7 +62,7 @@ public class WildTime extends GameDescription {
         getCommands().add(open);
         
 //        Command push = new Command(CommandType.PUSH, "premi");
-//       push.setAlias(new String[]{"spingi","attiva"});
+//        push.setAlias(new String[]{"spingi","attiva"});
 //        getCommands().add(push);
         
         Command save = new Command(CommandType.SAVE, "salva");
@@ -76,10 +77,6 @@ public class WildTime extends GameDescription {
         talk.setAlias(new String[]{"chiacchiera"});
         getCommands().add(talk);
         
-        Command exit = new Command(CommandType.END, "esci");
-        exit.setAlias(new String[]{"fine", "chiudi"});
-        getCommands().add(exit);
-        
         Command eat = new Command(CommandType.EAT, "mangia");
         eat.setAlias(new String[]{"bevi", "assumi"});
         getCommands().add(eat);
@@ -92,6 +89,10 @@ public class WildTime extends GameDescription {
         attack.setAlias(new String[]{"combatti", "lotta"});
         getCommands().add(attack);
         
+        Command leaves = new Command(CommandType.THROW, "lascia");
+        leaves.setAlias(new String[]{"butta", "getta", "lancia"});
+        getCommands().add(leaves);
+        
         
         // ----- LUOGHI -----
         // stanza di partenza del gioco 0 - FORESTA BIANCA
@@ -101,6 +102,7 @@ public class WildTime extends GameDescription {
         whiteForest.setDescription("Ti trovi nella Foresta Bianca");
         whiteForest.setExplored(false);
         whiteForest.setBlocked(false);
+        whiteForest.setFinal(true);
         
         // stanza 1 - SENTIERO PER LA FORESTA BIANCA
         Room whitePath = new Room();
@@ -214,13 +216,14 @@ public class WildTime extends GameDescription {
         timeMountain.setExplored(false);
         timeMountain.setBlocked(false);
                                                 
-        // stanza FINALE 15 - GROTTA DELLA MEMORIA
+        // stanza FINALE 15 - GROTTA DELLA MEMORIA - STANZA FINALE
         Room memoryCave = new Room();
         memoryCave.setName("Grotta della Memoria");
         memoryCave.setId(15);
         memoryCave.setDescription("Ti trovi nella Grotta della Memoria");
         memoryCave.setExplored(false);
         memoryCave.setBlocked(false);
+        memoryCave.setFinal(true);
        
         
         
@@ -413,12 +416,9 @@ public class WildTime extends GameDescription {
         
         weirdSwamp.getChest().setName("cassa");
         weirdSwamp.getChest().setIsOpen(false);
-        weirdSwamp.getChest().getChest().add(redPotion);
-        weirdSwamp.getChest().getChest().add(hat);
+        weirdSwamp.getChest().getList().add(redPotion);
+        weirdSwamp.getChest().getList().add(hat);
         weirdSwamp.getChest().setOpenWith(key);
-        
-        System.out.println(weirdSwamp.getChest().getChest().get(0).getName());
-        System.out.println(weirdSwamp.getChest().getChest().get(1).getName());
         
         getItems().add(weirdSwamp.getChest());
         
@@ -431,7 +431,7 @@ public class WildTime extends GameDescription {
         
         // ----- PERSONAGGI -----
         Player geralt = new Player();
-        geralt.setHp(50);
+        geralt.setHp(7);
         geralt.setMaxHP(50);
         geralt.setName("Geralt");
         geralt.setCurrentPlace(whiteForest);  
@@ -448,8 +448,21 @@ public class WildTime extends GameDescription {
         strangeTraveler.setHp(20);
         strangeTraveler.setName("strano_viandante");
         strangeTraveler.setTalk("Sei nuovo da queste parti vero?");
-        strangeTraveler.setDescription("Viandante dall'aspetto trasandato che ne sta ai piedi"
+        strangeTraveler.setDescription("Viandante dall'aspetto trasandato che se ne sta ai piedi"
                 + "di un fuoco semi accesso.");
+        
+        Conversation constr = new Conversation();
+        constr.setQuestion("Aiuto");
+        constr.setAnswer("Puoi chiedermi informazioni relative ai COMANDI, OGGETTI, NEMICI");
+        
+        Conversation constr2 = new Conversation();
+        constr2.setQuestion("comandi");
+        constr2.setAnswer("elenco dei comandi");
+        
+        strangeTraveler.getConversation().add(constr);
+        strangeTraveler.getConversation().add(constr2);
+
+        
       
         
         Npc scaredBoy = new Npc();
@@ -543,9 +556,8 @@ public class WildTime extends GameDescription {
         getItems().add(shit);        
         getItems().add(shitgold);
 
-        
         Npc tester = new Npc();
-        tester.setHp(40);
+        tester.setHp(10);
         tester.setIsEnemy(true);
         tester.setName("tester");
         tester.setTalk("Colpiscimi sono un tester");
@@ -553,15 +565,36 @@ public class WildTime extends GameDescription {
                 + "di un fuoco semi accesso.");
         tester.setArma(shit);
         tester.setScudo(shitgold);
+        tester.setReward(shitgold);
         
-        tester.getConversation().setQuestion("Che fai?");
-        tester.getConversation().setAnswer("Schifo");
+        Conversation con1 = new Conversation();
+        con1.setQuestion("Che fai?");
+        con1.setAnswer("Schifo");
+        
+        Conversation con2 = new Conversation();
+        con2.setQuestion("Cosa sai fare?");
+        con2.setAnswer("Puoi usarmi come sacco da box o posso darti una mano con i comandi");
+        
+        tester.getConversation().add(con1);
+        tester.getConversation().add(con2);
+
+        Npc tester2 = new Npc();
+        tester2.setHp(10);
+        tester2.setIsEnemy(true);
+        tester2.setName("tester");
+        tester2.setTalk("Colpiscimi sono un tester");
+        tester2.setDescription("trimone 2");
+        tester2.setArma(shit);
+        tester2.setScudo(shitgold);
+        tester2.setReward(shitgold);
+        
         
         getNpcs().add(tester);
-        
+        getNpcs().add(tester2);
+
         whiteForest.getNpcs().add(tester);
-
-
+        nomadMarket.getNpcs().add(tester2);
+        
         // ----- ENEMIES -----
         // COLEI CHE SA - MINIBOSS
         Npc sheWhoKnows = new Npc();
@@ -634,8 +667,6 @@ public class WildTime extends GameDescription {
         roughStreet.getNpcs().add(henchman1);
         gangOutpost.getNpcs().add(henchman2);
         serpentPlateau.getNpcs().add(slytherin);
-        
-        
         
         
         getRooms().add(whiteForest);       

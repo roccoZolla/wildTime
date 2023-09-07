@@ -11,13 +11,14 @@ package com.mycompany.wild_time.Type;
 public enum CommandType {
     SAVE, INVENTORY, NORD, SOUTH, EAST, WEST,
     OPEN,PICK_UP, TALK_TO, LOOK_AT, CLEAN,
-    END, EAT, EQUIP, ATTACK
+    END, EAT, EQUIP, ATTACK, THROW
 }
 
 /*
     open - apri = per casse o porte
     eat = per pozioni o oggetti
     equip = per armi e scudi
+    throw = utile in caso il giocatore voglia lasciare degli oggetti
 
 */
 
@@ -29,7 +30,6 @@ public enum CommandType {
 /*
 
     NON UTILIZZATI (al momento)
-    - END
     - PUSH
     - PULL
     - WALK_TO

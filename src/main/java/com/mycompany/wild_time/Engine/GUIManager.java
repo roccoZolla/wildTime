@@ -17,9 +17,9 @@ public class GUIManager{
     private StartFrame initFrame;
     private GameFrame gameFrame;
 
-    public GUIManager() {
-
-    }
+//    public GUIManager() {
+//
+//    }
 
     public void openStartFrame(GameManager gm) {
         if(initFrame != null) {
@@ -70,5 +70,16 @@ public class GUIManager{
     
     public void setVisibleStartFrame() {
         initFrame.setVisible(true);
+    }
+    
+    public void EndsGame() {
+        if(gameFrame != null) {
+            gameFrame.dispose();
+        }
+        
+        if(initFrame != null) {
+            initFrame.dispose();
+        }
+        
     }
 }

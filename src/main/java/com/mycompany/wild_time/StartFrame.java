@@ -16,20 +16,12 @@ import javax.swing.JOptionPane;
  * @author rocco
  */
 public class StartFrame extends javax.swing.JFrame {
-    private GameManager gameManager;
+    private GameManager gameManager;  // -> è giusto rendere finale questa variabile
     
     /**
      * Creates new form StartFrame
+     * @param gm
      */
-    public StartFrame() {
-        initComponents();
-        initButtons();
-        
-        configureUI();
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-    
     public StartFrame(GameManager gm) {
         initComponents();
         initButtons();
@@ -48,22 +40,16 @@ public class StartFrame extends javax.swing.JFrame {
     
     private void initButtons() {
         // ... Inizializzazione dei componenti grafici ...
-        buttonNewGame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonNewGameActionPerformed(evt);
-            }
+        buttonNewGame.addActionListener((java.awt.event.ActionEvent evt) -> {
+            buttonNewGameActionPerformed(evt);
         });
 
-        buttonContinue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonContinueActionPerformed(evt);
-            }
+        buttonContinue.addActionListener((java.awt.event.ActionEvent evt) -> {
+            buttonContinueActionPerformed(evt);
         });
 
-        buttonExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonExitActionPerformed(evt);
-            }
+        buttonExit.addActionListener((java.awt.event.ActionEvent evt) -> {
+            buttonExitActionPerformed(evt);
         });
     }
 
