@@ -17,10 +17,6 @@ public class GUIManager{
     private StartFrame initFrame;
     private GameFrame gameFrame;
 
-//    public GUIManager() {
-//
-//    }
-
     public void openStartFrame(GameManager gm) {
         if(initFrame != null) {
             initFrame.dispose();

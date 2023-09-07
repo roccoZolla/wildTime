@@ -19,18 +19,7 @@ import java.io.ObjectOutputStream;
  * @author rocco
  */
 
-public class Utils {
-    /* public static Set<String> loadFileListInSet(File file) throws IOException {
-        Set<String> set = new HashSet<>();
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        while (reader.ready()) {
-            set.add(reader.readLine().trim().toLowerCase());
-        }
-        reader.close();
-        return set;
-    }
-*/
-    
+public class Utils {    
     public static String LoadGame(GameDescription game, File saveFile) {
         String text = "";
         
@@ -316,7 +305,13 @@ public class Utils {
                     p.getNpc().setIsTalking(true);
                     text = "----- Stai parlando con " + p.getNpc().getName().toUpperCase() + " -----\n";
                     text += "Per uscire dalla conversazione digita un altro comando\n";
-                    text += p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk();
+                    text += "Cosa puoi chiedere:\n";
+                    
+                    for(int i = 0; i < p.getNpc().getConversation().size(); i++) {
+                        text += i + ": " + p.getNpc().getConversation().get(i).getQuestion() + "\n";
+                    }
+                    
+                    text += "\n" + p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk();
                 }
             } else if(p.getCommand().getType().equals(CommandType.THROW)) {
                 // lascia un oggetto

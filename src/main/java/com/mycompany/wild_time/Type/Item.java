@@ -5,7 +5,6 @@
 package com.mycompany.wild_time.Type;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  *
@@ -23,8 +22,6 @@ public class Item implements Serializable{
     private int attackDamage = 0;   
     private int defenseBonus = 0;
     private String description;
-    // private String ult_description;
-    // private Set<String> alias;
     
     // constructors
     public Item() {
@@ -34,8 +31,6 @@ public class Item implements Serializable{
         this.takeable = false;
         this.useable = false;
         this.description = "";
-        //this.ult_description = "";
-        // this.alias = null;
     }
     
     public Item(int id){
@@ -46,19 +41,6 @@ public class Item implements Serializable{
         this.id = id;
         this.name = name;
     }
-    
-//    public Item(int id, String name, String description){
-//        this.id = id;
-//        this.name = name;
-//        this.description = description;
-//    }
-//    
-//    public Item(int id, String name, String description) {
-//        this.id = id;
-//        this.name = name;
-//        this.description = description;
-//        // this.alias = alias;
-//    }
     
     // methods
     public int getId() {
@@ -105,14 +87,6 @@ public class Item implements Serializable{
         return description;
     }
 
-//    public String getUlt_description() {
-//        return ult_description;
-//    }
-
-//    public Set<String> getAlias() {
-//        return alias;
-//    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -156,12 +130,4 @@ public class Item implements Serializable{
     public void setDefenseBonus(int defenseBonus) {
         this.defenseBonus = defenseBonus;
     }
-
-//    public void setUlt_description(String ult_description) {
-//        this.ult_description = ult_description;
-//    }
-//
-//    public void setAlias(Set<String> alias) {
-//        this.alias = alias;
-//    }         
 }
