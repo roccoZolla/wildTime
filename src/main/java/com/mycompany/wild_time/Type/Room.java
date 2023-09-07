@@ -20,11 +20,12 @@ public class Room implements Serializable{
     private Room nord;
     private Room south;
     private Chest chest = new Chest();        
-    private List<Item> items = new ArrayList<>();    // PROVVISORIO 
-    private List<Npc> npcs = new ArrayList<>();// PROVVISORIO
+    private List<Item> items = new ArrayList<>();
+    private List<Npc> npcs = new ArrayList<>();
     private String description; // cosa c'è
-    private Boolean isExplored;       // è stata visitata
+    private Boolean isExplored;       // è stata visitata? 
     private Boolean isBlocked;    // è bloccata?
+    private Boolean isFinal = false; // è la stanza finale?
 
     public String getName() {
         return name;
@@ -73,6 +74,10 @@ public class Room implements Serializable{
     public List<Npc> getNpcs() {
         return npcs;
     }
+    
+    public Boolean getFinal () {
+        return isFinal;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -112,6 +117,10 @@ public class Room implements Serializable{
             
     public void setItem(List<Item> items) {
         this.items = items;
+    }
+    
+    public void setFinal(boolean isFinal) {
+        this.isFinal = isFinal;
     }
            
 }
