@@ -11,13 +11,11 @@ import com.mycompany.wild_time.Engine.GameManager;
  * @author rocco
  */
 public class GameFrame extends javax.swing.JFrame {
-    
     /**
      * Creates new form GameFrame
      */
     public GameFrame() {
         initComponents();
-        // initImgPanel(imageIcon);
         
         setSize(800, 500);
         setLocationRelativeTo(null); 

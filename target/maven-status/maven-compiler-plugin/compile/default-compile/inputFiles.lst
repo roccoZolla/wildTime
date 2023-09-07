@@ -3,8 +3,8 @@ C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Player.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Engine\GameManager.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Character.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Npc.java
-C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Weapon.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Parser\ParserOutput.java
+C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Conversation.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\GameFrame.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Room.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\CommandType.java
@@ -15,7 +15,6 @@ C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Engine\Engine.jav
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Chest.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Item.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Engine\GameDescription.java
+C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Game\WildTime.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Engine\GUIManager.java
-C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Enemy.java
 C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Command.java
-C:\Users\rocco\Wild_Time\src\main\java\com\mycompany\wild_time\Type\Heal.java

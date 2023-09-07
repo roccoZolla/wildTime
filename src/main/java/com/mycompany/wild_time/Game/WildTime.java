@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Game;
+package com.mycompany.wild_time.Game;
 
 import com.mycompany.wild_time.Engine.GameDescription;
 import com.mycompany.wild_time.Type.Command;
