@@ -74,27 +74,37 @@ public class GameManager {
             } else {
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non capisco quello che mi vuoi dire...");
             }
-        } else if (p.getCommand().getType().equals(CommandType.SAVE)) { // introdurre variabili? per evitare che il confronto avvenga in questa classe?
-            guiManager.updateGameFrame(Utils.Save(game));
-        } else if(p.getCommand().getType().equals(CommandType.CLEAN)) {
-            guiManager.cleanGameFrame();
-            guiManager.updateGameFrame(game.getPlayer().getCurrentPlace().getDescription());
-        } else if(p.getCommand().getType().equals(CommandType.END)) {
-            guiManager.updateGameFrame("Arrivederci!");
-            //Come scritto dopo usa i metodi per non duplicare il codice
-            PutThreadToSleep();
-        } else {
-            guiManager.updateGameFrame(Utils.NextMove(p, game.getPlayer()));
-            //Non tocco perchè non so la logica però controlla
-            //E' necessario che ci sia un guiManager.setInformationGame(game) ripetuto qui e in CheckPlayerDeath?
-            //Non basterebbe metterne solo uno alla fine di questo else?
-            guiManager.setInformationGame(game);
-            
-            //Organizza in metodi cosicchè sia più leggibile e nel caso riutilizzabile
-            CheckPlayerDeath();
-            CheckGameWin();
+        } 
+        //Se ci sono tante condizioni e puoi usare lo switch è meglio
+        //Oltre ad essere più leggibile è anche più efficiente
+        else {
+            CommandType type = p.getCommand().getType();
+            switch(type){
+                case SAVE: 
+                    guiManager.updateGameFrame(Utils.Save(game));
+                    break;
+                case CLEAN: 
+                    guiManager.cleanGameFrame();
+                    guiManager.updateGameFrame(game.getPlayer().getCurrentPlace().getDescription());
+                    break;
+                case END: 
+                    guiManager.updateGameFrame("Arrivederci!");
+                    //Come scritto dopo usa i metodi per non duplicare il codice
+                    PutThreadToSleep();
+                    break;
+                default: 
+                    guiManager.updateGameFrame(Utils.NextMove(p, game.getPlayer()));
+                    //Non tocco perchè non so la logica però controlla
+                    //E' necessario che ci sia un guiManager.setInformationGame(game) ripetuto qui e in CheckPlayerDeath?
+                    //Non basterebbe metterne solo uno alla fine di questo else?
+                    guiManager.setInformationGame(game);
+
+                    //Organizza in metodi cosicchè sia più leggibile e nel caso riutilizzabile
+                    CheckPlayerDeath();
+                    CheckGameWin();
+                    break;
+            }
         }
-        
     }
     
     private static void CheckPlayerDeath(){
