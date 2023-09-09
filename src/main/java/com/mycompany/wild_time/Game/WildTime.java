@@ -82,7 +82,7 @@ public class WildTime extends GameDescription {
         getCommands().add(eat);
         
         Command equip = new Command(CommandType.EQUIP, "equipaggia");
-        equip.setAlias(new String[]{"usa", "utizza"});
+        equip.setAlias(new String[]{"arma", "metti"});
         getCommands().add(equip);
         
         Command attack = new Command(CommandType.ATTACK, "attacca");
@@ -92,6 +92,10 @@ public class WildTime extends GameDescription {
         Command leaves = new Command(CommandType.THROW, "lascia");
         leaves.setAlias(new String[]{"butta", "getta", "lancia"});
         getCommands().add(leaves);
+        
+        Command use = new Command(CommandType.USE, "usa");
+        use.setAlias(new String[]{"use", "utilizza"});
+        getCommands().add(use);
         
         
         // ----- LUOGHI -----
@@ -234,13 +238,38 @@ public class WildTime extends GameDescription {
         memoryCave.setExplored(false);
         memoryCave.setBlocked(false);
         memoryCave.setFinal(true);
+        
+        
+        //////////////////////////////////////////
+        Item key2 = new Item();
+        key2.setName("chiave2");
+        key2.setDescription("Strana chiave, puo servire ad aprire qualcosa...");
+        key2.setId(7);
+        key2.setTakeable(true);
+        key2.setUseable(true);
+        
+        getItems().add(key2);
+        whiteForest.getItems().add(key2);
        
+        // testRoom
+        Room testRoom = new Room();
+        testRoom.setName("TestRoom");
+        testRoom.setId(16);
+        testRoom.setDescription("Ti trovi nella TestRoom");
+        testRoom.setExplored(false);
+        testRoom.setBlocked(true);
+        testRoom.setOpenWith(key2);
+        
+        testRoom.setNord(null); // sentiero
+        testRoom.setSud(null);
+        testRoom.setEst(null);
+        testRoom.setOvest(whiteForest);
         
         
         // foresta bianca
         whiteForest.setNord(whitePath); // sentiero
         whiteForest.setSud(null);
-        whiteForest.setEst(null);
+        whiteForest.setEst(testRoom);
         whiteForest.setOvest(null);
         
         // sentiero per la foresta bianca
