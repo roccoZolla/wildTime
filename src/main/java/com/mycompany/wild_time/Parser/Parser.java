@@ -5,6 +5,7 @@
 package com.mycompany.wild_time.Parser;
 
 import com.mycompany.wild_time.Engine.GameDescription;
+import com.mycompany.wild_time.Engine.GameManager;
 import com.mycompany.wild_time.Type.Chest;
 import com.mycompany.wild_time.Type.Command;
 import com.mycompany.wild_time.Type.Item;
@@ -142,6 +143,7 @@ public class Parser {
                 }
             }
         } else { // se il comando contiene un comando interrompi conversazione
+            GameManager.setIsTalking(false);
             Iterator<Npc> npcIterator = game.getPlayer().getCurrentPlace().getNpcs().iterator();
             while (npcIterator.hasNext()) {
                 Npc npc = npcIterator.next();

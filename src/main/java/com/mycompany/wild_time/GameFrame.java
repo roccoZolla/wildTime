@@ -17,7 +17,7 @@ public class GameFrame extends javax.swing.JFrame {
     public GameFrame() {
         initComponents();
         
-        setSize(900, 500);
+        setSize(900, 600);
         setLocationRelativeTo(null); 
     }
     

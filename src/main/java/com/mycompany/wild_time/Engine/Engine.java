@@ -12,23 +12,22 @@ import com.mycompany.wild_time.Game.WildTime;
  */
 public class Engine {
     private final GameManager gameManager;
-    private GameDescription game;
+    private final GameDescription game;
     
     public Engine(GameDescription game) {
         this.game = game;
-        
-        try {
-            this.game.init();
-        } catch (Exception ex) {
-            System.err.println(ex);
-        }   
-        
         gameManager = new GameManager(game);
     }
     
     public void excute() {
         // try catch
-        gameManager.Start();
+        try {
+            this.game.init();
+            gameManager.Start();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }  
+        
     }
         
     public static void main(String[] args) {

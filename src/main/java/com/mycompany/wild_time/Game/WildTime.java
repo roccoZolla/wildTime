@@ -615,7 +615,7 @@ public class WildTime extends GameDescription {
         Npc tester2 = new Npc();
         tester2.setHp(10);
         tester2.setIsEnemy(true);
-        tester2.setName("tester");
+        tester2.setName("tester2");
         tester2.setTalk("Colpiscimi sono un tester");
         tester2.setDescription("trimone 2");
         tester2.setArma(shit);
