@@ -1,8 +1,8 @@
 # wildTime
 
-Universita degli studi Aldo Moro, Bari \n
-Professore: Pier Paolo Basile \n
-Esame: Metodo avanzati di programmazione \n
-Deadline: 13/09/2023 \n
+Universita degli studi Aldo Moro, Bari
+Professore: Pier Paolo Basile
+Esame: Metodo avanzati di programmazione
+Deadline: 13/09/2023
 
 Motore di gioco per avventure testuali in java
