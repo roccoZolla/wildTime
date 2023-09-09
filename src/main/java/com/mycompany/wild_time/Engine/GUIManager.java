@@ -17,12 +17,12 @@ public class GUIManager{
     private StartFrame initFrame;
     private GameFrame gameFrame;
 
-    public void openStartFrame(GameManager gm) {
+    public void openStartFrame() {
         if(initFrame != null) {
             initFrame.dispose();
         }
         
-        initFrame = new StartFrame(gm);
+        initFrame = new StartFrame();
         initFrame.setVisible(true);
     }
     

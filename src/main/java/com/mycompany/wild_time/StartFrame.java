@@ -16,17 +16,12 @@ import javax.swing.JOptionPane;
  * @author rocco
  */
 public class StartFrame extends javax.swing.JFrame {
-    private GameManager gameManager;  // -> è giusto rendere finale questa variabile
-    
     /**
      * Creates new form StartFrame
-     * @param gm
      */
-    public StartFrame(GameManager gm) {
+    public StartFrame() {
         initComponents();
         initButtons();
-        
-        gameManager = gm;
         
         configureUI();
         setLocationRelativeTo(null);
@@ -79,14 +74,14 @@ public class StartFrame extends javax.swing.JFrame {
 
                 if (userChoice == JOptionPane.YES_OPTION) {
                     if (save.delete() && save.createNewFile()) {
-                        gameManager.startNewGame(save);
+                        GameManager.startNewGame(save);
                         setVisible(false);
                     } else {
                         // Gestisci l'errore se non è possibile cancellare/creare il file
                     }
                 }
             } else if (save.createNewFile()) {
-                gameManager.startNewGame(save);
+                GameManager.startNewGame(save);
                 setVisible(false);
             }
         } catch (IOException ex) {
@@ -103,7 +98,7 @@ public class StartFrame extends javax.swing.JFrame {
         if (!save.exists()) {
             JOptionPane.showMessageDialog(this, "Non esiste alcun file di salvataggio!");
         } else {
-            gameManager.continueGame(save);
+            GameManager.continueGame(save);
             setVisible(false);
         }
     }

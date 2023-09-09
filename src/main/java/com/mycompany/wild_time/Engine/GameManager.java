@@ -38,17 +38,17 @@ public class GameManager {
     }
     
     public void Start() {
-        guiManager.openStartFrame(this);
+        guiManager.openStartFrame();
     }
     
-    public void startNewGame(File save) {
+    public static void startNewGame(File save) {
         Utils.Save(game);
         guiManager.openGameFrame();
         guiManager.setInformationGame(game);
         guiManager.updateGameFrame(game.getPlayer().getCurrentPlace().getDescription());
     }
     
-    public void continueGame(File save){
+    public static void continueGame(File save){
         guiManager.openGameFrame(Utils.LoadGame(game, save));
         guiManager.setInformationGame(game);
         guiManager.updateGameFrame(game.getPlayer().getCurrentPlace().getDescription());
