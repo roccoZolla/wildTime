@@ -65,7 +65,7 @@ public class GameManager {
             guiManager.updateGameFrame("Non capisco quello che mi vuoi dire...");
         } 
         
-        else if(p.getNpc() != null && p.getCommand() == null) { 
+        else if(p.getNpc() != null && p.getCommand() == null && isTalking) { 
             System.out.println("Tizio che parla: " + p.getNpc().getName());
             System.out.println("Sta parlando? " + p.getNpc().getIsTalking());
             if(p.getNpc().getIsTalking() && p.getConversation() != null) { // npc parla e la conversazione non è nulla
