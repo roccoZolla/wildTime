@@ -63,7 +63,10 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getNord());
                         text = player1.getCurrentPlace().getDescription();
                     } else {
-                        text = "Non c'è niente da questa parte";
+                        if(player1.getCurrentPlace().getNord() != null && player1.getCurrentPlace().getNord().getBlocked())
+                            text = "Sembra ci sia qualcosa che ostruisce il passaggio...";
+                        else
+                            text = "Non c'è niente da questa parte";
                     }
                     break;
                     
@@ -72,7 +75,10 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getSouth());
                         text = player1.getCurrentPlace().getDescription();
                     } else {
-                        text = "Non c'è niente da questa parte";
+                        if(player1.getCurrentPlace().getSouth() != null && player1.getCurrentPlace().getSouth().getBlocked())
+                            text = "Sembra ci sia qualcosa che ostruisce il passaggio...";
+                        else
+                            text = "Non c'è niente da questa parte";
                     }
                     break;
                     
@@ -81,20 +87,26 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getEst());
                         text = player1.getCurrentPlace().getDescription();
                     } else {
-                        text = "Non c'è niente da questa parte";
+                        if(player1.getCurrentPlace().getEst() != null && player1.getCurrentPlace().getEst().getBlocked())
+                            text = "Sembra ci sia qualcosa che ostruisce il passaggio...";
+                        else 
+                            text = "Non c'è niente da questa parte";
                     }
                     break;
                     
-                case WEST:
+                case WEST:  
                     if (player1.getCurrentPlace().getWest() != null && !player1.getCurrentPlace().getWest().getBlocked()) {
                         player1.setCurrentPlace(player1.getCurrentPlace().getWest());
                         text = player1.getCurrentPlace().getDescription();
                     } else {
-                        text = "Non c'è niente da questa parte";
+                        if(player1.getCurrentPlace().getWest() != null && player1.getCurrentPlace().getWest().getBlocked())
+                            text = "Sembra ci sia qualcosa che ostruisce il passaggio...";
+                        else
+                            text = "Non c'è niente da questa parte";
                     } 
                     break;
                     
-                case PICK_UP:
+                case PICK_UP:   // raccogli gli oggetti
                     if(p.getObject() == null) {
                         if(p.getChestObject() != null) {
                             text = "Come fai a mettere una cassa in quello zainetto minuscolo?";
@@ -126,14 +138,13 @@ public class Utils {
                     }
                     break;
                     
-                case LOOK_AT:
+                case LOOK_AT:   // cosa c'è nella stanza
                     if(!player1.getCurrentPlace().getNpcs().isEmpty()){     // da cancellare
                         for(int i = 0; i < player1.getCurrentPlace().getNpcs().size(); i++) {
                             System.out.println("Lista npc:" + player1.getCurrentPlace().getNpcs().get(i).getName());
                         }
                     }
-                
-                    // cosa c'è nella stanza?
+                    
                     if (!player1.getCurrentPlace().getItems().isEmpty() || !player1.getCurrentPlace().getChest().getList().isEmpty()) {
                         text = "Nella stanza sono presenti: ";
                         for(int i = 0; i < player1.getCurrentPlace().getItems().size(); i++) {
@@ -159,7 +170,7 @@ public class Utils {
                     }
                     break;
                     
-                case INVENTORY:
+                case INVENTORY:     // mostra lo zaino
                     if(!player1.getInventory().getList().isEmpty()) {
                         text = "Nello zaino hai: ";
                         
@@ -175,7 +186,7 @@ public class Utils {
                     }
                     break;
                     
-                case OPEN:
+                case OPEN:      // apri le casse con l'oggetto adatto
                     if(p.getObject() == null) {
                         text = "Non è l'oggetto giusto per aprire qualcosa...";                  
                     } else if(p.getChestObject().getIsOpen()) {
@@ -207,13 +218,13 @@ public class Utils {
                     }
                     break;
                     
-                case EAT:
+                case EAT:   // mangia o bevi, dicreati
                     if(p.getObject() == null) {
                         text = "Il nulla non è un qualcosa che si puo usare...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
-                        text = "Non puoi usare un oggetto che non è presente nel tuo zaino!";
+                        text = "Non puoi mangiare o bere un oggetto che non è presente nel tuo zaino!";
                     } else if(!p.getObject().isUseable() || !p.getObject().IsHeal()) {
-                        text = "Non puoi usare questo oggetto!";
+                        text = "Non puoi mangiare o bere questo oggetto!";
                     } else if(player1.getHp() == player1.getMaxHP()){
                         text = "Stai bene, non serve";
                     } else {
@@ -229,13 +240,13 @@ public class Utils {
                     }
                     break;
                     
-                case EQUIP:
+                case EQUIP:     // equipaggia le armi
                     if(p.getObject() == null) {
                         text = "Il nulla non è un qualcosa che si puo usare...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
-                        text = "Non puoi usare un oggetto che non è presente nel tuo zaino!";
+                        text = "Non puoi equipaggiare un oggetto che non è presente nel tuo zaino!";
                     } else if(!p.getObject().isUseable() || !p.getObject().IsWeapon()) {
-                        text = "Non puoi usare questo oggetto!";
+                        text = "Non puoi equipaggiare questo oggetto!";
                     } else {   
                         player1.getInventory().getList().remove(p.getObject());
                     
@@ -253,7 +264,7 @@ public class Utils {
                     }
                     break;
                     
-                case ATTACK:
+                case ATTACK:    // attacca 
                     int attack = 0;
                     int defense = 0;
                     int damage = 0;
@@ -297,7 +308,7 @@ public class Utils {
                     }
                     break;
                     
-                case TALK_TO:
+                case TALK_TO: // parla con gli npc
                     if(p.getNpc() == null) {
                         text = "Non puoi parlare con qualcuno che non c'è...";
                     } else if(!player1.getCurrentPlace().getNpcs().contains(p.getNpc())) {
@@ -320,7 +331,7 @@ public class Utils {
                     }
                     break;
                     
-                case THROW:
+                case THROW: // getta gli oggetti
                     if(p.getObject() == null) {
                         text = "Non puoi lasciare qualcosa che non c'è...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
@@ -333,6 +344,27 @@ public class Utils {
                         player1.getCurrentPlace().getItems().add(p.getObject());
                     
                         text = "Hai lasciato: " + p.getObject().getName();
+                    }
+                    break;
+                    
+                case USE: // per 'sbloccare' le stanze
+                    if(p.getObject() == null) {
+                        text = "Non puoi usare il nulla...";
+                    } else if(!player1.getInventory().getList().contains(p.getObject())) {
+                        text = "Non puoi usare qualcosa che non è presente nel tuo zaino...";
+                    } else if(!p.getObject().equals(p.getBlockedRoom().getOpenWith())) {
+                        text = "Il passaggio è ancora ostruito, sembra che non sia questo l'ggetto giusto per passare...";
+                    } else {
+                        if(player1.getCurrentPlace().getNord() != null && player1.getCurrentPlace().getNord().equals(p.getBlockedRoom()))
+                            player1.getCurrentPlace().getNord().setBlocked(false);
+                        else if(player1.getCurrentPlace().getSouth() != null && player1.getCurrentPlace().getSouth().equals(p.getBlockedRoom()))
+                            player1.getCurrentPlace().getSouth().setBlocked(false);
+                        else if(player1.getCurrentPlace().getEst() != null && player1.getCurrentPlace().getEst().equals(p.getBlockedRoom()))
+                            player1.getCurrentPlace().getEst().setBlocked(false);
+                        else if(player1.getCurrentPlace().getWest() != null && player1.getCurrentPlace().getWest().equals(p.getBlockedRoom()))
+                            player1.getCurrentPlace().getWest().setBlocked(false);
+                        
+                        text = "Sembra che adesso si possa proseguire!";
                     }
                     break;
                     
