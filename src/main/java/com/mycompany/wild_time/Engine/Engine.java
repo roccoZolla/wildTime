@@ -16,19 +16,19 @@ public class Engine {
     
     public Engine(GameDescription game) {
         this.game = game;
-        
-        try {
-            this.game.init();
-        } catch (Exception ex) {
-            System.err.println(ex);
-        }   
-        
         gameManager = new GameManager(game);
     }
     
     public void excute() {
         // try catch
-        gameManager.Start();
+        //init meglio qui che nel costruttore
+        //Se fallisce nel costruttore che fai esegui lo stesso il gioco?
+        try {
+            this.game.init();
+            gameManager.Start();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } 
     }
         
     public static void main(String[] args) {
