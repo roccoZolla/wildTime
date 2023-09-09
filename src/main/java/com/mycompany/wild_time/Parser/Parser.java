@@ -86,6 +86,7 @@ public class Parser {
         p.setInvObject(null);
         p.setObject(null);
         p.setConversation(null);
+        p.setBlockedRoom(null);
 
         for(int i = 0; i < keyWords.size(); i++) {
             if(!keyWords.get(i).isEmpty()) { // controlla prima se è un oggetto
@@ -120,6 +121,16 @@ public class Parser {
             }
         }
         
+        // cerca SE C'è la stanza bloccata 
+        if(game.getPlayer().getCurrentPlace().getNord() != null && game.getPlayer().getCurrentPlace().getNord().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getNord());
+        else if(game.getPlayer().getCurrentPlace().getSouth() != null && game.getPlayer().getCurrentPlace().getSouth().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getSouth());
+        else if(game.getPlayer().getCurrentPlace().getEst() != null && game.getPlayer().getCurrentPlace().getEst().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getEst());
+        else if(game.getPlayer().getCurrentPlace().getWest() != null && game.getPlayer().getCurrentPlace().getWest().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getWest());
+
         /*
             Possibile problema: se avvio un'altra conversazione senza aver terminato quella corrente 
             casino bordello anche se nel momento in cui viene rilevato un comando tutte le conversazioni
