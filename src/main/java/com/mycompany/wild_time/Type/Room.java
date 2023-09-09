@@ -25,6 +25,7 @@ public class Room implements Serializable{
     private String description; // cosa c'è
     private Boolean isExplored;       // è stata visitata? 
     private Boolean isBlocked;    // è bloccata?
+    private Item openWith = null;        // strumento attraverso il quale sblocchi la stanza
     private Boolean isFinal = false; // è la stanza finale?
 
     public String getName() {
@@ -78,6 +79,10 @@ public class Room implements Serializable{
     public Boolean getFinal () {
         return isFinal;
     }
+    
+    public Item getOpenWith() {
+        return openWith;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -122,5 +127,8 @@ public class Room implements Serializable{
     public void setFinal(boolean isFinal) {
         this.isFinal = isFinal;
     }
-           
+    
+    public void setOpenWith(Item item) {
+        this.openWith = item;
+    }   
 }
