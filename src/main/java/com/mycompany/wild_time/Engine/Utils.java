@@ -350,6 +350,8 @@ public class Utils {
                 case USE: // per 'sbloccare' le stanze
                     if(p.getObject() == null) {
                         text = "Non puoi usare il nulla...";
+                    } else if(p.getBlockedRoom() == null){
+                        text = "E' inutile, puoi gia passare...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
                         text = "Non puoi usare qualcosa che non è presente nel tuo zaino...";
                     } else if(!p.getObject().equals(p.getBlockedRoom().getOpenWith())) {
@@ -363,6 +365,9 @@ public class Utils {
                             player1.getCurrentPlace().getEst().setBlocked(false);
                         else if(player1.getCurrentPlace().getWest() != null && player1.getCurrentPlace().getWest().equals(p.getBlockedRoom()))
                             player1.getCurrentPlace().getWest().setBlocked(false);
+                        
+                        // una volta sbloccata la stanza l'oggetto non si puo piu usare
+                        player1.getInventory().getList().get(player1.getInventory().getList().indexOf(p.getObject())).setUseable(false);
                         
                         text = "Sembra che adesso si possa proseguire!";
                     }
