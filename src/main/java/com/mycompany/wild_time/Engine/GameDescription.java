@@ -18,7 +18,7 @@ import java.util.List;
  * @author rocco
  */
 
-// classe per la gestione del mondo di gioco 
+// classe che descrive il mondo di gioco 
 public abstract class GameDescription implements Serializable{
     private final List<Room> rooms = new ArrayList<>();
     private final List<Command> commands = new ArrayList<>();

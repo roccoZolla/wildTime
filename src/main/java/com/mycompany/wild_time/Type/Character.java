@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author rocco
  */
-public abstract class Character  implements Serializable{
+public abstract class Character implements Serializable{
     protected int hp;
     protected String name;
     protected Item arma;    

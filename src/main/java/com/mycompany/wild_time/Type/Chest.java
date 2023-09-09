@@ -17,30 +17,6 @@ public class Chest extends Item{
     private List<Item> chest = new ArrayList<>();
     private boolean isOpen;            // true aperta - false chiusa
     private Item openWith;              // oggetto che serve per aprire la chest
-    
-    // true -> puo essere aperta
-    // false -> non puo essere aperta
-    
-    
-//    public Chest() {
-//        isOpen = false;
-//    }
-//    
-//    public Chest(int id) {
-//        super(id);
-//    }
-//
-//    public Chest(int id, String name) {
-//        super(id, name);
-//    }
-//
-//    public Chest(int id, String name, String description) {
-//        super(id, name, description);
-//    }
-//
-//    public Chest(int id, String name, String description, Set<String> alias) {
-//        super(id, name, description, alias);
-//    }
 
     public List<Item> getList() {
         return chest;
@@ -65,14 +41,4 @@ public class Chest extends Item{
     public boolean getIsOpen() {
         return isOpen;
     }
-    
-    
-//    public void add(Item o) {
-//        this.chest.add(o);
-//    }
-//    
-//    public void remove(Item o) {
-//        this.chest.remove(o);
-//    }
-    
 }

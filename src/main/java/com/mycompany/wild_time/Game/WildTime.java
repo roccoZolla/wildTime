@@ -99,7 +99,13 @@ public class WildTime extends GameDescription {
         Room whiteForest = new Room();
         whiteForest.setName("Foresta Bianca");
         whiteForest.setId(0);
-        whiteForest.setDescription("Ti trovi nella Foresta Bianca");
+        whiteForest.setDescription("Sei un mercenario giunto nelle terre misteriose di ooo mandato da un re preoccupato per paura che venga rubato il misterioso ingranaggio del tempo,"
+                + "un congegno che regola lo scorrere del tempo di queste terre che se rubato potrebbe causare il fermarsi del normale flusso del tempo bloccando di fatto la vita di queste terre,"
+                + "da una banda che sta infestando ormai da qualche tempo queste terre . Dalle informazioni questo congegno risulta essere collocato nella grotta della memoria,"
+                + " una grotta situata in cima al monte tempo nella zona nord delle terre."
+                + "\n\nSei giunto nella FORESTA BIANCA, "
+                + "una foresta tanto bella quanto ingannevole per via del suo aspetto bianco e puro, cosa si celera in questa foresta? Sembra che ci sia qualcuno forse sarebbe una buona idea"
+                + "PARALRE con questo strano tipo...");
         whiteForest.setExplored(false);
         whiteForest.setBlocked(false);
         whiteForest.setFinal(true);
@@ -108,7 +114,9 @@ public class WildTime extends GameDescription {
         Room whitePath = new Room();
         whitePath.setName("Sentiero per la Foresta Bianca");
         whitePath.setId(1);
-        whitePath.setDescription("Ti trovi nel Sentiero per la Foresta bianca");
+        whitePath.setDescription("\nIl cosidetto SENTIERO PER LA FORESTA BIANCA, nome alquanto banale,"
+                + "datogli da un vecchio e pigro re che governava queste terre tempo fa che non sapeva con chiamare questo quadrante di terra."
+                + "Come dice il nome è un semplice sentiero che ti porta alla foresta alla bianca ma da cui puoi raggiungere altri luoghi di queste lande misteriose.");
         whitePath.setExplored(false);
         whitePath.setBlocked(false);
         
@@ -116,7 +124,9 @@ public class WildTime extends GameDescription {
         Room weirdSwamp = new Room();
         weirdSwamp.setName("Palude Strana");
         weirdSwamp.setId(2);
-        weirdSwamp.setDescription("Ti trovi nella Palude Strana");
+        weirdSwamp.setDescription("La PALUDE STRANA, un luogo avvolto nel mistero dove per qualche strano motivo la gente del posto sostiene di sentire delle voci,"
+                + "dei sussuri che hanno fatto impazzire chiunque provasse ad addentrarsi nella palude."
+                + "Per quanto avvolta nel mistero è pur sempre una palude.");
         weirdSwamp.setExplored(false);
         weirdSwamp.setBlocked(false);
         
@@ -449,29 +459,54 @@ public class WildTime extends GameDescription {
         strangeTraveler.setName("strano_viandante");
         strangeTraveler.setTalk("Sei nuovo da queste parti vero?");
         strangeTraveler.setDescription("Viandante dall'aspetto trasandato che se ne sta ai piedi"
-                + "di un fuoco semi accesso.");
+                + "di un fuoco semi accesso. Sembra abbia qualcosa di interessante da dire...");
         
         Conversation constr = new Conversation();
-        constr.setQuestion("Aiuto");
-        constr.setAnswer("Puoi chiedermi informazioni relative ai COMANDI, OGGETTI, NEMICI");
+        constr.setQuestion("chi sei?");
+        constr.setAnswer("Sono qualcuno che potrebbe aiutarti nell'attraversare queste terre tanto belle quanto pericolose."
+                + "Cosa vuoi sapere?");
         
         Conversation constr2 = new Conversation();
-        constr2.setQuestion("comandi");
-        constr2.setAnswer("elenco dei comandi");
+        constr2.setQuestion("cosa posso fare?");
+        constr2.setAnswer("Ci sono tante cose che puoi fare, come ad esempio esplorare andando a NORD, SUD, OVEST, EST."
+                + "Puoi RACCOGLIERE gli oggetti che puoi trovare in giro, alcuni li puoi EQUIPAGGIARE, altri MANGIARE o BERE."
+                + "Puoi anche vedere cosa c'è nel tuo ZAINO e magari BUTTARE qualcosa. Poi se ti senti solo puoi PARLARE con qualcuno, ma questo credo che"
+                + "tu lo abbia capito, se invece c'è qualcuno che ti infastidisce lo puoi sempre ATTACCARE."
+                + "Mi raccomando dove vai e cerca sempre di OSSERVARE bene cio che ti circonda, non sai cosa ci puoi trovare."
+                + "Se poi tutte queste scritte ti infastidiscono, puoi sempre PULIRE lo schermo."
+                + "Infine, caro mercenario, ricordati che puoi USCIRE quando vuoi ma ricordati"
+                + "di SALVARE altrimenti la prossima volta non sai piu da dove riprendere il tuo viaggio.");
+        
+        Conversation constr3 = new Conversation();
+        constr3.setQuestion("cosa sai di queste terre?");
+        constr3.setAnswer("Non molto in verita mercenario, ma so che sono terre misteriose.");
         
         strangeTraveler.getConversation().add(constr);
         strangeTraveler.getConversation().add(constr2);
+        strangeTraveler.getConversation().add(constr3);
 
-        
-      
-        
+        //////////////////////////////
         Npc scaredBoy = new Npc();
         scaredBoy.setHp(20);
         scaredBoy.setName("renato_spaventato");
         scaredBoy.setTalk("Dall'aspetto sembri un mercenario. Sento provenire delle voci"
                 + "dalla parte sud della Palude.");
-        scaredBoy.setDescription("Renato Spaventato, il nome gia dice tutto.");
+        scaredBoy.setDescription("Renato Spaventato, un ragazzino spaventato -ma tu guarda un po- dopo che ha provato ad addentrarsi nella parte sud della palude strana."
+                + "Preso per pazzo dalla gente del posto forse non sarebbe una cattiva idea parlarci...");
         
+        Conversation convBoy1 = new Conversation();
+        convBoy1.setQuestion("cosa ti spaventa?");
+        convBoy1.setAnswer("Non sono pazzo te lo giuro, ho sentito delle voci nella mia testa, non sono pazzo");
+        
+        Conversation convBoy2 = new Conversation();
+        convBoy2.setQuestion("cosa è successo?");
+        convBoy2.setAnswer("Ho provato ad addentrarmi nella palude qui a est ma andando avanti ho sentito delle voci, dei sussurri nella mia testa."
+                + "Stavo impazzendo...");
+        
+        scaredBoy.getConversation().add(convBoy1);
+        scaredBoy.getConversation().add(convBoy2);
+
+        //////////////////////////////////
         Npc scaredWoman = new Npc();
         scaredWoman.setHp(20);
         scaredWoman.setName("rita_l'impaurita");
@@ -561,8 +596,7 @@ public class WildTime extends GameDescription {
         tester.setIsEnemy(true);
         tester.setName("tester");
         tester.setTalk("Colpiscimi sono un tester");
-        tester.setDescription("Viandante dall'aspetto trasandato che ne sta ai piedi"
-                + "di un fuoco semi accesso.");
+        tester.setDescription("tester");
         tester.setArma(shit);
         tester.setScudo(shitgold);
         tester.setReward(shitgold);
@@ -581,7 +615,7 @@ public class WildTime extends GameDescription {
         Npc tester2 = new Npc();
         tester2.setHp(10);
         tester2.setIsEnemy(true);
-        tester2.setName("tester");
+        tester2.setName("tester2");
         tester2.setTalk("Colpiscimi sono un tester");
         tester2.setDescription("trimone 2");
         tester2.setArma(shit);

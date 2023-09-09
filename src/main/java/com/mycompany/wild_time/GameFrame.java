@@ -17,7 +17,7 @@ public class GameFrame extends javax.swing.JFrame {
     public GameFrame() {
         initComponents();
         
-        setSize(800, 500);
+        setSize(900, 600);
         setLocationRelativeTo(null); 
     }
     
@@ -25,7 +25,7 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         storyArea.append(text);
         
-        setSize(800, 500);
+        setSize(900, 600);
         setLocationRelativeTo(null); 
     }
     
@@ -42,7 +42,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
             
     public void setPlaceArea(String playerPlace){
-        placeArea.setText("Place: " + playerPlace);
+        placeArea.setText(playerPlace);
     }
     
     public void updateStoryArea(String text) {
@@ -75,6 +75,7 @@ public class GameFrame extends javax.swing.JFrame {
         hpField = new javax.swing.JTextField();
         placeArea = new javax.swing.JTextArea();
         equipLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         storyArea = new javax.swing.JTextArea();
         textField = new javax.swing.JTextField();
@@ -91,39 +92,45 @@ public class GameFrame extends javax.swing.JFrame {
         armorField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         armorField.setText("Armor: ");
         armorField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        armorField.setMinimumSize(new java.awt.Dimension(80, 30));
+        armorField.setPreferredSize(new java.awt.Dimension(80, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         jPanel1.add(armorField, gridBagConstraints);
 
         attackField.setEditable(false);
         attackField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         attackField.setText("Attack: ");
         attackField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        attackField.setMinimumSize(new java.awt.Dimension(80, 30));
+        attackField.setPreferredSize(new java.awt.Dimension(80, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(attackField, gridBagConstraints);
 
         hpField.setEditable(false);
         hpField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         hpField.setText("HP:");
         hpField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        hpField.setMinimumSize(new java.awt.Dimension(80, 30));
+        hpField.setPreferredSize(new java.awt.Dimension(80, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(hpField, gridBagConstraints);
 
         placeArea.setEditable(false);
@@ -133,12 +140,14 @@ public class GameFrame extends javax.swing.JFrame {
         placeArea.setText("lezzo");
         placeArea.setWrapStyleWord(true);
         placeArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        placeArea.setMinimumSize(new java.awt.Dimension(106, 30));
+        placeArea.setPreferredSize(new java.awt.Dimension(106, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         jPanel1.add(placeArea, gridBagConstraints);
 
         equipLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -148,8 +157,19 @@ public class GameFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(20, 5, 0, 5);
         jPanel1.add(equipLabel, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel1.setText("Place:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+        jPanel1.add(jLabel1, gridBagConstraints);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -190,6 +210,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JTextField attackField;
     private javax.swing.JLabel equipLabel;
     private javax.swing.JTextField hpField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;

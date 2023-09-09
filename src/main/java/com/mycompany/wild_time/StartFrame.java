@@ -35,7 +35,7 @@ public class StartFrame extends javax.swing.JFrame {
     
     private void configureUI() {
         setTitle("Game Engine 2.0");
-        setSize(800, 500);
+        setSize(900, 600);
     }
     
     private void initButtons() {
