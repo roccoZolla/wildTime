@@ -70,6 +70,10 @@ public class GameManager {
             System.out.println("Sta parlando? " + p.getNpc().getIsTalking());
             if(p.getNpc().getIsTalking() && p.getConversation() != null) { // npc parla e la conversazione non è nulla
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": " + p.getConversation().getAnswer());
+            } else if(p.getNpc().getConversation() == null) {
+               guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non ho niente da dire...");
+               guiManager.updateGameFrame("----- conversazione terminata -----");
+               GameManager.setIsTalking(false);
             } else {
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non capisco quello che mi vuoi dire...");
             }
