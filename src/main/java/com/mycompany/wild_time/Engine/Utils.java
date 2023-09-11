@@ -200,7 +200,7 @@ public class Utils {
                                 // nella lista degli oggetti presenti nella stanza
                                 player1.getCurrentPlace().getItems().add(player1.getCurrentPlace().getChest().getList().get(i));
                             
-                                text += player1.getCurrentPlace().getChest().getList().get(i).getName();
+                                text += player1.getCurrentPlace().getChest().getList().get(i).getName() + " ";
                             }       
                         
                             // la cassa risultera aperta
@@ -352,6 +352,8 @@ public class Utils {
                         text = "Non puoi usare il nulla...";
                     } else if(p.getBlockedRoom() == null){
                         text = "E' inutile, puoi gia passare...";
+                    } else if(!p.getObject().isUseable()) {
+                        text = "Non puoi usare questo oggetto!";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
                         text = "Non puoi usare qualcosa che non è presente nel tuo zaino...";
                     } else if(!p.getObject().equals(p.getBlockedRoom().getOpenWith())) {
