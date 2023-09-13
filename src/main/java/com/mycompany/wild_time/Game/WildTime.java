@@ -93,6 +93,10 @@ public class WildTime extends GameDescription {
         use.setAlias(new String[]{"use", "utilizza"});
         getCommands().add(use);
         
+        Command help = new Command(CommandType.HELP, "aiuto");
+        help.setAlias(new String[]{"comandi", "guida"});
+        getCommands().add(help);
+        
         // ----- OGGETTI -----
         // armi
         Item oldSword = new Item();
@@ -182,51 +186,129 @@ public class WildTime extends GameDescription {
         Item apple = new Item();
         apple.setName("mela");
         apple.setDescription("Mela rossa di stagione. Restituisce 10 HP.");
-        apple.setValue(5);
         apple.setId(9);
         apple.setTakeable(true);
         apple.setUseable(true);
         apple.setIsHeal(true);
-        apple.setBonusHP(10);
+        apple.setBonus(10);
+        
+        Item sandwich = new Item();
+        sandwich.setName("tramezzino");
+        sandwich.setDescription("Un semplice tramezzino. Restituisce 10 HP.");
+        sandwich.setId(9);
+        sandwich.setTakeable(true);
+        sandwich.setUseable(true);
+        sandwich.setIsHeal(true);
+        sandwich.setBonus(10);
            
         Item redPotion = new Item();
         redPotion.setName("pozione_rossa"); 
         redPotion.setDescription("Pozione di colore rosso, ha strani effetti sul corpo."
                 + "Restituisce 15 HP.");
-        redPotion.setValue(10);
         redPotion.setId(10);
         redPotion.setTakeable(true);
         redPotion.setUseable(true);
         redPotion.setIsHeal(true);
-        redPotion.setBonusHP(15);
+        redPotion.setBonus(15);
         
         Item bluePotion = new Item();
         bluePotion.setName("pozione_blu"); 
         bluePotion.setDescription("Pozione di colore blu, ha strani effetti sul corpo."
                 + "Restituisce 20 HP.");
-        bluePotion.setValue(10);
         bluePotion.setId(11);
         bluePotion.setTakeable(true);
         bluePotion.setUseable(true);
         bluePotion.setIsHeal(true);
-        bluePotion.setBonusHP(10);
+        bluePotion.setBonus(10);
         
         Item superPotion = new Item();
         superPotion.setName("super_pozione"); 
         superPotion.setDescription("Pozione misteriosa preparata dal leggendario maestro muten, ha strani effetti sul corpo."
                 + "Restituisce 30 HP.");
-        superPotion.setValue(10);
         superPotion.setId(12);
         superPotion.setTakeable(true);
         superPotion.setUseable(true);
         superPotion.setIsHeal(true);
-        superPotion.setBonusHP(10);
+        superPotion.setBonus(10);
         
         getItems().add(apple);
+        getItems().add(sandwich);
         getItems().add(redPotion);
         getItems().add(bluePotion);
         getItems().add(superPotion);
         
+        // power up 
+        Item yellowPotion = new Item();
+        yellowPotion.setName("pozione_gialla");
+        yellowPotion.setDescription("Pozione di colore giallo, ha strani effetti sulle spade."
+                + "Aumenta la potenza di attacco di 10.");
+        yellowPotion.setId(9);
+        yellowPotion.setTakeable(true);
+        yellowPotion.setUseable(true);
+        yellowPotion.setIsPowerUp(true);
+        yellowPotion.setIsWeapon(true);
+        yellowPotion.setAttackDamage(10);
+        
+        Item greenPotion = new Item();
+        greenPotion.setName("pozione_verde");
+        greenPotion.setDescription("Pozione di colore verde, ha strani effetti sugli scudi."
+                + "Aumenta la difesa di uno scudo di 10.");
+        greenPotion.setId(9);
+        greenPotion.setTakeable(true);
+        greenPotion.setUseable(true);
+        greenPotion.setIsPowerUp(true);
+        greenPotion.setIsWeapon(true);
+        greenPotion.setDefenseBonus(10);
+        
+        Item spinach = new Item();
+        spinach.setName("spinaci");
+        spinach.setDescription("Spinaci. Fanno bene. Aumenta la salute massima di 10 HP.");
+        spinach.setId(9);
+        spinach.setTakeable(true);
+        spinach.setUseable(true);
+        spinach.setIsPowerUp(true);
+        spinach.setIsWeapon(true);
+        spinach.setBonus(10);
+        
+        Item amberPotion = new Item();
+        amberPotion.setName("pozione_ambra");
+        amberPotion.setDescription("Pozione di color ambra, ha strani effetti sulle spade."
+                + "Aumenta la potenza di attacco di 15.");
+        amberPotion.setId(9);
+        amberPotion.setTakeable(true);
+        amberPotion.setUseable(true);
+        amberPotion.setIsPowerUp(true);
+        amberPotion.setIsWeapon(true);
+        amberPotion.setAttackDamage(15);
+        
+        Item emeraldPotion = new Item();
+        emeraldPotion.setName("pozione_smeraldo");
+        emeraldPotion.setDescription("Pozione di colore verde smeraldo, ha strani effetti sugli scudi."
+                + "Aumenta la difesa di uno scudo di 15.");
+        emeraldPotion.setId(9);
+        emeraldPotion.setTakeable(true);
+        emeraldPotion.setUseable(true);
+        emeraldPotion.setIsPowerUp(true);
+        emeraldPotion.setIsWeapon(true);
+        emeraldPotion.setDefenseBonus(15);
+        
+        Item parmigiana = new Item();
+        parmigiana.setName("parmigiana");
+        parmigiana.setDescription("Pietanza mistica in grado di sfamare intere popolazioni con una sola porzione."
+                + "Ricca di gusto, aumenta la salute massima di 20 HP");
+        parmigiana.setId(9);
+        parmigiana.setTakeable(true);
+        parmigiana.setUseable(true);
+        parmigiana.setIsPowerUp(true);
+        parmigiana.setIsWeapon(true);
+        parmigiana.setBonus(20);
+        
+        getItems().add(yellowPotion);        
+        getItems().add(greenPotion);        
+        getItems().add(spinach);        
+        getItems().add(amberPotion);
+        getItems().add(emeraldPotion);        
+        getItems().add(parmigiana);
         
         // oggetti -chiave-
         Item strangeKey = new Item();
@@ -252,17 +334,17 @@ public class WildTime extends GameDescription {
         
         Item littleBoat = new Item();
         littleBoat.setName("piccola_barca");
-        littleBoat.setDescription("Piccola barchetta di legno, dove si puo usare?");
+        littleBoat.setDescription("Piccola barchetta di legno, a cosa servira mai?");
         littleBoat.setId(16);
         littleBoat.setTakeable(true);
         littleBoat.setUseable(true);
         
         Item timeGear = new Item();
-        littleBoat.setName("ingranaggio_del_tempo");
-        littleBoat.setDescription("Ingraggio che governa la vita di queste terre. Chi lo possiede ha il potere di modificare lo scorrere del tempo fino a fermarlo.");
-        littleBoat.setId(16);
-        littleBoat.setTakeable(true);
-        littleBoat.setUseable(true);
+        timeGear.setName("ingranaggio_del_tempo");
+        timeGear.setDescription("Ingraggio che governa la vita di queste terre. Chi lo possiede ha il potere di modificare lo scorrere del tempo fino a fermarlo.");
+        timeGear.setId(16);
+        timeGear.setTakeable(true);
+        timeGear.setUseable(true);
                 
         getItems().add(strangeKey);        
         getItems().add(rockyKey);        
@@ -275,11 +357,11 @@ public class WildTime extends GameDescription {
         Item henchmanSword1 = new Item();
         henchmanSword1.setId(17);
         henchmanSword1.setName("vecchia_spada1");
-        oldSword.setDescription("Vecchia spada. Data ai piu incapaci della banda.");
-        oldSword.setTakeable(true);
-        oldSword.setUseable(true);
-        oldSword.setIsWeapon(true);
-        oldSword.setAttackDamage(10);
+        henchmanSword1.setDescription("Vecchia spada. Data ai piu incapaci della banda.");
+        henchmanSword1.setTakeable(true);
+        henchmanSword1.setUseable(true);
+        henchmanSword1.setIsWeapon(true);
+        henchmanSword1.setAttackDamage(10);
         
         Item henchmanShield1 = new Item();
         henchmanShield1.setId(18);
@@ -390,13 +472,13 @@ public class WildTime extends GameDescription {
         Room whiteForest = new Room();
         whiteForest.setName("Foresta Bianca");
         whiteForest.setId(0);
-        whiteForest.setDescription("Sei un mercenario giunto nelle terre misteriose di ooo mandato da un re preoccupato per paura che venga rubato il misterioso ingranaggio del tempo,"
-                + "un congegno che regola lo scorrere del tempo di queste terre che se rubato potrebbe causare il fermarsi del normale flusso del tempo bloccando di fatto la vita di queste terre,"
-                + "da una banda che sta infestando ormai da qualche tempo queste terre . Dalle informazioni questo congegno risulta essere collocato nella grotta della memoria,"
-                + " una grotta situata in cima al monte tempo nella zona nord delle terre."
+        whiteForest.setDescription("Sei un mercenario giunto nelle terre misteriose di Ooo mandato da un re, di una terra vicina, preoccupato che venga rubato il misterioso ingranaggio del tempo,"
+                + "un congegno che regola lo scorrere del tempo di queste terre che se rubato potrebbe causare il fermarsi del normale flusso del tempo bloccando la vita di queste terre."
+                + "Sembra essere diventato l'obiettivo della banda che da tempo governa questa terra. Il re ha parlato di un certo Rob Lucci, uomo a capo della banda del tempo.\n"
+                + "Il tuo obiettivo è fermare Rob Lucci, ma dove si trovera? Che la caccia abbia inizio!"
                 + "\n\nSei giunto nella FORESTA BIANCA, "
-                + "una foresta tanto bella quanto ingannevole per via del suo aspetto bianco e puro, cosa si celera in questa foresta? Sembra che ci sia qualcuno forse sarebbe una buona idea"
-                + "PARLARE con questo strano tipo...");
+                + "una foresta tanto bella quanto ingannevole per via del suo aspetto bianco e puro, cosa si celera in questa foresta? Sembra che ci sia qualcuno forse sarebbe una buona idea "
+                + "PARLARE con questo strano_viandante...\n");
         whiteForest.setExplored(false);
         whiteForest.setBlocked(false);
         
@@ -404,9 +486,8 @@ public class WildTime extends GameDescription {
         Room whitePath = new Room();
         whitePath.setName("Sentiero per la Foresta Bianca");
         whitePath.setId(1);
-        whitePath.setDescription("\nIl cosidetto SENTIERO PER LA FORESTA BIANCA, nome alquanto banale,"
-                + "datogli da un vecchio e pigro re che governava queste terre tempo fa che non sapeva con chiamare questo quadrante di terra."
-                + "Come dice il nome è un semplice sentiero che ti porta alla foresta alla bianca ma da cui puoi raggiungere altri luoghi di queste lande misteriose.");
+        whitePath.setDescription("Il cosidetto SENTIERO PER LA FORESTA BIANCA, nome alquanto esplicativo, è la strada che ti conduce alla foresta."
+                + "Da qui pero è possibile raggiungere altre zone di questa terra, come ad esempio il mercato ad est e la palude ad ovest.\n");
         whitePath.setExplored(false);
         whitePath.setBlocked(false);
         
@@ -415,8 +496,9 @@ public class WildTime extends GameDescription {
         weirdSwamp.setName("Palude Strana");
         weirdSwamp.setId(2);
         weirdSwamp.setDescription("La PALUDE STRANA, un luogo avvolto nel mistero dove per qualche strano motivo la gente del posto sostiene di sentire delle voci,"
-                + "dei sussuri che hanno fatto impazzire chiunque provasse ad addentrarsi nella palude."
-                + "Per quanto avvolta nel mistero è pur sempre una palude.");
+                + "dei sussuri che hanno fatto impazzire chiunque provasse ad addentrarsi nella palude. E' un fenomeno che ormai tartassa la popolazione da decenni..."
+                + "Cosa sarà mai?"
+                + "Pero, per quanto avvolta nel mistero, è pur sempre una palude, attenzione a non sporcarti di fango.\n");
         weirdSwamp.setExplored(false);
         weirdSwamp.setBlocked(false);
         
@@ -424,7 +506,8 @@ public class WildTime extends GameDescription {
         Room whisperingHill = new Room();
         whisperingHill.setName("Collina dei Sussurri");
         whisperingHill.setId(3);
-        whisperingHill.setDescription("Ti trovi nella Collina dei Sussurri");
+        whisperingHill.setDescription("Sei giunto nella COLLINA DEI SUSSURI, luogo tanto temuto quanto strano, in quanto popolato da un solo albero sulla sommita della collina."
+                + "E' un albero particolare perche, nonostante abbia il tronco ormai seccato, ha una folta chioma di foglie verdi; inoltre sembra che i sussurri provengano proprio da li...\n");
         whisperingHill.setExplored(false);
         whisperingHill.setBlocked(true);
         whisperingHill.setOpenWith(shears);     // sblocca con le cesoie
@@ -434,7 +517,8 @@ public class WildTime extends GameDescription {
         Room nomadMarket = new Room();
         nomadMarket.setName("Mercato dei Nomadi");
         nomadMarket.setId(4);
-        nomadMarket.setDescription("Ti trovi nel Mercato dei Nomadi");
+        nomadMarket.setDescription("Il MERCATO DEI NOMADI, il luogo piu esotico e al tempo stesso caotico di queste terre. Nonostante siano nomadi, si dice che basti"
+                + "fare la domanda giusta al giusto mercante e si puo ottenere qualsiasi cosa. Sarà vero o sarà la solita pubblicita ingannevole dei mercanti?\n");
         nomadMarket.setExplored(false);
         nomadMarket.setBlocked(false);
         
@@ -442,7 +526,8 @@ public class WildTime extends GameDescription {
         Room roughStreet = new Room();
         roughStreet.setName("Strada Malmessa");
         roughStreet.setId(5);
-        roughStreet.setDescription("Ti trovi nella Strada Malmessa");
+        roughStreet.setDescription("STRADA MALMESSA, deve il suo nome al tutti i governanti che in passato hanno promesso di ripararla, ma alla fine è rimasta cosi com'è...malmessa."
+                + "Cosi come ogni luogo caduto nel dimencatoio, anche questo sembra essere popolato da gente non proprio tranquilla...\n");
         roughStreet.setExplored(false);
         roughStreet.setBlocked(false);
         
@@ -450,7 +535,8 @@ public class WildTime extends GameDescription {
         Room smallLake = new Room();
         smallLake.setName("Piccolo Lago");
         smallLake.setId(6);
-        smallLake.setDescription("Ti trovi al Piccolo Lago");
+        smallLake.setDescription("Sei al PICCOLO LAGO, unico specchio d'acqua di queste terre. Stando alla gente del luogo sembra ci sia un rospo in grado di parlare..."
+                + "Cosa avrà mai da dire un rospo? Ma ,poi , sarà vero?\n");
         smallLake.setExplored(false);
         smallLake.setBlocked(false);
         
@@ -458,7 +544,8 @@ public class WildTime extends GameDescription {
         Room houseLake = new Room();
         houseLake.setName("Casa sul Piccolo Lago");
         houseLake.setId(7);
-        houseLake.setDescription("Ti trovi alla Casa sul Piccolo Lago");
+        houseLake.setDescription("Dopo aver recuperato la barchetta dal saggio rospetto, sei giunto alla CASA SUL PICCOLO LAGO. Una casa in mezzo al nulla di cui non si è mai accorto nessuno.\n"
+                + "Sarà abitata?");
         houseLake.setExplored(false);
         houseLake.setBlocked(true);
         houseLake.setOpenWith(littleBoat);  // sblocca con la barca
@@ -467,7 +554,7 @@ public class WildTime extends GameDescription {
         Room ravine = new Room();
         ravine.setName("Burrone");
         ravine.setId(8);
-        ravine.setDescription("Ti trovi al Burrone");
+        ravine.setDescription("Un BURRONE. Nient'altro da aggiungere.\n");
         ravine.setExplored(false);
         ravine.setBlocked(false);
                                
@@ -475,7 +562,8 @@ public class WildTime extends GameDescription {
         Room gangOutpost = new Room();
         gangOutpost.setName("Avamposto della Banda");
         gangOutpost.setId(9);
-        gangOutpost.setDescription("Ti trovi nell'Avamposto della Banda");
+        gangOutpost.setDescription("Dopo aver girato a lungo, sei giunto finalmente nell'AVAMPOSTO DELLA BANDA che presiede il quartier generale, il Palazzo del Tempo. Un luogo popolato"
+                + "dagli scagnozzi della banda. Nonostante la 'sicurezza', sembra sia molto facile passare...\n");
         gangOutpost.setExplored(false);
         gangOutpost.setBlocked(false);
         
@@ -483,7 +571,9 @@ public class WildTime extends GameDescription {
         Room timePalace = new Room();
         timePalace.setName("Palazzo del Tempo");
         timePalace.setId(10);
-        timePalace.setDescription("Ti trovi nel Palazzo del Tempo");
+        timePalace.setDescription("Il PALAZZO DEL TEMPO, in passato era il luogo in cui veniva custodito l'ingranaggio del tempo ma poco prima che la dinastia precedente venisse fatta cadere per mano di un giovane e ambizioso Lucci,"
+                + "l'ingranaggio fu spostato in una localita tutt'ora segreta. "
+                + "Adesso è diventato il quartier generale della banda ed è presieduto dal temibile vicecapo Doffy che sembra avere qualche sorta di potere, stai attento...\n");
         timePalace.setExplored(false);
         timePalace.setBlocked(false);
                 
@@ -491,39 +581,35 @@ public class WildTime extends GameDescription {
         Room steepStairway = new Room();
         steepStairway.setName("Scalinata Ripida");
         steepStairway.setId(11);
-        steepStairway.setDescription("Ti trovi sulla Scalinata Ripida");
+        steepStairway.setDescription("SCALINATA RIPIDA. Da qui puoi raggiungere i posti sacri di queste terre. E' cosi ripida che sembra sia il versante stesso della montagna, ma da queste parti si dice che solo"
+                + "colui che vuole vedere il mondo sia in grado di scalarla. Chissa come sara la vista lassu...\n");
         steepStairway.setExplored(false);
         steepStairway.setBlocked(false);
                               
         // stanza 12 - COLLINA DELLA SAPIENZA
         Room knowledgeHill = new Room();
-        knowledgeHill.setName("Collina della Sapienza");
+        knowledgeHill.setName("Altopiano della Sapienza");
         knowledgeHill.setId(12);
-        knowledgeHill.setDescription("Ti trovi sulla Collina della sapienza");
+        knowledgeHill.setDescription("Sei giunto all'ALTOPIANO DELLA SAPIENZA. Per la grande vista sul mondo di 'sotto' e l'essere cosi vicino ai confini del 'cielo', la gente del posto crede che sia in grado di conferirti conoscenza"
+                + "e saggiezza. Stando ad alcune voci, qui dovrebbe abitarti un vecchio maestro di arti marziali con il suo allievo. Avranno avuto anche loro conoscenza e saggezza da questo posto?\n");
         knowledgeHill.setExplored(false);
         knowledgeHill.setBlocked(false);
-                                      
-        // stanza 13 - ALTOPIANO DEL SERPENTE
-        Room serpentPlateau = new Room();
-        serpentPlateau.setName("Altopiano dei Serpenti");
-        serpentPlateau.setId(13);
-        serpentPlateau.setDescription("Ti trovi sull'Altopiano dei Serpenti");
-        serpentPlateau.setExplored(false);
-        serpentPlateau.setBlocked(false);
                                               
         // stanza 14 - MONTE TEMPO
         Room timeMountain = new Room();
         timeMountain.setName("Monte Tempo");
-        timeMountain.setId(14);
-        timeMountain.setDescription("Ti trovi sul Monte Tempo");
+        timeMountain.setId(13);
+        timeMountain.setDescription("Sei giunto (finalmente) al MONTE TEMPO. La montagna piu alta di queste terre. Qui lo scorrere del tempo sembra scorrere in maniera diversa da quando un vecchio, membro della dinastia caduta"
+                + "di queste terre, ha fatto visita alla cima di questo monte. Che si tratti dell'Ingranaggio del Tempo?\n");
         timeMountain.setExplored(false);
         timeMountain.setBlocked(false);
                                                 
         // stanza FINALE 15 - GROTTA DELLA MEMORIA - STANZA FINALE
         Room memoryCave = new Room();
         memoryCave.setName("Grotta della Memoria");
-        memoryCave.setId(15);
-        memoryCave.setDescription("Ti trovi nella Grotta della Memoria");
+        memoryCave.setId(14);
+        memoryCave.setDescription("La GROTTA DELLA MEMORIA, qui il tempo è fermo. Chiunque abbia mai provato ad entrare ha raccontato che è come se i suoi ricordi fossero diventati vivi e una volta uscito si ricordava perfettamente ogni"
+                + "singolo momento della sua vita. Ed è proprio qui che sembra essersi nascoto Lucci, sai gia qual'è il tuo compito, è il momento di concludere questa caccia!\n");
         memoryCave.setExplored(false);
         memoryCave.setBlocked(false);
         memoryCave.setFinal(true);
@@ -602,16 +688,10 @@ public class WildTime extends GameDescription {
         steepStairway.setOvest(knowledgeHill);              // collina della sapienza
         
         // collina della sapienza
-        knowledgeHill.setNord(serpentPlateau);            // altopiano
+        knowledgeHill.setNord(null);            // altopiano
         knowledgeHill.setSud(null);         
         knowledgeHill.setEst(steepStairway);    
         knowledgeHill.setOvest(null);
-        
-        // altopiano dei serpenti
-        serpentPlateau.setNord(null);            
-        serpentPlateau.setSud(knowledgeHill);                 // collina
-        serpentPlateau.setEst(null);    
-        serpentPlateau.setOvest(null);
         
         // monte tempo
         timeMountain.setNord(null);            
@@ -627,7 +707,17 @@ public class WildTime extends GameDescription {
         
         // ----- AGGIUNTA OGGETTI NEL MONDO DI GIOCO -----
         
+        whiteForest.getItems().add(apple);
+        whiteForest.getItems().add(strangeKey);
+        whitePath.getItems().add(shears);
+        nomadMarket.getItems().add(sandwich);
         ravine.getItems().add(rockyKey);
+        ravine.getItems().add(spinach);
+        smallLake.getItems().add(littleBoat);
+        houseLake.getItems().add(parmigiana);
+        timePalace.getItems().add(amberPotion);
+        steepStairway.getItems().add(emeraldPotion);
+        knowledgeHill.getItems().add(superPotion);
          
         // ----- DEFINIZIONE DELLE CASSE -----
         // cassa della Palude Strana -> strana chiave
@@ -636,6 +726,7 @@ public class WildTime extends GameDescription {
         weirdSwamp.getChest().setIsOpen(false);
         weirdSwamp.getChest().getList().add(redPotion);        
         weirdSwamp.getChest().getList().add(sword);
+        weirdSwamp.getChest().getList().add(shield);
         
         // cassa del Monte tempo -> chiave rocciosa
         timeMountain.getChest().setName("cassa_rocciosa");
@@ -643,6 +734,7 @@ public class WildTime extends GameDescription {
         timeMountain.getChest().setIsOpen(false);
         timeMountain.getChest().getList().add(bluePotion);        
         timeMountain.getChest().getList().add(bigSword);
+        timeMountain.getChest().getList().add(bigShield);
 
         getItems().add(weirdSwamp.getChest());        
         getItems().add(timeMountain.getChest());
@@ -658,8 +750,6 @@ public class WildTime extends GameDescription {
         geralt.setArma(oldSword);
         geralt.setScudo(oldShield);
         geralt.setInventory(new Inventory());
-        geralt.getInventory().getList().add(oldSword);        
-        geralt.getInventory().getList().add(oldShield);
 
         setPlayer(geralt);
         
@@ -668,51 +758,50 @@ public class WildTime extends GameDescription {
         Npc strangeTraveler = new Npc();
         strangeTraveler.setHp(20);
         strangeTraveler.setName("strano_viandante");
-        strangeTraveler.setTalk("Sei nuovo da queste parti vero?");
+        strangeTraveler.setTalk("Sei nuovo da queste parti vero?\n");
         strangeTraveler.setDescription("Viandante dall'aspetto trasandato che se ne sta ai piedi"
-                + "di un fuoco semi accesso. Sembra abbia qualcosa di interessante da dire...");
+                + "di un fuoco semi accesso. Sembra abbia qualcosa di interessante da dire...\n");
         
         Conversation constr = new Conversation();
         constr.setQuestion("chi sei?");
         constr.setAnswer("Sono qualcuno che potrebbe aiutarti nell'attraversare queste terre tanto belle quanto pericolose."
-                + "Cosa vuoi sapere?");
+                + "Cosa vuoi sapere?\n");
         
         Conversation constr2 = new Conversation();
         constr2.setQuestion("cosa posso fare?");
-        constr2.setAnswer("Ci sono tante cose che puoi fare, come ad esempio esplorare andando a NORD, SUD, OVEST, EST."
-                + "Puoi RACCOGLIERE gli oggetti che puoi trovare in giro, alcuni li puoi EQUIPAGGIARE, altri MANGIARE o BERE."
-                + "Puoi anche vedere cosa c'è nel tuo ZAINO e magari BUTTARE qualcosa. Poi se ti senti solo puoi PARLARE con qualcuno, ma questo credo che"
-                + "tu lo abbia capito, se invece c'è qualcuno che ti infastidisce lo puoi sempre ATTACCARE."
-                + "Mi raccomando dove vai e cerca sempre di OSSERVARE bene cio che ti circonda, non sai cosa ci puoi trovare."
-                + "Se poi tutte queste scritte ti infastidiscono, puoi sempre PULIRE lo schermo."
-                + "Infine, caro mercenario, ricordati che puoi USCIRE quando vuoi ma ricordati"
-                + "di SALVARE altrimenti la prossima volta non sai piu da dove riprendere il tuo viaggio.");
+        constr2.setAnswer("Sai hai bisogno di aiuto, puoi digitare il comando aiuto e avrai risposta ad ogni tua domanda\n");
         
         Conversation constr3 = new Conversation();
         constr3.setQuestion("cosa sai di queste terre?");
-        constr3.setAnswer("Non molto in verita mercenario, ma so che sono terre misteriose.");
+        constr3.setAnswer("Non molto in verita, mercenario. Sono terre misteriose in cui strani fatti avvengono.\n");
+        
+        Conversation constr4 = new Conversation();
+        constr4.setQuestion("cosa sai di lucci e la sua banda?");
+        constr4.setAnswer("Governano queste terre da ormai un decina d'anni, da quando un giovanissimo lucci da solo ha messo fuori l'intera dinastia precedente"
+                + "assicurandosi un posto nel Palazzo del Tempo. Ci penserei due volte prima di avvicinarmi...\n");
         
         strangeTraveler.getConversation().add(constr);
         strangeTraveler.getConversation().add(constr2);
         strangeTraveler.getConversation().add(constr3);
+        strangeTraveler.getConversation().add(constr4);
 
         //////////////////////////////
         Npc scaredBoy = new Npc();
         scaredBoy.setHp(20);
         scaredBoy.setName("renato_spaventato");
-        scaredBoy.setTalk("Dall'aspetto sembri un mercenario. Sento provenire delle voci"
-                + "dalla parte sud della Palude.");
+        scaredBoy.setTalk("Dall'aspetto sembri un mercenario. Ho bisogno di aiuto. Sento provenire delle voci"
+                + "dalla parte sud della Palude.\n");
         scaredBoy.setDescription("Renato Spaventato, un ragazzino spaventato -ma tu guarda un po- dopo che ha provato ad addentrarsi nella parte sud della palude strana."
-                + "Preso per pazzo dalla gente del posto forse non sarebbe una cattiva idea parlarci...");
+                + "Preso per pazzo dalla gente del posto forse non sarebbe una cattiva idea parlarci...\n");
         
         Conversation convBoy1 = new Conversation();
-        convBoy1.setQuestion("cosa ti spaventa?");
-        convBoy1.setAnswer("Non sono pazzo te lo giuro, ho sentito delle voci nella mia testa, non sono pazzo");
+        convBoy1.setQuestion("cosa è successo?");
+        convBoy1.setAnswer("Ho provato ad addentrarmi con mia sorella nella palude qui a est ma andando avanti ho sentito delle voci, dei sussurri nella mia testa."
+                + "Stavo impazzendo... Mia sorella si trova ancora li, ma ho paura...\n");
         
         Conversation convBoy2 = new Conversation();
-        convBoy2.setQuestion("cosa è successo?");
-        convBoy2.setAnswer("Ho provato ad addentrarmi con mia sorella nella palude qui a est ma andando avanti ho sentito delle voci, dei sussurri nella mia testa."
-                + "Stavo impazzendo... Mia sorella si trova ancora li, ma ho paura...");
+        convBoy2.setQuestion("sai qualcosa sulla banda del tempo?");
+        convBoy2.setAnswer("Quello che so è che controllano il palazzo del tempo e presiedere il palazzo c'è tipo un avamposto. Non so altro mercenario!\n");
         
         scaredBoy.getConversation().add(convBoy1);
         scaredBoy.getConversation().add(convBoy2);
@@ -721,21 +810,20 @@ public class WildTime extends GameDescription {
         Npc scaredWoman = new Npc();
         scaredWoman.setHp(20);
         scaredWoman.setName("rita_l'impaurita");
-        scaredWoman.setTalk("Salve mercenario...");
-        scaredWoman.setDescription("Rita l'impaurita, sorella di Renato. Anche lei sostiene di aver sentito delle voci, ma c'è qualcosa di diverso in lei...");
+        scaredWoman.setTalk("Salve mercenario...\n");
+        scaredWoman.setDescription("Rita l'impaurita, sorella di Renato. Anche lei sostiene di aver sentito delle voci, ma c'è qualcosa di diverso in lei...\n");
         
         Conversation conWom1 = new Conversation();
         conWom1.setQuestion("perche sei qui da sola?");
-        conWom1.setAnswer("Stavo facendo un passeggiata...");
+        conWom1.setAnswer("Stavo facendo una passeggiata...\n");
         
         Conversation conWom2 = new Conversation();
         conWom2.setQuestion("tuo fratello è preoccupato");
-        conWom2.setAnswer("Stavo facendo una passeggiata...");
+        conWom2.setAnswer("Stavo facendo una passeggiata...\n");
         
         Conversation conWom3 = new Conversation();
         conWom3.setQuestion("da dove provengono le voci?");
-        conWom3.setAnswer("SPAVALDO DI UN MERCENARIO COME OSI, CERCAMI SONO A SUD MA TI SERVIRA QUALCOSA PER VENIRE DA ME");
-        
+        conWom3.setAnswer("-indica il sud della palude ma sembra che siano delle piante da quella parte-\n");
         
         scaredWoman.getConversation().add(conWom1);        
         scaredWoman.getConversation().add(conWom2);
@@ -745,136 +833,282 @@ public class WildTime extends GameDescription {
         Npc merchant = new Npc();
         merchant.setHp(20);
         merchant.setName("tino_cre");
-        merchant.setTalk("Salve viadante io sono Tino Cre, sono un nomade mercante o un mercante nomade dipende");
-        merchant.setDescription("Mercante nomade che si ritrova sempre in queste lande misteriose vendendo robaccia e cianfrusaglie che trova in giro. Sembra essere bravo nel suo mestiere pero...");
+        merchant.setTalk("Salve viadante io sono Tino Cre, sono un nomade mercante o un mercante nomade dipende\n");
+        merchant.setDescription("Mercante nomade che si ritrova sempre in queste lande misteriose vendendo robaccia e cianfrusaglie che trova in giro. Sembra essere bravo nel suo mestiere pero...\n");
         
         Conversation conMer1 = new Conversation();
         conMer1.setQuestion("cosa vendi?");
         conMer1.setAnswer("C'è chi direbbe che io vendo sogni, ma io non vendo sogni ma solide realta."
-                + "\n-sembra abbia disegnato un cerchio intorno a se stesso-");
+                + "-sembra abbia disegnato un cerchio intorno a se stesso-\n");
         
         Conversation conMer2 = new Conversation();
         conMer2.setQuestion("perche sei qui?");
-        conMer2.setAnswer("Necessita lavorative, nella mia terra natale non navighiamo di certo nell'oro...");
+        conMer2.setAnswer("Necessita lavorative, nella mia terra natale non navighiamo di certo nell'oro...\n");
         
         Conversation conMer3 = new Conversation();
-        conMer3.setQuestion("");
-        conMer3.setAnswer("");
+        conMer3.setQuestion("parlami della banda del tempo");
+        conMer3.setAnswer("Vedo che vai subito al sodo... Il vicecapo, Doffy, so che puo controllare i fili e so anche che è lui che presiede il"
+                + "Palazzo del Tempo, quando il boss non c'è. Questo è tutto cio che so.\n");
+        
+        Conversation conMer4 = new Conversation();
+        conMer4.setQuestion("come ci arrivo?");
+        conMer4.setAnswer("Si trova a nord della Strada Malmessa a est di qui. Ma fa attenzione agli scagnozzi della banda.\n");
+        
+        merchant.getConversation().add(conMer1);
+        merchant.getConversation().add(conMer2);
+        merchant.getConversation().add(conMer3);
         
         //////////////////////////////////
+        
         Npc littleFrog = new Npc();
         littleFrog.setHp(20);
-        littleFrog.setName("rospetto_il_sospetto");
-        littleFrog.setTalk("Crack mercenario! Mi chiamo Gamabunta crack!");
+        littleFrog.setName("rospetto1");
+        littleFrog.setTalk("Crack mercenario! Mi chiamo Gamabunta crack!\n");
         littleFrog.setDescription("Rospetto che si atteggia a vecchio maestro, forse sara"
-                + "per quel lungo pizzetto bianco.");
+                + "per quel lungo pizzetto bianco.\n");
+        
+        Npc littleFrog2 = new Npc();
+        littleFrog2.setHp(20);
+        littleFrog2.setName("rospetto2");
+        littleFrog2.setTalk("Crack mercenario! Mi chiamo Gamabunta crack!\n");
+        littleFrog2.setDescription("Rospetto che si atteggia a vecchio maestro, forse sara"
+                + "per quel lungo pizzetto bianco.\n");
+        
+        Npc littleFrog3 = new Npc();
+        littleFrog3.setHp(20);
+        littleFrog3.setName("rospetto3");
+        littleFrog3.setTalk("Crack mercenario! Mi chiamo Gamabunta crack!\n");
+        littleFrog3.setDescription("Rospetto che si atteggia a vecchio maestro, forse sara"
+                + "per quel lungo pizzetto bianco.\n");
+        
+        Conversation conFrog3_1 = new Conversation();
+        conFrog3_1.setQuestion("perche puoi parlare?");
+        conFrog3_1.setAnswer("Crack! Mai sentito parlare di tecniche ninja? Crack!\n");
+        
+        Conversation conFrog3_2 = new Conversation();
+        conFrog3_2.setQuestion("si puo attraversare il lago?");
+        conFrog3_2.setAnswer("Crack! Sembra non ti si possa nascondere nulla! Crack!"
+                + "Con la piccola barca che è qui Crack!, con questa puoi vedere cosa realmente Crack! cela il piccolo lago di Ooo. Crack!\n");
+        
+        Conversation conFrog3_3 = new Conversation();
+        conFrog3_3.setQuestion("parlami della banda del tempo");
+        conFrog3_3.setAnswer("Crack! Tutto quello che so è che il capo non si trova al Palazzo del tempo a nord di qui. Crack!\n");
+        
+        littleFrog3.getConversation().add(conFrog3_1);        
+        littleFrog3.getConversation().add(conFrog3_2);
+        littleFrog3.getConversation().add(conFrog3_3);
+        
+        /////////////////////////////////
         
         Npc jiraya = new Npc();
         jiraya.setHp(20);
         jiraya.setName("eremita_dei_rospi");
-        jiraya.setTalk("Salve viadante io sono l'eremita dei rospi");
-        jiraya.setDescription("Si dice che provenga da un villaggio che ha come simbolo una foglia,"
-                + "quanta fantasia...");
+        jiraya.setTalk("Dall'aspetto sembri un mercenario, come hai fatto a raggiungermi?\n");
+        jiraya.setDescription("Si dice sia originario di un villaggio molto lontano che ha come simbolo una foglia.\n");
+        
+        Conversation conJiraya = new Conversation();
+        conJiraya.setQuestion("il tuo rospo non brilla per intelligenza");
+        conJiraya.setAnswer("Ah, vecchio Gamabunta...dovrei mandarti in pensione...");
+        
+        Conversation conJiraya2 = new Conversation();
+        conJiraya2.setQuestion("chi sei?");
+        conJiraya2.setAnswer("Molti mi chiamano Eremita dei rospi, ma puoi anche chiamarmi Jiraya.");
+        
+        Conversation conJiraya3 = new Conversation();
+        conJiraya3.setQuestion("perche non vedevo la casa?");
+        conJiraya3.setAnswer("Immagino tu non abbia mai sentito parlare di tecniche illusorie ninja...");
+        
+        Conversation conJiraya4 = new Conversation();
+        conJiraya4.setQuestion("perche sei qui?");
+        conJiraya4.setAnswer("E' l'unico posto in cui Lucci non puo trovarmi. Ho provato a fermarlo in passato ma non è andata bene. Adesso sto cercando un modo per sconfiggerlo...");
+        
+        Conversation conJiraya5 = new Conversation();
+        conJiraya5.setQuestion("dove puo essere lucci?");
+        conJiraya5.setAnswer("Dirigiti al MONTE TEMPO, a nord della SCALINATA RIPIDA. Una volta arrivato li saprai dove andare.\n");
+        
+        jiraya.getConversation().add(conJiraya);
+        jiraya.getConversation().add(conJiraya2);
+        jiraya.getConversation().add(conJiraya3);
+        jiraya.getConversation().add(conJiraya4);
+        jiraya.getConversation().add(conJiraya5);
+        
+        /////////////////////////////////
         
         Npc explorer = new Npc();
         explorer.setHp(20);
-        explorer.setName("Nathan");
-        explorer.setTalk("Salve viadante io sono Nathan e sono un esploratore");
+        explorer.setName("nathan");
+        explorer.setTalk("Finalmente qualcuno che vuole assaporare il rischio qui alla SCALINATA RIPIDA!\n");
         explorer.setDescription("Si definisce esploratore e pronipote di sir Francis Drake,"
-                + "in realta è solo un ladro a cui piace rischiare la propria vita");
+                + "in realta è solo un ladro a cui piace rischiare la propria vita\n");
+        
+        Conversation conExp = new Conversation();
+        conExp.setQuestion("sono qui per altro");
+        conExp.setAnswer("Non c'è bisogno di scaldarsi...\n");
+        
+        Conversation conExp2 = new Conversation();
+        conExp2.setQuestion("parlami della banda del tempo");
+        conExp2.setAnswer("Sono stanco di quella banda di pagliacci, che andassero al diavolo. So solo che il loro stupido capo animalesco stia cercando"
+                + "una sorta di ingranaggio da queste parti, ma non so dove possa trovarsi...\n");
+        
+        Conversation conExp3 = new Conversation();
+        conExp3.setQuestion("animalesco?");
+        conExp3.setAnswer("Si dice che abbia il potere di trasformarsi in un leopardo acquisendo le migliori qualita di quell'animale...\n");
+        
+        explorer.getConversation().add(conExp);        
+        explorer.getConversation().add(conExp2);
+
+        /////////////////////////////////
         
         Npc oldMan = new Npc();
         oldMan.setHp(30);
-        oldMan.setName("Maestro_Muten");
-        oldMan.setTalk("Salve viadante io sono Muten e sono un maestro d'arti maziali");
+        oldMan.setName("maestro_muten");
+        oldMan.setTalk("Salve mercenario io sono Muten e sono un maestro d'arti maziali!");
         oldMan.setDescription("Si fa chiamare anche Genio delle Tartarughe di mare e si definisce un"
                 + "povero vecchietto che si gode le sue strane riviste e quando vede uno straniero"
-                + "improvvisa una mossa con le mani che lo fa sembrare solo un vecchio pazzo");
-        oldMan.setReward(superPotion);
+                + "improvvisa una mossa con le mani che lo fa sembrare solo un vecchio pazzo\n");
+        
+        Conversation conOld = new Conversation();
+        conOld.setQuestion("perche sei qui?");
+        conOld.setAnswer("Questa collina puo essere raggiunta solo da spiriti impavidi che non hanno paura del rischio. Sono questi gli allievi che cerco.\n");
+        
+        Conversation conOld1 = new Conversation();
+        conOld.setQuestion("la vecchia dinastia");
+        conOld.setAnswer("La vecchia dinastia era una famiglia di persone dotate non solo di poteri speciali ma anche di buon cuore, hanno sempre fatto il possibile"
+                + "per garantire il benessere di queste terre tanto misteriose quanto magiche.\n");
+        
+        Conversation conOld2 = new Conversation();
+        conOld2.setQuestion("l'ingranaggio del tempo");
+        conOld2.setAnswer("Strano congegno la cui origine si perde nella notte dei tempi, non si sa perche si trovi in queste terre. Quello che so per certo è che non"
+                + "deve cadere nelle mani di Lucci, va al Monte Tempo!\n");
+        
+        oldMan.getConversation().add(conOld);
+        oldMan.getConversation().add(conOld1);        
+        oldMan.getConversation().add(conOld2);
+        
+        /////////////////////////////////
+        
+        // abitanti random
+        Npc tizio = new Npc();
+        tizio.setHp(20);
+        tizio.setName("tizio");
+        tizio.setTalk("....che seccatura....che....seccatura....\n");
+        tizio.setDescription("Un tizio che abita queste terre. Sembra seccato, non credo parlagli sia una buona idea...\n");
+        
+        Npc mercanteRandom = new Npc();
+        mercanteRandom.setHp(20);
+        mercanteRandom.setName("mercante_urlante");
+        mercanteRandom.setTalk("SCONTI SU TUTTA LA MERCE, PRENDI 2 PAGHI 3. VENGHINO SIGNORI VENGHINO!!!\n");
+        mercanteRandom.setDescription("Mercante del mercato dei Nomadi. Sembra non convenga fare affare con lui...\n");
+        
+        Npc mercanteRandom2 = new Npc();
+        mercanteRandom2.setHp(20);
+        mercanteRandom2.setName("mercante_curioso");
+        mercanteRandom2.setTalk("...sembra sia possibile...il piccolo lago...tre rospi...uno parla pure....una casa sull'acqua.....\n");
+        mercanteRandom2.setDescription("Mercante del mercato dei Nomadi. Sembra abbia scoperto qualcosa...\n");
+        
+        Npc angryWoman = new Npc();
+        angryWoman.setHp(20);
+        angryWoman.setName("donna_arrabbiata");
+        angryWoman.setTalk("Questi pagliacci della banda del tempo hanno veramente rotto le scatole...\n");
+        angryWoman.setDescription("Donna arrabiata. Sembra non essere molto contenta di essere governata da questi tizi...\n");
+        
+        Npc sonGoku = new Npc();
+        sonGoku.setHp(20);
+        sonGoku.setName("allievo_del_maestro");
+        sonGoku.setTalk("...Devo continuare ad allenarmi se voglio diventare il guerriero piu forte di queste terre...\n");
+        sonGoku.setDescription("Allievo del maestro. Ha una strana coda che ricorda quella di una scimmia...\n");
         
         getNpcs().add(strangeTraveler);
         getNpcs().add(scaredBoy);
         getNpcs().add(scaredWoman);
         getNpcs().add(littleFrog);
+        getNpcs().add(littleFrog2);
+        getNpcs().add(littleFrog3);
         getNpcs().add(merchant);
         getNpcs().add(jiraya);
         getNpcs().add(explorer);        
         getNpcs().add(oldMan);
+        getNpcs().add(tizio);
+        getNpcs().add(mercanteRandom);
+        getNpcs().add(mercanteRandom2);
+        getNpcs().add(angryWoman);
+        getNpcs().add(sonGoku);
         
         whiteForest.getNpcs().add(strangeTraveler);
         whitePath.getNpcs().add(scaredBoy);
+        whitePath.getNpcs().add(tizio);
         weirdSwamp.getNpcs().add(scaredWoman);
         nomadMarket.getNpcs().add(merchant);
+        nomadMarket.getNpcs().add(mercanteRandom);        
+        nomadMarket.getNpcs().add(mercanteRandom2);
+        roughStreet.getNpcs().add(angryWoman);
         smallLake.getNpcs().add(littleFrog);
+        smallLake.getNpcs().add(littleFrog2);        
+        smallLake.getNpcs().add(littleFrog3);
         houseLake.getNpcs().add(jiraya);
         steepStairway.getNpcs().add(explorer);
-        knowledgeHill.getNpcs().add(oldMan);
-        
-        
+        knowledgeHill.getNpcs().add(oldMan);        
+        knowledgeHill.getNpcs().add(sonGoku);
+
         // ----- ENEMIES -----
         // COLEI CHE SA - MINIBOSS
         Npc sheWhoKnows = new Npc();
         sheWhoKnows.setIsEnemy(true);
         sheWhoKnows.setHp(40);
-        sheWhoKnows.setName("Colei_che_Sa");
-        sheWhoKnows.setTalk("IO SONO LA SOVRANA DI QUESTO REGNO CHI OSA INVADERE LA MIA TERRA");
-        sheWhoKnows.setDescription("Un tempo sovrana incontrasta di questa terra, un giorno fu imprigionata"
+        sheWhoKnows.setName("colei_che_sa");
+        sheWhoKnows.setTalk("IO SONO LA SOVRANA DI QUESTO REGNO CHI OSA INVADERE LA MIA TERRA\n");
+        sheWhoKnows.setDescription("In un tempo assai remoto, era la sovrana incontrasta di questa terra. Un giorno fu imprigionata"
                 + "dalle figlie all'interno della collina. Da allora la collina fu chiamata Dei Sussurri"
-                + "perche chiunque provi ad avvicinarsi sente sussurri");
+                + "perche chiunque provi ad avvicinarsi sente delle voci nella testa e impazzisce.\n");
         sheWhoKnows.setArma(magicBranch);        
         sheWhoKnows.setScudo(foliageShield);
+        sheWhoKnows.setReward(leggendaryShield);
         
         // SCAGNOZZO 1
         Npc henchman1 = new Npc();
         henchman1.setIsEnemy(true);
         henchman1.setHp(25);
-        henchman1.setName("Scagnozzo_1");
-        henchman1.setTalk("Attento straniero!");
-        henchman1.setDescription("Il loro capo consapevole della loro debolezza ha semplicemente"
-                + "numerato i suoi scagnozzi. Ecco lui è il numero 1.");
+        henchman1.setName("scagnozzo1");
+        henchman1.setTalk("Attento mercenario sappiamo perche sei qui!\n");
+        henchman1.setDescription("E' comparso scagnozzo1 selvatico!"
+                + "Talmente mediocri che anche loro si chiedono perche lucci li abbia assoldati...\n");
         henchman1.setArma(henchmanSword1);        
         henchman1.setScudo(henchmanSword1);
+        henchman1.setReward(yellowPotion);
         
         // SCAGNOZZO 2
         Npc henchman2 = new Npc();
         henchman2.setIsEnemy(true);
         henchman2.setHp(25);
-        henchman2.setName("Scagnozzo_2");
-        henchman2.setTalk("Attento straniero!");
-        henchman2.setDescription("Il loro capo consapevole della loro debolezza ha semplicemente"
-                + "numerato i suoi scagnozzi. Ecco lui è il numero 2.");
+        henchman2.setName("scagnozzo2");
+        henchman2.setTalk("Attento mercenario sappiamo perche sei qui!\n");
+        henchman2.setDescription("E' comparso scagnozzo2 selvatico!"
+                + "Talmente mediocri che anche loro si chiedono perche lucci li abbia assoldati...\n");
         henchman2.setArma(henchmanSword2);        
         henchman2.setScudo(henchmanSword2);
+        henchman2.setReward(greenPotion);
         
         // VICE CAPO DELLA BANDA - MINIBOSS
         Npc deputyBoss = new Npc();
         deputyBoss.setIsEnemy(true);
-        deputyBoss.setHp(50);
-        deputyBoss.setName("Doffy");
-        deputyBoss.setTalk("");
+        deputyBoss.setHp(45);
+        deputyBoss.setName("doffy");
+        deputyBoss.setTalk("Alla fine il mercenario assoldato per sgominarci è finalmente giunto! NON VEDO L'ORA DI SCOPRIRE COSA VUOI FARE AHAHAH\n");
         deputyBoss.setDescription("Vice capo della banda del tempo, ha una strana passione per la moda"
                 + "dal momento che se ne va in giro con un pellicciotto rosa e degli occhialetti da sole"
-                + "abbastanza discutibili. Resta il fatto che è temuto e rispettato, sopratutto temuto "
-                + "per quella strana tecnica che usa attarverso dei fili");
+                + "abbastanza discutibili. Al di la della moda, si dice che sia in grado di controllare i fili...\n");
         deputyBoss.setArma(doffySword);
         deputyBoss.setScudo(doffyShield);
-        
-        // MINIBOSS ALTOPIANO DEI SERPENTI ???
-        Npc slytherin = new Npc();
-        slytherin.setIsEnemy(true);
-        slytherin.setHp(70);
-        slytherin.setName("serpe_verde");
-        slytherin.setTalk("");
-        slytherin.setDescription("");    
+        deputyBoss.setReward(leggendarySword);
         
         // BOSS DELLA BANDA 
         Npc boss = new Npc();
         boss.setIsEnemy(true);
-        boss.setHp(80);
-        boss.setName("Lucci");
-        boss.setTalk("Chi osa disturbare il grande Rob Lucci, capo della banda del tempo?");
-        boss.setDescription("Capo della banda del tempo, la sua pachetezza è cio che fa piu paura, non riesci"
-                + "mai a capire ");
+        boss.setHp(60);
+        boss.setName("rob_lucci");
+        boss.setTalk("Chi osa distubarmi?\n");
+        boss.setDescription("Capo della banda del tempo, colui che, da solo, all'eta di 16 anni ha spazzato via la vecchia dinastia. Temutissimo, ormai da dieci anni domina"
+                + "queste terre. Si dice sia in grado di sfruttare i poteri di un leopardo...\n");
         boss.setReward(timeGear);
         boss.setArma(lucciClaw);
         boss.setScudo(lucciShield);
@@ -885,14 +1119,12 @@ public class WildTime extends GameDescription {
         getNpcs().add(henchman2);
         getNpcs().add(deputyBoss);
         getNpcs().add(boss);
-        getNpcs().add(slytherin);
         
         whisperingHill.getNpcs().add(sheWhoKnows);
         timePalace.getNpcs().add(deputyBoss);
         memoryCave.getNpcs().add(boss);
         roughStreet.getNpcs().add(henchman1);
         gangOutpost.getNpcs().add(henchman2);
-        serpentPlateau.getNpcs().add(slytherin);
         
         getRooms().add(whiteForest);       
         getRooms().add(whitePath);        
@@ -906,8 +1138,7 @@ public class WildTime extends GameDescription {
         getRooms().add(gangOutpost);
         getRooms().add(timePalace);        
         getRooms().add(steepStairway);       
-        getRooms().add(knowledgeHill);       
-        getRooms().add(serpentPlateau);        
+        getRooms().add(knowledgeHill);         
         getRooms().add(timeMountain);
         getRooms().add(memoryCave);
     }
