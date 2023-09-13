@@ -22,11 +22,11 @@ public class Room implements Serializable{
     private Chest chest = new Chest();        
     private List<Item> items = new ArrayList<>();
     private List<Npc> npcs = new ArrayList<>();
-    private String description; // cosa c'è
-    private Boolean isExplored;       // è stata visitata? 
-    private Boolean isBlocked;    // è bloccata?
-    private Item openWith = null;        // strumento attraverso il quale sblocchi la stanza
-    private Boolean isFinal = false; // è la stanza finale?
+    private String description;         // cosa c'è
+    private Boolean isExplored;         // è stata visitata? 
+    private Boolean isBlocked;          // è bloccata?
+    private Item openWith = null;       // strumento attraverso il quale sblocchi la stanza
+    private Boolean isFinal = false;    // è la stanza finale?
 
     public String getName() {
         return name;
