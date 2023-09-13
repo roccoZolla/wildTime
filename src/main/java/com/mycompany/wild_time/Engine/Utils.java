@@ -120,10 +120,8 @@ public class Utils {
                     } else if(player1.getInventory().getList().contains(p.getObject())) {
                         text = "Hai gia raccolto questo oggetto!";
                     } else {
-                        System.out.println("oggetto nel comando: " + p.getObject().getName());
                         for(int i = 0; i < player1.getCurrentPlace().getItems().size(); i++) {
                             if(p.getObject().equals(player1.getCurrentPlace().getItems().get(i))) {                           
-                                System.out.println("oggetto for: " + player1.getCurrentPlace().getItems().get(i).getName());
                                 player1.getInventory().getList().add(player1.getCurrentPlace().getItems().get(i));
                                 text = "Hai raccolto: " + player1.getCurrentPlace().getItems().get(i).getName();
                                 text += ". " + player1.getCurrentPlace().getItems().get(i).getDescription();
@@ -139,12 +137,6 @@ public class Utils {
                     break;
                     
                 case LOOK_AT:   // cosa c'è nella stanza
-                    if(!player1.getCurrentPlace().getNpcs().isEmpty()){     // da cancellare
-                        for(int i = 0; i < player1.getCurrentPlace().getNpcs().size(); i++) {
-                            System.out.println("Lista npc:" + player1.getCurrentPlace().getNpcs().get(i).getName());
-                        }
-                    }
-                    
                     if (!player1.getCurrentPlace().getItems().isEmpty() || !player1.getCurrentPlace().getChest().getList().isEmpty()) {
                         text = "Nella stanza sono presenti: ";
                         for(int i = 0; i < player1.getCurrentPlace().getItems().size(); i++) {
@@ -223,20 +215,49 @@ public class Utils {
                         text = "Il nulla non è un qualcosa che si puo usare...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
                         text = "Non puoi mangiare o bere un oggetto che non è presente nel tuo zaino!";
-                    } else if(!p.getObject().isUseable() || !p.getObject().IsHeal()) {
+                    } else if(!p.getObject().isUseable()) {
                         text = "Non puoi mangiare o bere questo oggetto!";
-                    } else if(player1.getHp() == player1.getMaxHP()){
-                        text = "Stai bene, non serve";
                     } else {
-                        player1.setHp(player1.getHp() + p.getObject().getBonusHP());
+                        if(p.getObject().IsHeal()) {        // curativo
+                            if(player1.getHp() == player1.getMaxHP()) {
+                                text = "Stai bene, non serve";
+                            } else {
+                                player1.setHp(player1.getHp() + p.getObject().getBonus());
 
-                        if(player1.getHp() > player1.getMaxHP())
-                            player1.setHp(player1.getMaxHP());
+                                if(player1.getHp() > player1.getMaxHP())
+                                    player1.setHp(player1.getMaxHP());
 
-                        // rendi l'oggetto non piu utilizzabile
-                        player1.getInventory().getList().get(player1.getInventory().getList().indexOf(p.getObject())).setUseable(false);
+                                // rendi l'oggetto non piu utilizzabile
+                                player1.getInventory().getList().get(player1.getInventory().getList().indexOf(p.getObject())).setUseable(false);
 
-                        text = "Hai recuperato " + p.getObject().getBonusHP() + " HP";
+                                text = "Hai recuperato " + p.getObject().getBonus() + " HP"; 
+                            }
+
+                        } 
+                        
+                        else if(p.getObject().IsPowerUp()) { // potenziamento
+                            if(p.getObject().IsWeapon()){       // arma
+                                if(p.getObject().getAttackDamage() != 0) {      // potenzia attacco
+                                    player1.getArma().setAttackDamage(player1.getArma().getAttackDamage() + p.getObject().getAttackDamage());
+                                    text = "Attacco dell'arma aumentato di: " + p.getObject().getAttackDamage() + "\n";
+                                } 
+                                
+                                else if(p.getObject().getDefenseBonus() != 0){  // potenzia difesa
+                                    player1.getScudo().setDefenseBonus(player1.getScudo().getDefenseBonus() + p.getObject().getDefenseBonus());
+                                    text = "Difesa dello scudo aumentato di: " + p.getObject().getDefenseBonus() + "\n";
+                                }
+                                
+                                player1.getInventory().getList().get(player1.getInventory().getList().indexOf(p.getObject())).setUseable(false);
+                            } 
+                            
+                            else {                  // potenziamento vita
+                                player1.setMaxHP(player1.getMaxHP() + p.getObject().getBonus());
+                                player1.setHp(player1.getHp() + p.getObject().getBonus());
+                                
+                                text = "Salute aumentata di: " + p.getObject().getBonus() + " HP\n";
+                            }
+                        }
+
                     }
                     break;
                     
@@ -245,7 +266,7 @@ public class Utils {
                         text = "Il nulla non è un qualcosa che si puo usare...";
                     } else if(!player1.getInventory().getList().contains(p.getObject())) {
                         text = "Non puoi equipaggiare un oggetto che non è presente nel tuo zaino!";
-                    } else if(!p.getObject().isUseable() || !p.getObject().IsWeapon()) {
+                    } else if(!p.getObject().isUseable() || !p.getObject().IsWeapon() || p.getObject().IsPowerUp()) {
                         text = "Non puoi equipaggiare questo oggetto!";
                     } else {   
                         player1.getInventory().getList().remove(p.getObject());
@@ -317,17 +338,25 @@ public class Utils {
                         text = "I morti non hanno ancora imparato a parlare...";
                     } else {
                         // sto parlando con l'npc
-                        GameManager.setIsTalking(true);
-                        p.getNpc().setIsTalking(true);
-                        text = "----- Stai parlando con " + p.getNpc().getName().toUpperCase() + " -----\n";
-                        text += "Per uscire dalla conversazione digita un altro comando\n";
-                        text += "Cosa puoi chiedere:\n";
-                    
-                        for(int i = 0; i < p.getNpc().getConversation().size(); i++) {
-                            text += i + ": " + p.getNpc().getConversation().get(i).getQuestion() + "\n";
+                        if(p.getNpc().getConversation().isEmpty()){
+                            text = p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk() + "\n";
+                            text += p.getNpc().getName().toUpperCase() + " non ha nient'altro da dire...\n";
                         }
-                    
-                        text += "\n" + p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk();
+                        
+                        else {
+                            GameManager.setIsTalking(true);
+                            p.getNpc().setIsTalking(true);
+                            text = "----- Stai parlando con " + p.getNpc().getName().toUpperCase() + " -----\n";
+                            text += "Per uscire dalla conversazione digita un altro comando\n";
+                            text += "Cosa puoi chiedere:\n";
+
+                            for(int i = 0; i < p.getNpc().getConversation().size(); i++) {
+                                text += i + ": " + p.getNpc().getConversation().get(i).getQuestion() + "\n";
+                            }
+                            
+                            text += p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk() + "\n";
+                        }
+
                     }
                     break;
                     
@@ -373,6 +402,27 @@ public class Utils {
                         
                         text = "Sembra che adesso si possa proseguire!";
                     }
+                    break;
+                    
+                case HELP:
+                    text = "Comandi di gioco:\n";
+                    text += "--> salva\t\t\t--> per salvare la partita\n";
+                    text += "--> esci \t\t\t--> per uscire dalla partita e chiudere il gioco\n";
+                    text += "--> pulisci\t\t\t--> per ripulire l'area di testo\n";
+                    text += "--> nord \t\t\t--> per andare a nord della stanza\n";
+                    text += "--> sud  \t\t\t--> per andare a sud della stanza\n";
+                    text += "--> est  \t\t\t--> per andare a est della stanza\n";
+                    text += "--> ovest\t\t\t--> per andare a ovest della stanza\n";
+                    text += "--> zaino\t\t\t--> per vedere cosa hai nello zaino\n";
+                    text += "--> apri (oggetto) (oggeto)\t\t--> per aprire le casse\n";
+                    text += "--> raccogli (oggetto)\t\t--> per raccogliere un oggetto\n";
+                    text += "--> parla (npc)\t\t\t--> per parlare con un npc\n";
+                    text += "--> osserva\t\t\t--> per vedere cosa c'è nella stanza\n";
+                    text += "--> mangia (o bevi)\t\t--> per utilizzare consumabili\n";
+                    text += "--> equipaggia\t\t\t--> per equipaggiare armi o scudi\n";
+                    text += "--> attacca (npc)\t\t--> per attaccare un nemico\n";
+                    text += "--> butta (oggetto)\t\t--> per gettare via un oggetto presente nello zaino\n";
+                    text += "--> usa (oggetto)\t\t--> per usare gli oggetti utili ad aprire una stanza\n";
                     break;
                     
                 default:
