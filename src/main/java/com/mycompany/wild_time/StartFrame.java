@@ -76,9 +76,7 @@ public class StartFrame extends javax.swing.JFrame {
                     if (save.delete() && save.createNewFile()) {
                         GameManager.startNewGame(save);
                         setVisible(false);
-                    } else {
-                        // Gestisci l'errore se non è possibile cancellare/creare il file
-                    }
+                    } 
                 }
             } else if (save.createNewFile()) {
                 GameManager.startNewGame(save);
