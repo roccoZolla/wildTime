@@ -13,12 +13,12 @@ import java.io.Serializable;
 public class Item implements Serializable{
     private int id;
     private String name;
-    private int value;          // in moneta del gioco
     private boolean takeable = false;   // indica se un oggetto di puo raccogliere
     private boolean useable = false;    // indica se un oggetto si puo usare
-    private boolean isHeal = false;     // indica se un'oggetto è tipo curativo -> comando usa
+    private boolean isHeal = false;     // indica se un'oggetto è tipo curativo -> comando eat
     private boolean isWeapon = false;   // indica se un'oggetto è un'arma -> comando equipaggia
-    private int bonusHP = 0;
+    private boolean isPowerUp = false;  // indica se un'oggetto è un potenziamento -> comando eat
+    private int bonus = 0;              // in base all'oggetto conferisce un bonus diverso
     private int attackDamage = 0;   
     private int defenseBonus = 0;
     private String description;
@@ -27,7 +27,6 @@ public class Item implements Serializable{
     public Item() {
         this.id = 0;
         this.name = "";
-        this.value = 0;
         this.takeable = false;
         this.useable = false;
         this.description = "";
@@ -51,10 +50,6 @@ public class Item implements Serializable{
         return name;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public boolean isTakeable() {
         return takeable;
     }
@@ -71,8 +66,12 @@ public class Item implements Serializable{
         return isWeapon;
     }
     
-    public int getBonusHP() {
-        return bonusHP;
+    public boolean IsPowerUp() {
+        return isPowerUp;
+    }
+    
+    public int getBonus() {
+        return bonus;
     }
     
     public int getAttackDamage() {
@@ -94,11 +93,7 @@ public class Item implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
+    
     public void setTakeable(boolean takeable) {
         this.takeable = takeable;
     }
@@ -119,10 +114,14 @@ public class Item implements Serializable{
         this.isWeapon = isWeapon;
     }
     
-    public void setBonusHP(int bonusHP) {
-        this.bonusHP = bonusHP;
+    public void setIsPowerUp(boolean isPowerUp) {
+        this.isPowerUp = isPowerUp;
     }
     
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
     public void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
     }
