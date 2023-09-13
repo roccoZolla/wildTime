@@ -12,7 +12,6 @@ import com.mycompany.wild_time.Type.Item;
 import com.mycompany.wild_time.Type.Npc;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class Parser {
                 "di", "a", "da", "in", "con", "su", "per", "tra");
         
         // controllo
-        // Filtra le parole non desiderate
+        // filtra le parole 
         for (String word : words) {
             // Rimuovi spazi bianchi iniziali e finali e converti in minuscolo
             String cleanedWord = word.trim().toLowerCase();
@@ -71,7 +70,7 @@ public class Parser {
         return -1;
     }
     
-    // improved parser 2.0
+    // improved parser 
     // formato comando supportato: AZIONE articolo OGGETTO articolo OGGETTO
     public ParserOutput parse(String command, GameDescription game) {
         ParserOutput p = new ParserOutput();
@@ -86,6 +85,7 @@ public class Parser {
         p.setInvObject(null);
         p.setObject(null);
         p.setConversation(null);
+        p.setBlockedRoom(null);
 
         for(int i = 0; i < keyWords.size(); i++) {
             if(!keyWords.get(i).isEmpty()) { // controlla prima se è un oggetto
@@ -93,7 +93,6 @@ public class Parser {
                
                 if(n != -1) {
                     p.setCommand(game.getCommands().get(n));
-                    System.out.println("Comando trovato: " + p.getCommand().getName());
                 } else {            // se non è un commando verifica che sia un oggetto
                     // controllo mirato degli oggetti presenti nella stanza corrente
                     n = checkForObject(keyWords.get(i), game.getItems(), Item::getName, null);
@@ -104,7 +103,6 @@ public class Parser {
                     
                         if(n != -1) {
                             p.setNpc(game.getNpcs().get(n));
-                            System.out.println("Npc trovato: " + p.getNpc().getName());
                         }
 
                     } else {
@@ -120,6 +118,16 @@ public class Parser {
             }
         }
         
+        // cerca SE C'è una stanza bloccata 
+        if(game.getPlayer().getCurrentPlace().getNord() != null && game.getPlayer().getCurrentPlace().getNord().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getNord());
+        else if(game.getPlayer().getCurrentPlace().getSouth() != null && game.getPlayer().getCurrentPlace().getSouth().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getSouth());
+        else if(game.getPlayer().getCurrentPlace().getEst() != null && game.getPlayer().getCurrentPlace().getEst().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getEst());
+        else if(game.getPlayer().getCurrentPlace().getWest() != null && game.getPlayer().getCurrentPlace().getWest().getBlocked())
+            p.setBlockedRoom(game.getPlayer().getCurrentPlace().getWest());
+
         /*
             Possibile problema: se avvio un'altra conversazione senza aver terminato quella corrente 
             casino bordello anche se nel momento in cui viene rilevato un comando tutte le conversazioni
@@ -129,8 +137,6 @@ public class Parser {
         // controlla conversazione
         if(p.getCommand() == null) { // se il testo inserito non contiene comandi
             // il commando è nullo
-            System.out.println("Il comando è nullo");
-            System.out.println("Current text: " + text);
             for(int i = 0; i < game.getPlayer().getCurrentPlace().getNpcs().size(); i++) {
                 if(game.getPlayer().getCurrentPlace().getNpcs().get(i).getIsTalking()) {
                     for(int j = 0; j < game.getPlayer().getCurrentPlace().getNpcs().get(i).getConversation().size(); j++) {
@@ -144,9 +150,7 @@ public class Parser {
             }
         } else { // se il comando contiene un comando interrompi conversazione
             GameManager.setIsTalking(false);
-            Iterator<Npc> npcIterator = game.getPlayer().getCurrentPlace().getNpcs().iterator();
-            while (npcIterator.hasNext()) {
-                Npc npc = npcIterator.next();
+            for (Npc npc : game.getPlayer().getCurrentPlace().getNpcs()) {
                 npc.setIsTalking(false);
             }
         }

@@ -9,6 +9,7 @@ import com.mycompany.wild_time.Type.Command;
 import com.mycompany.wild_time.Type.Conversation;
 import com.mycompany.wild_time.Type.Item;
 import com.mycompany.wild_time.Type.Npc;
+import com.mycompany.wild_time.Type.Room;
 
 
 /**
@@ -20,6 +21,7 @@ public class ParserOutput {
     private Item object;
     private Chest chestObject;
     private Npc npc;
+    private Room blockedRoom;
     private Conversation conversation;
     
     public ParserOutput(){}
@@ -78,6 +80,14 @@ public class ParserOutput {
     
     public void setConversation(Conversation conversation) {
         this.conversation = conversation;
+    }
+    
+    public Room getBlockedRoom(){
+        return blockedRoom;
+    }
+    
+    public void setBlockedRoom(Room blockedRoom) {
+        this.blockedRoom = blockedRoom;
     }
 
 }

@@ -66,10 +66,12 @@ public class GameManager {
         } 
         
         else if(p.getNpc() != null && p.getCommand() == null && isTalking) { 
-            System.out.println("Tizio che parla: " + p.getNpc().getName());
-            System.out.println("Sta parlando? " + p.getNpc().getIsTalking());
             if(p.getNpc().getIsTalking() && p.getConversation() != null) { // npc parla e la conversazione non è nulla
-                guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": " + p.getConversation().getAnswer());
+                guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": " + p.getConversation().getAnswer() + "\n");
+            } else if(p.getNpc().getConversation().isEmpty()) {
+               guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non ho niente da dire...");
+               guiManager.updateGameFrame("----- conversazione terminata -----");
+               GameManager.setIsTalking(false);
             } else {
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non capisco quello che mi vuoi dire...");
             }
@@ -86,14 +88,11 @@ public class GameManager {
                     guiManager.updateGameFrame(game.getPlayer().getCurrentPlace().getDescription());
                     break;
                 case END: 
-                    guiManager.updateGameFrame("Arrivederci!");
+                    guiManager.updateGameFrame("Il mercenario vuol riposarsi... a dopo...\n");
                     PutThreadToSleep();
                     break;
                 default: 
                     guiManager.updateGameFrame(Utils.NextMove(p, game.getPlayer()));
-                    //Non tocco perchè non so la logica però controlla
-                    //E' necessario che ci sia un guiManager.setInformationGame(game) ripetuto qui e in CheckPlayerDeath?
-                    //Non basterebbe metterne solo uno alla fine di questo else?
                     guiManager.setInformationGame(game);
                     CheckPlayerDeath();
                     CheckGameWin();
@@ -106,8 +105,8 @@ public class GameManager {
     private static void CheckPlayerDeath(){
         // quando muori vieni riportato nel luogo di inizio della storia
         if(game.getPlayer().getHp() <= 0) {
-            guiManager.updateGameFrame("Ops sei morto!\n"
-                    + "Il nobile mercenario stremato viene riportato nel luogo dove la sua avventura è cominciata");
+            guiManager.updateGameFrame("Sei esausto!\n"
+                    + "Il mercenario, stremato, viene riportato nel luogo dove la sua avventura è cominciata...\n");
             game.getPlayer().setHp((int) (game.getPlayer().getMaxHP() * 0.3));
             game.getPlayer().setCurrentPlace(game.getRooms().get(0));
             guiManager.updateGameFrame(game.getRooms().get(0).getDescription());
@@ -119,14 +118,16 @@ public class GameManager {
         // se hai ti trovi nella stanza finale e hai sconfitto il boss
         // termina la partita
         if(Utils.Final(game.getPlayer())){
-            guiManager.updateGameFrame("Hai vinto + cazzate varie");
-            guiManager.updateGameFrame("Arrivederci!");
+            guiManager.updateGameFrame("Una volta sconfitto Rob Lucci, il mercenario ha provveduto a sgominare l'intera banda del Tempo liberando finalmente queste terre da un dominio di terrore."
+                    + "L'ingranaggio del Tempo è tornato al suo posto, nel palazzo del Tempo protetto dal nuovo re di queste terre...Jiraya che alla fine si è rivelato essere il membro che dieci anni fa nascose"
+                    + "lo strano congegno nella grotta su al Monte Tempo. La pace è finalmente tornata nelle terre di Ooo!\n");
+            guiManager.updateGameFrame("Il mercenario ha finalmento portato a termine la sua missione!\n");
+            Utils.Save(game);
             PutThreadToSleep();
         }
     }
     
     private static void PutThreadToSleep(){
-        // lambda expr
         EventQueue.invokeLater(() -> {
             try {
                 Thread.sleep(1300);
