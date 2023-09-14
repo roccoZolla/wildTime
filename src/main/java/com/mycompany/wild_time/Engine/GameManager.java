@@ -68,11 +68,11 @@ public class GameManager {
         else if(p.getNpc() != null && p.getCommand() == null && isTalking) { 
             if(p.getNpc().getIsTalking() && p.getConversation() != null) { // npc parla e la conversazione non è nulla
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": " + p.getConversation().getAnswer() + "\n");
-            } else if(p.getNpc().getConversation().isEmpty()) {
+            } /*else if(p.getNpc().getConversation().isEmpty()) {
                guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non ho niente da dire...");
                guiManager.updateGameFrame("----- conversazione terminata -----");
                GameManager.setIsTalking(false);
-            } else {
+            } */ else {
                 guiManager.updateGameFrame(p.getNpc().getName().toUpperCase() + ": Non capisco quello che mi vuoi dire...");
             }
         } 
@@ -118,11 +118,10 @@ public class GameManager {
         // se hai ti trovi nella stanza finale e hai sconfitto il boss
         // termina la partita
         if(Utils.Final(game.getPlayer())){
-            guiManager.updateGameFrame("Una volta sconfitto Rob Lucci, il mercenario ha provveduto a sgominare l'intera banda del Tempo liberando finalmente queste terre da un dominio di terrore."
-                    + "L'ingranaggio del Tempo è tornato al suo posto, nel palazzo del Tempo protetto dal nuovo re di queste terre...Jiraya che alla fine si è rivelato essere il membro che dieci anni fa nascose"
+            guiManager.updateGameFrame("Una volta sconfitto Rob Lucci, il mercenario ha provveduto a sgominare l'intera banda del Tempo liberando finalmente queste terre dal dominio di terrore."
+                    + "L'ingranaggio del Tempo è tornato al suo posto, nel palazzo del Tempo protetto dal nuovo re di queste terre...Jiraya, che alla fine si è rivelato essere il membro che dieci anni fa nascose"
                     + "lo strano congegno nella grotta su al Monte Tempo. La pace è finalmente tornata nelle terre di Ooo!\n");
-            guiManager.updateGameFrame("Il mercenario ha finalmento portato a termine la sua missione!\n");
-            Utils.Save(game);
+            guiManager.updateGameFrame("Il mercenario ha finalmento portato a termine la sua missione! La caccia è terminata!\n");
             PutThreadToSleep();
         }
     }

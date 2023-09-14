@@ -351,7 +351,7 @@ public class Utils {
                             text += "Cosa puoi chiedere:\n";
 
                             for(int i = 0; i < p.getNpc().getConversation().size(); i++) {
-                                text += i + ": " + p.getNpc().getConversation().get(i).getQuestion() + "\n";
+                                text += "- " + p.getNpc().getConversation().get(i).getQuestion() + "\n";
                             }
                             
                             text += p.getNpc().getName().toUpperCase() + ": " + p.getNpc().getTalk() + "\n";
