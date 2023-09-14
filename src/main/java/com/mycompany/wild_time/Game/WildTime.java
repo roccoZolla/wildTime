@@ -812,7 +812,7 @@ public class WildTime extends GameDescription {
         constr3.setAnswer("Non molto in verita, mercenario. Sono terre misteriose in cui strani fatti avvengono.\n");
         
         Conversation constr4 = new Conversation();
-        constr4.setQuestion("cosa sai di lucci e la sua banda?");
+        constr4.setQuestion("cosa sai della banda del tempo?");
         constr4.setAnswer("Governano queste terre da ormai un decina d'anni, da quando un giovanissimo lucci da solo ha messo fuori l'intera dinastia precedente"
                 + "assicurandosi un posto nel Palazzo del Tempo. Ci penserei due volte prima di avvicinarmi...\n");
         
