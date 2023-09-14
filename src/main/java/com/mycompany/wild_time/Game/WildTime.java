@@ -195,7 +195,7 @@ public class WildTime extends GameDescription {
         Item sandwich = new Item();
         sandwich.setName("tramezzino");
         sandwich.setDescription("Un semplice tramezzino. Restituisce 10 HP.");
-        sandwich.setId(9);
+        sandwich.setId(10);
         sandwich.setTakeable(true);
         sandwich.setUseable(true);
         sandwich.setIsHeal(true);
@@ -205,7 +205,7 @@ public class WildTime extends GameDescription {
         redPotion.setName("pozione_rossa"); 
         redPotion.setDescription("Pozione di colore rosso, ha strani effetti sul corpo."
                 + "Restituisce 15 HP.");
-        redPotion.setId(10);
+        redPotion.setId(11);
         redPotion.setTakeable(true);
         redPotion.setUseable(true);
         redPotion.setIsHeal(true);
@@ -215,7 +215,7 @@ public class WildTime extends GameDescription {
         bluePotion.setName("pozione_blu"); 
         bluePotion.setDescription("Pozione di colore blu, ha strani effetti sul corpo."
                 + "Restituisce 20 HP.");
-        bluePotion.setId(11);
+        bluePotion.setId(12);
         bluePotion.setTakeable(true);
         bluePotion.setUseable(true);
         bluePotion.setIsHeal(true);
@@ -225,7 +225,7 @@ public class WildTime extends GameDescription {
         superPotion.setName("super_pozione"); 
         superPotion.setDescription("Pozione misteriosa preparata dal leggendario maestro muten, ha strani effetti sul corpo."
                 + "Restituisce 30 HP.");
-        superPotion.setId(12);
+        superPotion.setId(13);
         superPotion.setTakeable(true);
         superPotion.setUseable(true);
         superPotion.setIsHeal(true);
@@ -242,7 +242,7 @@ public class WildTime extends GameDescription {
         yellowPotion.setName("pozione_gialla");
         yellowPotion.setDescription("Pozione di colore giallo, ha strani effetti sulle spade."
                 + "Aumenta la potenza di attacco di 10.");
-        yellowPotion.setId(9);
+        yellowPotion.setId(14);
         yellowPotion.setTakeable(true);
         yellowPotion.setUseable(true);
         yellowPotion.setIsPowerUp(true);
@@ -253,7 +253,7 @@ public class WildTime extends GameDescription {
         greenPotion.setName("pozione_verde");
         greenPotion.setDescription("Pozione di colore verde, ha strani effetti sugli scudi."
                 + "Aumenta la difesa di uno scudo di 10.");
-        greenPotion.setId(9);
+        greenPotion.setId(15);
         greenPotion.setTakeable(true);
         greenPotion.setUseable(true);
         greenPotion.setIsPowerUp(true);
@@ -263,18 +263,18 @@ public class WildTime extends GameDescription {
         Item spinach = new Item();
         spinach.setName("spinaci");
         spinach.setDescription("Spinaci. Fanno bene. Aumenta la salute massima di 10 HP.");
-        spinach.setId(9);
+        spinach.setId(16);
         spinach.setTakeable(true);
         spinach.setUseable(true);
         spinach.setIsPowerUp(true);
-        spinach.setIsWeapon(true);
+        spinach.setIsWeapon(false);
         spinach.setBonus(10);
         
         Item amberPotion = new Item();
         amberPotion.setName("pozione_ambra");
         amberPotion.setDescription("Pozione di color ambra, ha strani effetti sulle spade."
                 + "Aumenta la potenza di attacco di 15.");
-        amberPotion.setId(9);
+        amberPotion.setId(17);
         amberPotion.setTakeable(true);
         amberPotion.setUseable(true);
         amberPotion.setIsPowerUp(true);
@@ -285,7 +285,7 @@ public class WildTime extends GameDescription {
         emeraldPotion.setName("pozione_smeraldo");
         emeraldPotion.setDescription("Pozione di colore verde smeraldo, ha strani effetti sugli scudi."
                 + "Aumenta la difesa di uno scudo di 15.");
-        emeraldPotion.setId(9);
+        emeraldPotion.setId(18);
         emeraldPotion.setTakeable(true);
         emeraldPotion.setUseable(true);
         emeraldPotion.setIsPowerUp(true);
@@ -296,11 +296,11 @@ public class WildTime extends GameDescription {
         parmigiana.setName("parmigiana");
         parmigiana.setDescription("Pietanza mistica in grado di sfamare intere popolazioni con una sola porzione."
                 + "Ricca di gusto, aumenta la salute massima di 20 HP");
-        parmigiana.setId(9);
+        parmigiana.setId(19);
         parmigiana.setTakeable(true);
         parmigiana.setUseable(true);
         parmigiana.setIsPowerUp(true);
-        parmigiana.setIsWeapon(true);
+        parmigiana.setIsWeapon(false);
         parmigiana.setBonus(20);
         
         getItems().add(yellowPotion);        
@@ -314,35 +314,35 @@ public class WildTime extends GameDescription {
         Item strangeKey = new Item();
         strangeKey.setName("chiave_strana");
         strangeKey.setDescription("Strana chiave, puo servire ad aprire qualcosa... Ha un odore che ricorda quello di una palude...");
-        strangeKey.setId(13);
+        strangeKey.setId(20);
         strangeKey.setTakeable(true);
         strangeKey.setUseable(true);        
         
         Item rockyKey = new Item();
         rockyKey.setName("chiave_rocciosa");
         rockyKey.setDescription("Chiave rocciosa, puo servire ad aprire qualcosa... Sembra provenire da un monte...");
-        rockyKey.setId(14);
+        rockyKey.setId(21);
         rockyKey.setTakeable(true);
         rockyKey.setUseable(true);
         
         Item shears = new Item();
         shears.setName("cesoie");
         shears.setDescription("Semplici cesoie, c'è qualcosa da tagliare qui nei dintorni?");
-        shears.setId(15);
+        shears.setId(22);
         shears.setTakeable(true);
         shears.setUseable(true);
         
         Item littleBoat = new Item();
         littleBoat.setName("piccola_barca");
         littleBoat.setDescription("Piccola barchetta di legno, a cosa servira mai?");
-        littleBoat.setId(16);
+        littleBoat.setId(23);
         littleBoat.setTakeable(true);
         littleBoat.setUseable(true);
         
         Item timeGear = new Item();
         timeGear.setName("ingranaggio_del_tempo");
         timeGear.setDescription("Ingraggio che governa la vita di queste terre. Chi lo possiede ha il potere di modificare lo scorrere del tempo fino a fermarlo.");
-        timeGear.setId(16);
+        timeGear.setId(24);
         timeGear.setTakeable(true);
         timeGear.setUseable(true);
                 
@@ -351,11 +351,37 @@ public class WildTime extends GameDescription {
         getItems().add(shears);        
         getItems().add(littleBoat);
         getItems().add(timeGear);
+        
+        // oggetti random
+        Item oldBook = new Item();
+        oldBook.setName("vecchio_libro");
+        oldBook.setDescription("Non molto utile. Sembra raccontare la storia della Vecchia Dinastia.");
+        oldBook.setId(25);
+        oldBook.setTakeable(true);
+        oldBook.setUseable(true);
+        
+        Item brokenWand = new Item();
+        brokenWand.setName("bacchetta_rotta");
+        brokenWand.setDescription("Non molto utile. Bacchetta usata in passato da una vecchia strega che abitava la palude.");
+        brokenWand.setId(26);
+        brokenWand.setTakeable(true);
+        brokenWand.setUseable(true);
+        
+        Item grapplingHook = new Item();
+        grapplingHook.setName("rampino");
+        grapplingHook.setDescription("Non molto utile. Sembra sia appartenuto ad un esploratore del passato che non è riuscito a scalare la scalinata.");
+        grapplingHook.setId(27);
+        grapplingHook.setTakeable(true);
+        grapplingHook.setUseable(true);
+        
+        getItems().add(oldBook);
+        getItems().add(brokenWand);
+        getItems().add(grapplingHook);
 
         // armi nemici
         // scagnozzo 1
         Item henchmanSword1 = new Item();
-        henchmanSword1.setId(17);
+        henchmanSword1.setId(28);
         henchmanSword1.setName("vecchia_spada1");
         henchmanSword1.setDescription("Vecchia spada. Data ai piu incapaci della banda.");
         henchmanSword1.setTakeable(true);
@@ -364,7 +390,7 @@ public class WildTime extends GameDescription {
         henchmanSword1.setAttackDamage(10);
         
         Item henchmanShield1 = new Item();
-        henchmanShield1.setId(18);
+        henchmanShield1.setId(29);
         henchmanShield1.setName("vecchio_scudo1");
         henchmanShield1.setDescription("Vecchio scudo. Dato ai piu incapaci della banda.");       
         henchmanShield1.setTakeable(true);
@@ -375,7 +401,7 @@ public class WildTime extends GameDescription {
         
         // scagnozzo 2
         Item henchmanSword2 = new Item();
-        henchmanSword2.setId(17);
+        henchmanSword2.setId(30);
         henchmanSword2.setName("spada1");
         henchmanSword2.setDescription("Spada. Data agli incapaci un po piu capaci della banda.");
         henchmanSword2.setTakeable(true);
@@ -384,7 +410,7 @@ public class WildTime extends GameDescription {
         henchmanSword2.setAttackDamage(15);
         
         Item henchmanShield2 = new Item();
-        henchmanShield2.setId(18);
+        henchmanShield2.setId(31);
         henchmanShield2.setName("scudo1");
         henchmanShield2.setDescription("Scudo. Dato agli incapaci un po piu capaci della banda.");       
         henchmanShield2.setTakeable(true);
@@ -394,7 +420,7 @@ public class WildTime extends GameDescription {
         
         // colei che sa
         Item magicBranch = new Item();
-        magicBranch.setId(17);
+        magicBranch.setId(32);
         magicBranch.setName("ramo_maledetto");
         magicBranch.setDescription("Dato che lo spirito di ColeiCheSa è intrappolato in un albero, si è dovuta adattare"
                 + "per poter attaccare le persone. Maledicendo un ramo e usandolo come arma...");
@@ -404,7 +430,7 @@ public class WildTime extends GameDescription {
         magicBranch.setAttackDamage(22);
 
         Item foliageShield = new Item();
-        foliageShield.setId(18);
+        foliageShield.setId(33);
         foliageShield.setName("chioma_scudo");
         foliageShield.setDescription("Dato che lo spirito di ColeiCheSa è intrappolato in un albero, si è dovuta adattare"
                 + "per potersi difendere dalle minacce esterne. Maledicendo la chioma dell'albero e difendosi con essa...");       
@@ -415,7 +441,7 @@ public class WildTime extends GameDescription {
         
         // doffy
         Item doffySword = new Item();
-        doffySword.setId(17);
+        doffySword.setId(34);
         doffySword.setName("spada_Doflamingo");
         doffySword.setDescription("Spada la cui lama è il risultato dell'intreccio di miglialia di fili.\n"
                 + "Nonostante l'aspetto è una spada molto pericolosa");
@@ -425,7 +451,7 @@ public class WildTime extends GameDescription {
         doffySword.setAttackDamage(22);
 
         Item doffyShield = new Item();
-        doffyShield.setId(18);
+        doffyShield.setId(35);
         doffyShield.setName("scudo_Doflamingo");
         doffyShield.setDescription("Scudo composto da un miglialio di fili intrecciati."
                 + "Molto resistente al pari di un granscudo");       
@@ -436,7 +462,7 @@ public class WildTime extends GameDescription {
         
         // lucci
         Item lucciClaw = new Item();
-        lucciClaw.setId(19);
+        lucciClaw.setId(36);
         lucciClaw.setName("artiglio_affilato");
         lucciClaw.setDescription("Artiglio molto piu affilato e resistente di una spada. Sembra che Lucci sia in"
                 + "grado di produrli...");
@@ -446,7 +472,7 @@ public class WildTime extends GameDescription {
         lucciClaw.setAttackDamage(25);
         
         Item lucciShield = new Item();
-        lucciShield.setId(18);
+        lucciShield.setId(37);
         lucciShield.setName("scudo_leopardo");
         lucciShield.setDescription("Non è un vero e proprio scudo. Sembra che lucci sia in grado di indurire alcune"
                 + "parti del proprio corpo e utilizarle come scudo...");       
@@ -476,8 +502,8 @@ public class WildTime extends GameDescription {
                 + "un congegno che regola lo scorrere del tempo di queste terre che se rubato potrebbe causare il fermarsi del normale flusso del tempo bloccando la vita di queste terre."
                 + "Sembra essere diventato l'obiettivo della banda che da tempo governa questa terra. Il re ha parlato di un certo Rob Lucci, uomo a capo della banda del tempo.\n"
                 + "Il tuo obiettivo è fermare Rob Lucci, ma dove si trovera? Che la caccia abbia inizio!"
-                + "\n\nSei giunto nella FORESTA BIANCA, "
-                + "una foresta tanto bella quanto ingannevole per via del suo aspetto bianco e puro, cosa si celera in questa foresta? Sembra che ci sia qualcuno forse sarebbe una buona idea "
+                + "\n\nSei giunto nella FORESTA BIANCA, luogo di ingresso per chiunque voglia visitare le terre di Ooo, "
+                + "una foresta tanto bella quanto ingannevole per via del suo aspetto bianco e puro, cosa si celera in questa foresta? Sembra che ci sia qualcuno... forse sarebbe una buona idea "
                 + "PARLARE con questo strano_viandante...\n");
         whiteForest.setExplored(false);
         whiteForest.setBlocked(false);
@@ -486,7 +512,7 @@ public class WildTime extends GameDescription {
         Room whitePath = new Room();
         whitePath.setName("Sentiero per la Foresta Bianca");
         whitePath.setId(1);
-        whitePath.setDescription("Il cosidetto SENTIERO PER LA FORESTA BIANCA, nome alquanto esplicativo, è la strada che ti conduce alla foresta."
+        whitePath.setDescription("Il cosidetto SENTIERO PER LA FORESTA BIANCA, nome alquanto esplicativo, è la strada che ti conduce alla foresta. E' un semplice sentiero."
                 + "Da qui pero è possibile raggiungere altre zone di questa terra, come ad esempio il mercato ad est e la palude ad ovest.\n");
         whitePath.setExplored(false);
         whitePath.setBlocked(false);
@@ -517,7 +543,7 @@ public class WildTime extends GameDescription {
         Room nomadMarket = new Room();
         nomadMarket.setName("Mercato dei Nomadi");
         nomadMarket.setId(4);
-        nomadMarket.setDescription("Il MERCATO DEI NOMADI, il luogo piu esotico e al tempo stesso caotico di queste terre. Nonostante siano nomadi, si dice che basti"
+        nomadMarket.setDescription("Sei giunto nel MERCATO DEI NOMADI. Questo è il luogo piu esotico e al tempo stesso caotico di queste terre. Nonostante siano nomadi, si dice che basti"
                 + "fare la domanda giusta al giusto mercante e si puo ottenere qualsiasi cosa. Sarà vero o sarà la solita pubblicita ingannevole dei mercanti?\n");
         nomadMarket.setExplored(false);
         nomadMarket.setBlocked(false);
@@ -526,8 +552,9 @@ public class WildTime extends GameDescription {
         Room roughStreet = new Room();
         roughStreet.setName("Strada Malmessa");
         roughStreet.setId(5);
-        roughStreet.setDescription("STRADA MALMESSA, deve il suo nome al tutti i governanti che in passato hanno promesso di ripararla, ma alla fine è rimasta cosi com'è...malmessa."
-                + "Cosi come ogni luogo caduto nel dimencatoio, anche questo sembra essere popolato da gente non proprio tranquilla...\n");
+        roughStreet.setDescription("Sei giunto alla STRADA MALMESSA. Deve il suo nome a tutti i governanti che in passato hanno promesso di ripararla, ma alla fine è rimasta cosi com'è...malmessa."
+                + "Cosi come ogni luogo caduto nel dimencatoio, anche questo sembra essere popolato da gente non proprio tranquilla... E' un crocevia in quanto collega il palazzo del tempo, il piccolo lago"
+                + "e il burron.\n");
         roughStreet.setExplored(false);
         roughStreet.setBlocked(false);
         
@@ -535,8 +562,8 @@ public class WildTime extends GameDescription {
         Room smallLake = new Room();
         smallLake.setName("Piccolo Lago");
         smallLake.setId(6);
-        smallLake.setDescription("Sei al PICCOLO LAGO, unico specchio d'acqua di queste terre. Stando alla gente del luogo sembra ci sia un rospo in grado di parlare..."
-                + "Cosa avrà mai da dire un rospo? Ma ,poi , sarà vero?\n");
+        smallLake.setDescription("Sei al PICCOLO LAGO, unico specchio d'acqua di queste terre. Stando alla gente del luogo sembra che ci sia un rospo in grado di parlare..."
+                + "Cosa avrà mai da dire un rospo? Ma, poi, sarà vero?\n");
         smallLake.setExplored(false);
         smallLake.setBlocked(false);
         
@@ -545,7 +572,7 @@ public class WildTime extends GameDescription {
         houseLake.setName("Casa sul Piccolo Lago");
         houseLake.setId(7);
         houseLake.setDescription("Dopo aver recuperato la barchetta dal saggio rospetto, sei giunto alla CASA SUL PICCOLO LAGO. Una casa in mezzo al nulla di cui non si è mai accorto nessuno.\n"
-                + "Sarà abitata?");
+                + "Sarà abitata? Perche nessuno si è mai accorto di una casa in mezzo al lago?");
         houseLake.setExplored(false);
         houseLake.setBlocked(true);
         houseLake.setOpenWith(littleBoat);  // sblocca con la barca
@@ -562,8 +589,8 @@ public class WildTime extends GameDescription {
         Room gangOutpost = new Room();
         gangOutpost.setName("Avamposto della Banda");
         gangOutpost.setId(9);
-        gangOutpost.setDescription("Dopo aver girato a lungo, sei giunto finalmente nell'AVAMPOSTO DELLA BANDA che presiede il quartier generale, il Palazzo del Tempo. Un luogo popolato"
-                + "dagli scagnozzi della banda. Nonostante la 'sicurezza', sembra sia molto facile passare...\n");
+        gangOutpost.setDescription("Dopo aver girato a lungo, sei giunto finalmente nell'AVAMPOSTO DELLA BANDA che presiede il quartier generale, il Palazzo del Tempo. Questo è un luogo popolato"
+                + "dagli scagnozzi della banda ma nonostante la 'sicurezza', sembra sia molto facile passare... In ogni caso occhi aperti!\n");
         gangOutpost.setExplored(false);
         gangOutpost.setBlocked(false);
         
@@ -571,9 +598,10 @@ public class WildTime extends GameDescription {
         Room timePalace = new Room();
         timePalace.setName("Palazzo del Tempo");
         timePalace.setId(10);
-        timePalace.setDescription("Il PALAZZO DEL TEMPO, in passato era il luogo in cui veniva custodito l'ingranaggio del tempo ma poco prima che la dinastia precedente venisse fatta cadere per mano di un giovane e ambizioso Lucci,"
+        timePalace.setDescription("Sei giunto al PALAZZO DEL TEMPO. In passato era il luogo in cui veniva custodito l'ingranaggio del tempo e sede della Vecchia Dinastia."
+                + "Poco prima che la dinastia precedente venisse fatta cadere per mano di un giovane e ambizioso Lucci,"
                 + "l'ingranaggio fu spostato in una localita tutt'ora segreta. "
-                + "Adesso è diventato il quartier generale della banda ed è presieduto dal temibile vicecapo Doffy che sembra avere qualche sorta di potere, stai attento...\n");
+                + "Adesso è diventato il quartier generale della banda ed è presieduto dal temibile vicecapo, Doffy, che sembra avere qualche sorta di potere, stai attento...\n");
         timePalace.setExplored(false);
         timePalace.setBlocked(false);
                 
@@ -581,7 +609,8 @@ public class WildTime extends GameDescription {
         Room steepStairway = new Room();
         steepStairway.setName("Scalinata Ripida");
         steepStairway.setId(11);
-        steepStairway.setDescription("SCALINATA RIPIDA. Da qui puoi raggiungere i posti sacri di queste terre. E' cosi ripida che sembra sia il versante stesso della montagna, ma da queste parti si dice che solo"
+        steepStairway.setDescription("Sei giunto alla SCALINATA RIPIDA. Da qui puoi raggiungere i posti sacri di queste terre. "
+                + "E' cosi ripida che sembra sia il versante stesso della montagna, ma da queste parti si dice che solo"
                 + "colui che vuole vedere il mondo sia in grado di scalarla. Chissa come sara la vista lassu...\n");
         steepStairway.setExplored(false);
         steepStairway.setBlocked(false);
@@ -590,26 +619,30 @@ public class WildTime extends GameDescription {
         Room knowledgeHill = new Room();
         knowledgeHill.setName("Altopiano della Sapienza");
         knowledgeHill.setId(12);
-        knowledgeHill.setDescription("Sei giunto all'ALTOPIANO DELLA SAPIENZA. Per la grande vista sul mondo di 'sotto' e l'essere cosi vicino ai confini del 'cielo', la gente del posto crede che sia in grado di conferirti conoscenza"
-                + "e saggiezza. Stando ad alcune voci, qui dovrebbe abitarti un vecchio maestro di arti marziali con il suo allievo. Avranno avuto anche loro conoscenza e saggezza da questo posto?\n");
+        knowledgeHill.setDescription("Sei giunto all'ALTOPIANO DELLA SAPIENZA. Per la grande vista sul mondo di 'sotto' e l'essere cosi vicino ai confini del 'cielo',"
+                + " la gente del posto crede che sia in grado di conferirti conoscenza"
+                + "e saggiezza. Stando ad alcune voci, qui dovrebbe abitarci"
+                + " un vecchio maestro di arti marziali con il suo allievo. Avranno avuto anche loro conoscenza e saggezza da questo posto?\n");
         knowledgeHill.setExplored(false);
         knowledgeHill.setBlocked(false);
                                               
-        // stanza 14 - MONTE TEMPO
+        // stanza 13 - MONTE TEMPO
         Room timeMountain = new Room();
         timeMountain.setName("Monte Tempo");
         timeMountain.setId(13);
-        timeMountain.setDescription("Sei giunto (finalmente) al MONTE TEMPO. La montagna piu alta di queste terre. Qui lo scorrere del tempo sembra scorrere in maniera diversa da quando un vecchio, membro della dinastia caduta"
-                + "di queste terre, ha fatto visita alla cima di questo monte. Che si tratti dell'Ingranaggio del Tempo?\n");
+        timeMountain.setDescription("Sei giunto (finalmente) al MONTE TEMPO. La montagna piu alta di queste terre. Qui lo scorrere del tempo sembra scorrere in maniera diversa da quando un giovane ragazzo,"
+                + " membro della dinastia caduta di queste terre, ha fatto visita alla cima di questo monte."
+                + " Che si tratti dell'Ingranaggio del Tempo?\n");
         timeMountain.setExplored(false);
         timeMountain.setBlocked(false);
                                                 
-        // stanza FINALE 15 - GROTTA DELLA MEMORIA - STANZA FINALE
+        // stanza FINALE 14 - GROTTA DELLA MEMORIA - STANZA FINALE
         Room memoryCave = new Room();
         memoryCave.setName("Grotta della Memoria");
         memoryCave.setId(14);
-        memoryCave.setDescription("La GROTTA DELLA MEMORIA, qui il tempo è fermo. Chiunque abbia mai provato ad entrare ha raccontato che è come se i suoi ricordi fossero diventati vivi e una volta uscito si ricordava perfettamente ogni"
-                + "singolo momento della sua vita. Ed è proprio qui che sembra essersi nascoto Lucci, sai gia qual'è il tuo compito, è il momento di concludere questa caccia!\n");
+        memoryCave.setDescription("Sei giunto alla GROTTA DELLA MEMORIA, il luogo piu sacro di tutte le terre di Ooo. Qui il tempo sembra non scorrere. Chiunque abbia mai provato ad entrare ha raccontato"
+                + " di come i suoi ricordi fossero diventati vivi e una volta uscito si ricordava perfettamente ogni"
+                + "singolo momento della sua vita. Ed è proprio qui che sembra essere giunto Lucci, sai gia qual'è il tuo compito, è il momento di concludere questa caccia!\n");
         memoryCave.setExplored(false);
         memoryCave.setBlocked(false);
         memoryCave.setFinal(true);
@@ -710,13 +743,16 @@ public class WildTime extends GameDescription {
         whiteForest.getItems().add(apple);
         whiteForest.getItems().add(strangeKey);
         whitePath.getItems().add(shears);
+        weirdSwamp.getItems().add(brokenWand);
         nomadMarket.getItems().add(sandwich);
         ravine.getItems().add(rockyKey);
         ravine.getItems().add(spinach);
         smallLake.getItems().add(littleBoat);
         houseLake.getItems().add(parmigiana);
         timePalace.getItems().add(amberPotion);
+        timePalace.getItems().add(oldBook);
         steepStairway.getItems().add(emeraldPotion);
+        steepStairway.getItems().add(grapplingHook);
         knowledgeHill.getItems().add(superPotion);
          
         // ----- DEFINIZIONE DELLE CASSE -----
@@ -743,7 +779,7 @@ public class WildTime extends GameDescription {
         // ----- PERSONAGGI -----
         Player geralt = new Player();
         geralt.setHp(30);
-        geralt.setMaxHP(50);
+        geralt.setMaxHP(30);
         geralt.setName("Geralt");
         geralt.setCurrentPlace(whiteForest);  
         // oggetti di base 
@@ -1018,6 +1054,18 @@ public class WildTime extends GameDescription {
         sonGoku.setTalk("...Devo continuare ad allenarmi se voglio diventare il guerriero piu forte di queste terre...\n");
         sonGoku.setDescription("Allievo del maestro. Ha una strana coda che ricorda quella di una scimmia...\n");
         
+        Npc servant = new Npc();
+        servant.setHp(20);
+        servant.setName("vecchio_servitore");
+        servant.setTalk("Ti prego mercenario liberaci da questa condanna!\n");
+        servant.setDescription("Fedele servitore della Vecchia Dinastia. Da quando è caduta, è diventato lo schiavo personale di Doffy.\n");
+        
+        Npc sleepyHenchman = new Npc();
+        sleepyHenchman.setHp(20);
+        sleepyHenchman.setName("scagnozzo_dormiente");
+        sleepyHenchman.setTalk("...ZzzZZz...fermo mercenario...zzzZZ..zZZ..\n");
+        sleepyHenchman.setDescription("Scagnozzo della Banda del Tempo. Sta dormendo, non ci perderei tempo...\n");
+        
         getNpcs().add(strangeTraveler);
         getNpcs().add(scaredBoy);
         getNpcs().add(scaredWoman);
@@ -1033,6 +1081,8 @@ public class WildTime extends GameDescription {
         getNpcs().add(mercanteRandom2);
         getNpcs().add(angryWoman);
         getNpcs().add(sonGoku);
+        getNpcs().add(servant);
+        getNpcs().add(sleepyHenchman);
         
         whiteForest.getNpcs().add(strangeTraveler);
         whitePath.getNpcs().add(scaredBoy);
@@ -1046,7 +1096,9 @@ public class WildTime extends GameDescription {
         smallLake.getNpcs().add(littleFrog2);        
         smallLake.getNpcs().add(littleFrog3);
         houseLake.getNpcs().add(jiraya);
+        gangOutpost.getNpcs().add(sleepyHenchman);
         steepStairway.getNpcs().add(explorer);
+        timePalace.getNpcs().add(servant);
         knowledgeHill.getNpcs().add(oldMan);        
         knowledgeHill.getNpcs().add(sonGoku);
 
@@ -1059,7 +1111,7 @@ public class WildTime extends GameDescription {
         sheWhoKnows.setTalk("IO SONO LA SOVRANA DI QUESTO REGNO CHI OSA INVADERE LA MIA TERRA\n");
         sheWhoKnows.setDescription("In un tempo assai remoto, era la sovrana incontrasta di questa terra. Un giorno fu imprigionata"
                 + "dalle figlie all'interno della collina. Da allora la collina fu chiamata Dei Sussurri"
-                + "perche chiunque provi ad avvicinarsi sente delle voci nella testa e impazzisce.\n");
+                + " perche chiunque provi ad avvicinarsi sente delle voci nella testa e impazzisce.\n");
         sheWhoKnows.setArma(magicBranch);        
         sheWhoKnows.setScudo(foliageShield);
         sheWhoKnows.setReward(leggendaryShield);
@@ -1113,6 +1165,18 @@ public class WildTime extends GameDescription {
         boss.setArma(lucciClaw);
         boss.setScudo(lucciShield);
         
+        Conversation conLucci = new Conversation();
+        conLucci.setQuestion("quali sono le tue reali intenzioni?");
+        conLucci.setAnswer("Certo che ne hai di coraggio da vendere mercenario! Voglio poter controllare il tempo!\n");
+        
+        Conversation conLucci1 = new Conversation();
+        conLucci1.setQuestion("perche?");
+        conLucci1.setAnswer("Mi chiede perche quando la risposta gia la sai... Sarei infermabile, potrei avere potere su tutto!\n");
+        
+        boss.getConversation().add(conLucci);
+        boss.getConversation().add(conLucci1);
+        
+        /////////////////////////////////
         
         getNpcs().add(sheWhoKnows);
         getNpcs().add(henchman1);
