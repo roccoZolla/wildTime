@@ -61,7 +61,14 @@ public class Utils {
                 case NORD:
                     if (player1.getCurrentPlace().getNord() != null && !player1.getCurrentPlace().getNord().getBlocked()) {
                         player1.setCurrentPlace(player1.getCurrentPlace().getNord());
+                        
+                        // se non è stata esplorata
+                        if(!player1.getCurrentPlace().getNord().getExplored()) {
+                            player1.getCurrentPlace().getNord().setExplored(true);
+                        }
+                        
                         text = player1.getCurrentPlace().getDescription();
+                        
                     } else {
                         if(player1.getCurrentPlace().getNord() != null && player1.getCurrentPlace().getNord().getBlocked())
                             text = "Sembra ci sia qualcosa che ostruisce il passaggio...";
@@ -73,6 +80,12 @@ public class Utils {
                 case SOUTH:
                     if (player1.getCurrentPlace().getSouth() != null && !player1.getCurrentPlace().getSouth().getBlocked()) {
                         player1.setCurrentPlace(player1.getCurrentPlace().getSouth());
+                        
+                        // se non è stata esplorata
+                        if(!player1.getCurrentPlace().getSouth().getExplored()) {
+                            player1.getCurrentPlace().getSouth().setExplored(true);
+                        }
+                        
                         text = player1.getCurrentPlace().getDescription();
                     } else {
                         if(player1.getCurrentPlace().getSouth() != null && player1.getCurrentPlace().getSouth().getBlocked())
@@ -85,6 +98,12 @@ public class Utils {
                 case EAST:
                     if (player1.getCurrentPlace().getEst() != null && !player1.getCurrentPlace().getEst().getBlocked()) {
                         player1.setCurrentPlace(player1.getCurrentPlace().getEst());
+                        
+                        // se non è stata esplorata
+                        if(!player1.getCurrentPlace().getEst().getExplored()) {
+                            player1.getCurrentPlace().getEst().setExplored(true);
+                        }
+                        
                         text = player1.getCurrentPlace().getDescription();
                     } else {
                         if(player1.getCurrentPlace().getEst() != null && player1.getCurrentPlace().getEst().getBlocked())
@@ -97,6 +116,12 @@ public class Utils {
                 case WEST:  
                     if (player1.getCurrentPlace().getWest() != null && !player1.getCurrentPlace().getWest().getBlocked()) {
                         player1.setCurrentPlace(player1.getCurrentPlace().getWest());
+                        
+                        // se non è stata esplorata
+                        if(!player1.getCurrentPlace().getWest().getExplored()) {
+                            player1.getCurrentPlace().getWest().setExplored(true);
+                        }
+                        
                         text = player1.getCurrentPlace().getDescription();
                     } else {
                         if(player1.getCurrentPlace().getWest() != null && player1.getCurrentPlace().getWest().getBlocked())
@@ -128,11 +153,6 @@ public class Utils {
                                 player1.getCurrentPlace().getItems().remove(i);
                             }
                         }
-                    
-                        // se sono stati raccolti tutti gli oggetti la stanza risulta essere esplorata  
-                        // al momento con questo metodo è inutile perche le stanze con le casse non risulteranno mai vuote
-                        if(player1.getCurrentPlace().getItems().isEmpty()) 
-                            player1.getCurrentPlace().setExplored(true);
                     }
                     break;
                     
