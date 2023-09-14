@@ -77,7 +77,7 @@ public class Parser {
         Item item = new Item();
         String text = command;
         List<String> keyWords = new ArrayList<>();
-        keyWords = findKeyWords(command);
+        keyWords = findKeyWords(command); 
         
         int n = 0; 
         
@@ -86,7 +86,7 @@ public class Parser {
         p.setObject(null);
         p.setConversation(null);
         p.setBlockedRoom(null);
-
+        
         for(int i = 0; i < keyWords.size(); i++) {
             if(!keyWords.get(i).isEmpty()) { // controlla prima se è un oggetto
                 n = checkForObject(keyWords.get(i), game.getCommands(), Command::getName, Command::getAlias);

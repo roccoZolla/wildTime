@@ -63,9 +63,8 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getNord());
                         
                         // se non è stata esplorata
-                        if(!player1.getCurrentPlace().getNord().getExplored()) {
-                            player1.getCurrentPlace().getNord().setExplored(true);
-                        }
+                        if(!player1.getCurrentPlace().getExplored())
+                            player1.getCurrentPlace().setExplored(true);
                         
                         text = player1.getCurrentPlace().getDescription();
                         
@@ -82,9 +81,8 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getSouth());
                         
                         // se non è stata esplorata
-                        if(!player1.getCurrentPlace().getSouth().getExplored()) {
-                            player1.getCurrentPlace().getSouth().setExplored(true);
-                        }
+                        if(!player1.getCurrentPlace().getExplored())
+                            player1.getCurrentPlace().setExplored(true);
                         
                         text = player1.getCurrentPlace().getDescription();
                     } else {
@@ -100,9 +98,8 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getEst());
                         
                         // se non è stata esplorata
-                        if(!player1.getCurrentPlace().getEst().getExplored()) {
-                            player1.getCurrentPlace().getEst().setExplored(true);
-                        }
+                        if(!player1.getCurrentPlace().getExplored())
+                            player1.getCurrentPlace().setExplored(true);
                         
                         text = player1.getCurrentPlace().getDescription();
                     } else {
@@ -118,9 +115,8 @@ public class Utils {
                         player1.setCurrentPlace(player1.getCurrentPlace().getWest());
                         
                         // se non è stata esplorata
-                        if(!player1.getCurrentPlace().getWest().getExplored()) {
-                            player1.getCurrentPlace().getWest().setExplored(true);
-                        }
+                        if(!player1.getCurrentPlace().getExplored())
+                            player1.getCurrentPlace().setExplored(true);
                         
                         text = player1.getCurrentPlace().getDescription();
                     } else {
