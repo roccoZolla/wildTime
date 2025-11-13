@@ -1,0 +1,59 @@
+# =========================
+# Compilati Java
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+
+# Cartelle di output comuni
+/out/
+/build/
+/bin/
+/dist/
+/nbbuild/
+/nbdist/
+/target/
+
+# =========================
+# IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# =========================
+# NetBeans
+# =========================
+nbproject/private/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+# =========================
+# Log e file temporanei
+# =========================
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# =========================
+# Sistema operativo
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
