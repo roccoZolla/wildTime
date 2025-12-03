@@ -1,0 +1,13 @@
+{
+  "title": "Wild Time",
+  "menu": {
+    "newGame": "Nuova Partita",
+    "continue": "Continua",
+    "exit": "Esci"
+  },
+  "save.success": "Gioco salvato con successo!",
+  "load.success": "Gioco caricato con successo!",
+  "movement.blocked": "Sembra ci sia qualcosa che ostruisce il passaggio...",
+  "movement.no_path": "Non c'è niente da questa parte",
+  "errors.unrecognized": "Non capisco quello che mi vuoi dire..."
+}

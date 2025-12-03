@@ -1,38 +1,87 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.mycompany.wild_time.Engine;
 
-import com.mycompany.wild_time.Game.WildTime;
+import com.mycompany.wild_time.Cartridge.CartridgeManager;
+import com.mycompany.wild_time.SaveManager.SaveManager;
+import com.mycompany.wild_time.Game.GameManager;
+import com.mycompany.wild_time.Gui.GUIManager;
+import com.mycompany.wild_time.Parser.Parser;
+import com.mycompany.wild_time.Parser.ParsedCommand;
 
-/**
- *
- * @author rocco
- */
 public class Engine {
+
+    private EngineState state = EngineState.MAIN_MENU;
+
+    private final CartridgeManager cartridgeManager;
     private final GameManager gameManager;
-    private final GameDescription game;
-    
-    public Engine(GameDescription game) {
-        this.game = game;
-        gameManager = new GameManager(game);
+    private final GUIManager guiManager;
+    private final Parser parser;
+
+
+    public Engine() {
+        this.cartridgeManager = new CartridgeManager();
+        this.gameManager = new GameManager();
+        this.guiManager = new GUIManager();
+
+        this.parser = new Parser();
     }
-    
-    public void excute() {
-        // try catch
-        try {
-            this.game.init();
-            gameManager.Start();
-        } catch (Exception ex) {
-            System.err.println(ex);
-        }  
-        
+
+    public void start() {
+        this.guiManager.showMainMenu(action -> {
+            switch (action) {
+                case NEW_GAME:
+                    if (SaveManager.deleteSave())
+                        System.out.println("file eliminato correttamente!");
+
+                    guiManager.hideMainMenu();
+
+                    cartridgeManager.loadCartridge();
+
+                    gameManager.newGame(cartridgeManager.getCartridge());
+
+                    guiManager.showGame();
+
+                    new Thread(() -> {
+                        state = EngineState.RUNNING;
+                        execute();
+                    }).start();
+                    break;
+
+                case CONTINUE:
+                    cartridgeManager.loadCartridge();
+
+                    gameManager.loadGame(cartridgeManager.getCartridge(),
+                            SaveManager.loadSave());
+
+                    guiManager.hideMainMenu();
+
+                    guiManager.showGame();
+
+                    new Thread(() -> {
+                        state = EngineState.RUNNING;
+                        execute();
+                    }).start();
+                    break;
+
+                case EXIT:
+                    state = EngineState.EXIT;
+                    break;
+            }
+        });
     }
-        
-    public static void main(String[] args) {
-        Engine engine = new Engine(new WildTime());
-        
-        engine.excute();
+
+    public void execute() {
+        System.out.println("execute engine");
+        while (state == EngineState.RUNNING) {
+            String userInput = guiManager.fetchUserInput();
+
+            guiManager.update(userInput);
+
+            ParsedCommand parsedCommand = parser.parse(userInput,
+                    cartridgeManager.getCartridge().getCommands());
+
+            String result = gameManager.execute(parsedCommand);
+
+            guiManager.update(result);
+        }
     }
 }

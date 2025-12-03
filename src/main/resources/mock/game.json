@@ -1,0 +1,110 @@
+{
+  "gameTitle": "Avventura di Test",
+  "rooms": [
+    {
+      "id": "room1",
+      "name": "Sala Iniziale",
+      "description": "Una stanza piccola e buia con un tavolo al centro.",
+      "exits": {
+        "north": "room2"
+      }
+    },
+    {
+      "id": "room2",
+      "name": "Corridoio",
+      "description": "Un lungo corridoio con porte chiuse.",
+      "exits": {
+        "south": "room1",
+        "east": "room3"
+      }
+    },
+    {
+      "id": "room3",
+      "name": "Laboratorio",
+      "description": "Un laboratorio pieno di strani strumenti e pozioni.",
+      "exits": {
+        "west": "room2"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "item1",
+      "name": "Chiave",
+      "description": "Una piccola chiave arrugginita.",
+      "usable": true
+    },
+    {
+      "id": "item2",
+      "name": "Torcia",
+      "description": "Una torcia utile per illuminare stanze buie.",
+      "usable": true
+    }
+  ],
+  "npcs": [
+    {
+      "id": "npc1",
+      "name": "Guardiano",
+      "description": "Un guardiano severo che controlla l'ingresso.",
+      "dialogues": [
+        "Non puoi passare senza la chiave!",
+        "Torni indietro prima che sia troppo tardi."
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "name": "move",
+      "alias": [
+        "move"
+      ],
+      "type": "MOVE",
+      "parameters": [
+        "north",
+        "south"
+      ]
+    },
+    {
+      "name": "eat",
+      "alias": [
+        "mangia"
+      ],
+      "type": "EAT",
+      "parameters": []
+    },
+    {
+      "name": "look_at",
+      "alias": [
+        "look at",
+        "look"
+      ],
+      "type": "LOOK_AT",
+      "parameters": []
+    },
+    {
+      "name": "where_am_i",
+      "alias": [
+        "where am i",
+        "where",
+        "dove sono"
+      ],
+      "type": "WHERE_AM_I",
+      "parameters": []
+    },
+    {
+      "name": "save",
+      "alias": [
+        "save",
+        "salva"
+      ],
+      "type": "SAVE",
+      "parameters": []
+    }
+  ],
+  "player": {
+    "name": "Eroe",
+    "hp": 100,
+    "inventory": []
+  },
+  "currentRoomID": "room1"
+}

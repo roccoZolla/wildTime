@@ -1,0 +1,20 @@
+package com.mycompany.wild_time.Command;
+
+public enum CommandType {
+    MOVE,
+    SAVE,
+    INVENTORY,
+    OPEN,
+    PICK_UP,
+    TALK_TO,
+    LOOK_AT,
+    WHERE_AM_I,
+    CLEAN,
+    END,
+    EAT,
+    EQUIP,
+    ATTACK,
+    THROW,
+    USE,
+    HELP
+}
