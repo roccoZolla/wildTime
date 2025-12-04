@@ -49,8 +49,7 @@ public class Engine {
                 case CONTINUE:
                     cartridgeManager.loadCartridge();
 
-                    gameManager.loadGame(cartridgeManager.getCartridge(),
-                            SaveManager.loadSave());
+                    gameManager.loadGame(cartridgeManager.getCartridge());
 
                     guiManager.hideMainMenu();
 

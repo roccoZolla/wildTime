@@ -18,7 +18,6 @@ public class CartridgeManager {
     public void loadCartridge() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        // Legge il JSON e converte in GameDescription
         try {
             this.gameDescription = gson.fromJson(new FileReader(gamePath), GameDescription.class);
             System.out.println(gameDescription.toString());

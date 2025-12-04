@@ -24,9 +24,9 @@ public class GameManager {
         this.gameState = new GameState();
     }
 
-    public void loadGame(GameDescription gameDescription, GameState gameState) {
+    public void loadGame(GameDescription gameDescription) {
         this.gameDescription = gameDescription;
-        this.gameState = gameState;
+        this.gameState = SaveManager.loadSave();
     }
 
     public String execute(ParsedCommand parsedCommand) {
