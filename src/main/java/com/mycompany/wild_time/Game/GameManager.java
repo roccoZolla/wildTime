@@ -15,11 +15,10 @@ public class GameManager {
     public GameManager() {
     }
 
-    public void setGame(GameDescription gameDescription) {
-        this.gameDescription = gameDescription;
-    }
-
     public void newGame(GameDescription gameDescription) {
+        if (SaveManager.deleteSave())
+            System.out.println("--- salvataggio eliminato correttamente! ---");
+
         this.gameDescription = gameDescription;
         this.gameState = new GameState();
     }

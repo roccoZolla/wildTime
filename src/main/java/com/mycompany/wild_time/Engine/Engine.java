@@ -29,9 +29,6 @@ public class Engine {
         this.guiManager.showMainMenu(action -> {
             switch (action) {
                 case NEW_GAME:
-                    if (SaveManager.deleteSave())
-                        System.out.println("file eliminato correttamente!");
-
                     guiManager.hideMainMenu();
 
                     cartridgeManager.loadCartridge();
