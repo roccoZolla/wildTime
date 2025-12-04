@@ -5,6 +5,7 @@ import com.mycompany.wild_time.Game.GameManager;
 import com.mycompany.wild_time.Gui.GUIManager;
 import com.mycompany.wild_time.Parser.Parser;
 import com.mycompany.wild_time.Parser.ParsedCommand;
+import com.mycompany.wild_time.SaveManager.SaveManager;
 import com.mycompany.wild_time.Type.CommandResult;
 
 import java.util.concurrent.CountDownLatch;
@@ -63,6 +64,12 @@ public class Engine {
                     break;
 
                 case CONTINUE:
+
+                    if(!SaveManager.saveExists()) {
+                        guiManager.showError("Nessun salvataggio trovato");
+                        return;
+                    }
+
                     cartridgeManager.loadCartridge();
 
                     gameManager.loadGame(cartridgeManager.getCartridge());

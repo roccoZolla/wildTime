@@ -41,6 +41,15 @@ public class GUIManager {
         });
     }
 
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(
+                null,
+                message,
+                "Errore",
+                JOptionPane.ERROR_MESSAGE
+        );
+    }
+
 
     public void onUserInput(String input) {
         System.out.println("input: " + input);
@@ -63,25 +72,5 @@ public class GUIManager {
                 gameFrame.updateUIState(result);
             });
         }
-    }
-
-    public void cleanGameFrame() {
-        gameFrame.cleanStoryArea();
-    }
-
-    public void closeGameFrame() {
-        SwingUtilities.invokeLater(() -> {
-            if (this.gameFrame != null) {
-                this.gameFrame.dispose();
-            }
-        });
-    }
-
-    public void closeMenuFrame() {
-        SwingUtilities.invokeLater(() -> {
-            if (this.menuFrame != null) {
-                this.menuFrame.dispose();
-            }
-        });
     }
 }

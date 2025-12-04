@@ -55,6 +55,10 @@ public class SaveManager {
         }
     }
 
+    public static boolean saveExists() {
+        return Files.exists(Paths.get(SAVE_PATH));
+    }
+
     public static boolean deleteSave() {
         return new File(SAVE_PATH).delete();
     }
