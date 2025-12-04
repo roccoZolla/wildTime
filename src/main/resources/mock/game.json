@@ -99,6 +99,15 @@
       ],
       "type": "SAVE",
       "parameters": []
+    },
+    {
+      "name": "exit",
+      "alias": [
+        "exit",
+        "esci"
+      ],
+      "type": "EXIT",
+      "parameters": []
     }
   ],
   "player": {

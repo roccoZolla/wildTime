@@ -3,6 +3,7 @@ package com.mycompany.wild_time.Command;
 public enum CommandType {
     MOVE,
     SAVE,
+    EXIT,
     INVENTORY,
     OPEN,
     PICK_UP,

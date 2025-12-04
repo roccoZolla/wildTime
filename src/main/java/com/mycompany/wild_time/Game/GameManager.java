@@ -3,6 +3,7 @@ package com.mycompany.wild_time.Game;
 import com.mycompany.wild_time.Cartridge.GameDescription;
 import com.mycompany.wild_time.SaveManager.SaveManager;
 import com.mycompany.wild_time.Parser.ParsedCommand;
+import com.mycompany.wild_time.Type.CommandResult;
 import com.mycompany.wild_time.Type.Direction;
 import com.mycompany.wild_time.Type.Room;
 import com.mycompany.wild_time.Util.MessageKey;
@@ -28,16 +29,13 @@ public class GameManager {
         this.gameState = SaveManager.loadSave();
     }
 
-    public String execute(ParsedCommand parsedCommand) {
-        String outputText = "";
-
-        outputText = this.handleCommand(parsedCommand);
-
-        return outputText;
+    public CommandResult execute(ParsedCommand parsedCommand) {
+        return this.handleCommand(parsedCommand);
     }
 
-    private String handleCommand(ParsedCommand cmd) {
+    private CommandResult handleCommand(ParsedCommand cmd) {
         String text = "";
+        boolean exit = false;
 
         if (cmd.type() == null) {
             text = Messages.get(MessageKey.UNKNOWN_COMMAND);
@@ -80,12 +78,17 @@ public class GameManager {
                         text = Messages.get(MessageKey.ERROR_SAVE);
                     break;
 
+                case EXIT:
+                    text = Messages.get(MessageKey.EXITING_GAME);
+                    exit = true;
+                    break;
+
                 default:
                     text = Messages.get(MessageKey.UNKNOWN_COMMAND);
                     break;
             }
         }
 
-        return text;
+        return new CommandResult(text, exit);
     }
 }

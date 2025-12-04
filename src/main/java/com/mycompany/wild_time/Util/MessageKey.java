@@ -7,5 +7,6 @@ public enum MessageKey {
     WHERE_AM_I,
     SUCCESS_SAVE,
     ERROR_SAVE,
+    EXITING_GAME,
     ACTION_FAIL
 }

@@ -9,7 +9,8 @@ public class Messages {
             MessageKey.ITEM_NOT_FOUND, "Non vedo %s qui.",
             MessageKey.WHERE_AM_I, "Ti trovi in %s",
             MessageKey.SUCCESS_SAVE, "Salvataggio avvenuto con successo!",
-            MessageKey.ERROR_SAVE, "Errore durante il salvataggio"
+            MessageKey.ERROR_SAVE, "Errore durante il salvataggio",
+            MessageKey.EXITING_GAME, "Tornando al schermata principale..."
     );
 
     public static String get(MessageKey key, Object... args) {
