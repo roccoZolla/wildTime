@@ -5,13 +5,13 @@
 //package com.mycompany.wild_time.Game;
 //
 //import com.mycompany.wild_time.Utils.Utils;
-//import com.mycompany.wild_time.Command.Command;
-//import com.mycompany.wild_time.Command.CommandType;
-//import com.mycompany.wild_time.Type.Conversation;
-//import com.mycompany.wild_time.Type.Npc;
-//import com.mycompany.wild_time.Type.Player;
-//import com.mycompany.wild_time.Type.Item;
-//import com.mycompany.wild_time.Type.Room;
+//import com.mycompany.wild_time.Game.Command.Command;
+//import com.mycompany.wild_time.Game.Command.CommandType;
+//import com.mycompany.wild_time.Shared.Type.Conversation;
+//import com.mycompany.wild_time.Shared.Type.Npc;
+//import com.mycompany.wild_time.Shared.Type.Player;
+//import com.mycompany.wild_time.Shared.Type.Item;
+//import com.mycompany.wild_time.Shared.Type.Room;
 //
 ///**
 // *

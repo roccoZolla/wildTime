@@ -1,72 +1,117 @@
 package com.mycompany.wild_time.Game;
 
-import com.mycompany.wild_time.Command.Command;
-import com.mycompany.wild_time.Type.*;
+import com.mycompany.wild_time.Game.Cartridge.CartridgeManager;
+import com.mycompany.wild_time.Game.GUI.GameGUIManager;
+import com.mycompany.wild_time.Game.GUI.MenuAction;
+import com.mycompany.wild_time.Game.Parser.ParsedCommand;
+import com.mycompany.wild_time.Game.Parser.Parser;
+import com.mycompany.wild_time.Game.SaveManager.SaveManager;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import com.mycompany.wild_time.Shared.Type.CommandResult;
 
-// @todo: classe che descrive il mondo di gioco da trasferire nella gameDescription
-public abstract class Game implements Serializable {
-    private String gameTitle;
-    private final List<Room> rooms;
-    private final List<Command> commands;
-    private final List<Npc> npcs;
-    private final List<Item> items;
+public class Game {
 
-    // player stat
-    private Player player;
-    private Room currentPlace;
+    private volatile GameplayState state;
+
+    private Runnable onExitCallback;
+
+    private final CartridgeManager cartridgeManager;
+    private final GameManager gameManager;
+    private final GameGUIManager gameGuiManager;
+    private final Parser parser;
 
     public Game() {
-        this.rooms = new ArrayList<>();
-        this.commands = new ArrayList<>();
-        this.npcs = new ArrayList<>();
-        this.items = new ArrayList<>();
+        this.cartridgeManager = new CartridgeManager();
+        this.gameManager = new GameManager();
+        this.gameGuiManager = new GameGUIManager();
 
-        this.init();
+        this.parser = new Parser();
     }
 
-    public List<Command> getCommands() {
-        return commands;
+    public void setOnExit(Runnable callback) {
+        this.onExitCallback = callback;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public void start() {
+        state = GameplayState.MAIN_MENU;
+
+        gameGuiManager.showMainMenu(this::handleMenuAction);
     }
 
-    public List<Npc> getNpcs() {
-        return npcs;
+    private void handleMenuAction(MenuAction action) {
+        switch (action) {
+            case NEW_GAME:
+                gameGuiManager.hideMainMenu();
+
+                cartridgeManager.loadCartridge();
+
+                gameManager.newGame(cartridgeManager.getCartridge());
+                gameGuiManager.showGame();
+
+                state = GameplayState.RUNNING;
+                runGameLoop();
+                break;
+
+            case CONTINUE:
+                if (!SaveManager.saveExists()) {
+                    gameGuiManager.showError("Nessun salvataggio trovato");
+                    return;
+                }
+
+                cartridgeManager.loadCartridge();
+                gameManager.loadGame(cartridgeManager.getCartridge());
+
+                gameGuiManager.hideMainMenu();
+                gameGuiManager.showGame();
+
+                state = GameplayState.RUNNING;
+                runGameLoop();
+                break;
+
+            case EXIT:
+                gameGuiManager.disposeMainMenu();
+                state = GameplayState.EXIT_TO_ENGINE;
+
+                if (onExitCallback != null) {
+                    onExitCallback.run();
+                }
+                break;
+        }
     }
 
-    public List<Item> getItems() {
-        return items;
+    private void runGameLoop() {
+        System.out.println("--- run game loop ---");
+        Thread loop = new Thread(this::execute, "game_loop");
+        loop.start();
     }
 
-    public Room getCurrentPlace() {
-        return currentPlace;
+    private void execute() {
+        System.out.println("--- execute loop ---");
+        while (state == GameplayState.RUNNING) {
+
+            String userInput = gameGuiManager.fetchUserInput();
+
+            System.out.println("--- fetch user input: " + userInput);
+
+            gameGuiManager.update(userInput);
+
+            ParsedCommand parsedCommand = parser.parse(userInput,
+                    cartridgeManager.getCartridge().getCommands());
+
+            CommandResult result = gameManager.execute(parsedCommand);
+
+            gameGuiManager.update(result.getMessage());
+
+            if (result.shouldExitEngine()) {
+                state = GameplayState.MAIN_MENU;
+
+                gameGuiManager.disposeGame();
+                gameGuiManager.showMainMenu(this::handleMenuAction);
+                break;
+            }
+
+        }
     }
 
-    public void setCurrentPlace(Room room) {
-        this.currentPlace = room;
-    }
 
-    public String getTitle() {
-        return gameTitle;
-    }
-
-    public void setTitle(String title) {
-        this.gameTitle = title;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public abstract void init();
 }

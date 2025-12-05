@@ -1,13 +1,12 @@
 package com.mycompany.wild_time.Game;
 
-import com.mycompany.wild_time.Cartridge.GameDescription;
-import com.mycompany.wild_time.SaveManager.SaveManager;
-import com.mycompany.wild_time.Parser.ParsedCommand;
-import com.mycompany.wild_time.Type.CommandResult;
-import com.mycompany.wild_time.Type.Direction;
-import com.mycompany.wild_time.Type.Room;
-import com.mycompany.wild_time.Util.MessageKey;
-import com.mycompany.wild_time.Util.Messages;
+import com.mycompany.wild_time.Game.SaveManager.SaveManager;
+import com.mycompany.wild_time.Game.Parser.ParsedCommand;
+import com.mycompany.wild_time.Shared.Type.CommandResult;
+import com.mycompany.wild_time.Shared.Type.Direction;
+import com.mycompany.wild_time.Shared.Type.Room;
+import com.mycompany.wild_time.Shared.Util.MessageKey;
+import com.mycompany.wild_time.Shared.Util.Messages;
 
 public class GameManager {
     private GameDescription gameDescription;

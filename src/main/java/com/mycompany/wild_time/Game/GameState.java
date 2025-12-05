@@ -1,6 +1,6 @@
 package com.mycompany.wild_time.Game;
 
-import com.mycompany.wild_time.Type.Player;
+import com.mycompany.wild_time.Shared.Type.Player;
 
 public class GameState {
     private String currentRoomID;
