@@ -12,32 +12,47 @@ public class GUIManager {
 
     public void showMainMenu(MenuListener listener) {
         SwingUtilities.invokeLater(() -> {
-            if (this.menuFrame != null) {
-                this.menuFrame.dispose();
-            }
+            if (this.menuFrame == null) this.menuFrame = new MenuFrame(listener);
 
-            this.menuFrame = new MenuFrame(listener);
             this.menuFrame.setVisible(true);
         });
     }
 
-
     public void hideMainMenu() {
-        if (this.menuFrame != null) {
-            this.menuFrame.setVisible(false);
-        }
+        if (this.menuFrame != null) this.menuFrame.setVisible(false);
     }
 
-    public void showGame() {
-        System.out.println("showGame");
-
+    public void disposeMainMenu() {
         SwingUtilities.invokeLater(() -> {
-            if (this.gameFrame != null) {
-                this.gameFrame.dispose();
+            if (this.menuFrame != null) {
+                this.menuFrame.dispose();
+                this.menuFrame = null;
+            }
+        });
+    }
+
+
+    public void showGame() {
+        SwingUtilities.invokeLater(() -> {
+            if (this.gameFrame == null) {
+                System.out.println("--- game frame null, lo creo ---");
+                this.gameFrame = new GameFrame(this);
             }
 
-            this.gameFrame = new GameFrame(this);
             this.gameFrame.setVisible(true);
+        });
+    }
+
+    public void disposeGame() {
+        SwingUtilities.invokeLater(() -> {
+            if (this.gameFrame != null) {
+
+                System.out.println("--- dispose game frame ---");
+                this.gameFrame.dispose();
+                this.gameFrame = null;
+
+                this.inputQueue.clear();
+            }
         });
     }
 
@@ -52,7 +67,7 @@ public class GUIManager {
 
 
     public void onUserInput(String input) {
-        System.out.println("input: " + input);
+        System.out.println("--- input: " + input);
         inputQueue.offer(input);
     }
 

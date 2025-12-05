@@ -3,16 +3,16 @@ package com.mycompany.wild_time.Engine;
 import com.mycompany.wild_time.Cartridge.CartridgeManager;
 import com.mycompany.wild_time.Game.GameManager;
 import com.mycompany.wild_time.Gui.GUIManager;
+import com.mycompany.wild_time.Gui.MenuAction;
 import com.mycompany.wild_time.Parser.Parser;
 import com.mycompany.wild_time.Parser.ParsedCommand;
 import com.mycompany.wild_time.SaveManager.SaveManager;
 import com.mycompany.wild_time.Type.CommandResult;
 
-import java.util.concurrent.CountDownLatch;
 
 public class Engine {
 
-    private EngineState state;
+    private volatile EngineState state;
 
     private final CartridgeManager cartridgeManager;
     private final GameManager gameManager;
@@ -31,87 +31,60 @@ public class Engine {
     public void start() {
         state = EngineState.MAIN_MENU;
 
-        while (state != EngineState.EXIT) {
-
-            switch (state) {
-                case MAIN_MENU:
-                    runMainMenu();
-                    break;
-
-                case RUNNING:
-                    runGameLoop();
-                    break;
-            }
-
-        }
+        guiManager.showMainMenu(this::handleMenuAction);
     }
 
-    private void runMainMenu() {
-        CountDownLatch latch = new CountDownLatch(1);
+    private void handleMenuAction(MenuAction action) {
+        switch (action) {
+            case NEW_GAME:
+                guiManager.hideMainMenu();
 
-        guiManager.showMainMenu(action -> {
-            switch (action) {
-                case NEW_GAME:
-                    guiManager.hideMainMenu();
+                cartridgeManager.loadCartridge();
 
-                    cartridgeManager.loadCartridge();
+                gameManager.newGame(cartridgeManager.getCartridge());
+                guiManager.showGame();
 
-                    gameManager.newGame(cartridgeManager.getCartridge());
+                state = EngineState.RUNNING;
+                runGameLoop();
+                break;
 
-                    guiManager.showGame();
+            case CONTINUE:
+                if (!SaveManager.saveExists()) {
+                    guiManager.showError("Nessun salvataggio trovato");
+                    return;
+                }
 
-                    state = EngineState.RUNNING;
-                    break;
+                cartridgeManager.loadCartridge();
+                gameManager.loadGame(cartridgeManager.getCartridge());
 
-                case CONTINUE:
+                guiManager.hideMainMenu();
+                guiManager.showGame();
 
-                    if(!SaveManager.saveExists()) {
-                        guiManager.showError("Nessun salvataggio trovato");
-                        return;
-                    }
+                state = EngineState.RUNNING;
+                runGameLoop();
+                break;
 
-                    cartridgeManager.loadCartridge();
-
-                    gameManager.loadGame(cartridgeManager.getCartridge());
-
-                    guiManager.hideMainMenu();
-
-                    guiManager.showGame();
-
-                    state = EngineState.RUNNING;
-                    break;
-
-                case EXIT:
-                    state = EngineState.EXIT;
-                    break;
-            }
-
-            latch.countDown();
-        });
-
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            case EXIT:
+                guiManager.disposeMainMenu();
+                state = EngineState.EXIT;
+                break;
         }
-
     }
 
     private void runGameLoop() {
-        Thread t = new Thread(this::execute);
-        t.start();
-
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println("--- run game loop ---");
+        Thread loop = new Thread(this::execute, "game_loop");
+        loop.setDaemon(true);
+        loop.start();
     }
 
     private void execute() {
+        System.out.println("--- execute loop ---");
         while (state == EngineState.RUNNING) {
 
             String userInput = guiManager.fetchUserInput();
+
+            System.out.println("--- fetch user input: " + userInput);
 
             guiManager.update(userInput);
 
@@ -124,6 +97,9 @@ public class Engine {
 
             if (result.shouldExitEngine()) {
                 state = EngineState.MAIN_MENU;
+
+                guiManager.disposeGame();
+                guiManager.showMainMenu(this::handleMenuAction);
                 break;
             }
 
