@@ -1,5 +1,6 @@
 package com.mycompany.wild_time.Engine;
 
+import com.mycompany.wild_time.Editor.Editor;
 import com.mycompany.wild_time.Engine.GUI.GUIManager;
 import com.mycompany.wild_time.Engine.GUI.MainMenuAction;
 import com.mycompany.wild_time.Game.Game;
@@ -9,7 +10,7 @@ public class Engine {
     private final GUIManager guiManager;
 
     private Game game;
-//    private Editor editor;
+    private Editor editor;
 
     public Engine() {
         this.guiManager = new GUIManager();
@@ -37,6 +38,13 @@ public class Engine {
 
             case EDITOR:
                 System.out.println("--- editor ---");
+                guiManager.hideMainMenu();
+
+                editor = new Editor();
+
+                Thread editorThread = new Thread(editor::start, "EditorThread");
+                editorThread.start();
+
                 break;
 
             case EXIT:
