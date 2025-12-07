@@ -41,6 +41,9 @@ public class Engine {
                 guiManager.hideMainMenu();
 
                 editor = new Editor();
+                editor.setOnExit(() -> {
+                    guiManager.showMainMenu(this::handleMenuAction);
+                });
 
                 Thread editorThread = new Thread(editor::start, "EditorThread");
                 editorThread.start();

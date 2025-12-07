@@ -12,7 +12,11 @@ public class EditorFrame extends JFrame {
     private int currentStep = 0;
     private final int TOTAL_STEPS = 4;
 
-    public EditorFrame() {
+    private EditorListener listener;
+
+    public EditorFrame(EditorListener listener) {
+        this.listener = listener;
+
         setTitle("WT - Editor");
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -44,6 +48,14 @@ public class EditorFrame extends JFrame {
         JButton prevBtn = new JButton("Back");
         JButton nextBtn = new JButton("Next");
 
+        JButton saveBtn = new JButton("Save");
+        saveBtn.setBackground(Color.BLUE);
+        saveBtn.setOpaque(true);
+
+        JButton cancelBtn = new JButton("Cancel");
+        cancelBtn.setBackground(Color.RED);
+        cancelBtn.setOpaque(true);
+
         prevBtn.addActionListener(e -> {
             if (currentStep > 0) {
                 currentStep--;
@@ -58,9 +70,23 @@ public class EditorFrame extends JFrame {
             }
         });
 
+
+        // qui collego il listener
+        saveBtn.addActionListener(e -> {
+            listener.onEditorAction(EditorAction.SAVE);
+        });
+
+        cancelBtn.addActionListener(e -> {
+            listener.onEditorAction(EditorAction.CANCEL);
+        });
+
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(cancelBtn);
+
         buttonPanel.add(prevBtn);
         buttonPanel.add(nextBtn);
+
+        buttonPanel.add(saveBtn);
         buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(stepIndicator);
